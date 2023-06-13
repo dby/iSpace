@@ -13,9 +13,15 @@
 		433420342A35C7B000C4CA84 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433420332A35C7B000C4CA84 /* Preview Assets.xcassets */; };
 		4334203C2A35DB5600C4CA84 /* FilesContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334203B2A35DB5600C4CA84 /* FilesContentView.swift */; };
 		4334203F2A360F6900C4CA84 /* AlbumContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334203E2A360F6900C4CA84 /* AlbumContentView.swift */; };
+		433420412A361C8C00C4CA84 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433420402A361C8C00C4CA84 /* Core.swift */; };
+		43B8640E2A376C8900494852 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8640D2A376C8900494852 /* Model.swift */; };
+		43B864102A3771DA00494852 /* PathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B8640F2A3771DA00494852 /* PathUtils.swift */; };
+		43B864132A37728400494852 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B864122A37728400494852 /* String+Ext.swift */; };
+		C45E96F327F313C0D65C8101 /* Pods_iSecrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2288C6809AE172996B90A347 /* Pods_iSecrets.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2288C6809AE172996B90A347 /* Pods_iSecrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSecrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		433420292A35C7AF00C4CA84 /* iSecrets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSecrets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSecretsApp.swift; sourceTree = "<group>"; };
 		4334202E2A35C7AF00C4CA84 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +29,13 @@
 		433420332A35C7B000C4CA84 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4334203B2A35DB5600C4CA84 /* FilesContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesContentView.swift; sourceTree = "<group>"; };
 		4334203E2A360F6900C4CA84 /* AlbumContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumContentView.swift; sourceTree = "<group>"; };
+		433420402A361C8C00C4CA84 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		43B864082A376B3A00494852 /* iSecrets-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iSecrets-Bridging-Header.h"; sourceTree = "<group>"; };
+		43B8640D2A376C8900494852 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		43B8640F2A3771DA00494852 /* PathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtils.swift; sourceTree = "<group>"; };
+		43B864122A37728400494852 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		970F379BD89F8C1A5CA31C85 /* Pods-iSecrets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSecrets.debug.xcconfig"; path = "Target Support Files/Pods-iSecrets/Pods-iSecrets.debug.xcconfig"; sourceTree = "<group>"; };
+		ABC68323CC6AB87D93029822 /* Pods-iSecrets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSecrets.release.xcconfig"; path = "Target Support Files/Pods-iSecrets/Pods-iSecrets.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45E96F327F313C0D65C8101 /* Pods_iSecrets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +55,8 @@
 			children = (
 				4334202B2A35C7AF00C4CA84 /* iSecrets */,
 				4334202A2A35C7AF00C4CA84 /* Products */,
+				DBE9396FC9790947BAD134F9 /* Pods */,
+				58B5F006C904309CCBB6DF05 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +71,8 @@
 		4334202B2A35C7AF00C4CA84 /* iSecrets */ = {
 			isa = PBXGroup;
 			children = (
+				43B8640C2A376C7900494852 /* Base */,
+				43B864072A376B1700494852 /* Core */,
 				4334203A2A35DB3000C4CA84 /* Files */,
 				4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */,
 				4334202E2A35C7AF00C4CA84 /* ContentView.swift */,
@@ -81,6 +99,50 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		43B864072A376B1700494852 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				433420402A361C8C00C4CA84 /* Core.swift */,
+				43B864082A376B3A00494852 /* iSecrets-Bridging-Header.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		43B8640C2A376C7900494852 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				43B864112A37724300494852 /* Extension */,
+				43B8640F2A3771DA00494852 /* PathUtils.swift */,
+				43B8640D2A376C8900494852 /* Model.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		43B864112A37724300494852 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				43B864122A37728400494852 /* String+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		58B5F006C904309CCBB6DF05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2288C6809AE172996B90A347 /* Pods_iSecrets.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DBE9396FC9790947BAD134F9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				970F379BD89F8C1A5CA31C85 /* Pods-iSecrets.debug.xcconfig */,
+				ABC68323CC6AB87D93029822 /* Pods-iSecrets.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -88,6 +150,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 433420372A35C7B000C4CA84 /* Build configuration list for PBXNativeTarget "iSecrets" */;
 			buildPhases = (
+				2F90988B0101BA2538395B69 /* [CP] Check Pods Manifest.lock */,
 				433420252A35C7AF00C4CA84 /* Sources */,
 				433420262A35C7AF00C4CA84 /* Frameworks */,
 				433420272A35C7AF00C4CA84 /* Resources */,
@@ -113,6 +176,7 @@
 				TargetAttributes = {
 					433420282A35C7AF00C4CA84 = {
 						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
 					};
 				};
 			};
@@ -146,14 +210,43 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F90988B0101BA2538395B69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iSecrets-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		433420252A35C7AF00C4CA84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43B864132A37728400494852 /* String+Ext.swift in Sources */,
+				43B864102A3771DA00494852 /* PathUtils.swift in Sources */,
+				43B8640E2A376C8900494852 /* Model.swift in Sources */,
 				4334203F2A360F6900C4CA84 /* AlbumContentView.swift in Sources */,
 				4334203C2A35DB5600C4CA84 /* FilesContentView.swift in Sources */,
 				4334202F2A35C7AF00C4CA84 /* ContentView.swift in Sources */,
+				433420412A361C8C00C4CA84 /* Core.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,9 +370,11 @@
 		};
 		433420382A35C7B000C4CA84 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 970F379BD89F8C1A5CA31C85 /* Pods-iSecrets.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
@@ -298,6 +393,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dl.iSecrets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "iSecrets/Core/iSecrets-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -305,9 +402,11 @@
 		};
 		433420392A35C7B000C4CA84 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABC68323CC6AB87D93029822 /* Pods-iSecrets.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
@@ -326,6 +425,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dl.iSecrets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "iSecrets/Core/iSecrets-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
