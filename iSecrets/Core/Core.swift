@@ -102,7 +102,12 @@ extension CoreObject {
 extension CoreObject {
     func loadSecretDirObjectsFromSP() {
         let userDefaults = UserDefaults.standard
-        self.data = userDefaults.object(forKey: _secretDirSPKey) as! SecretDirMapObject
+        
+        if let data = userDefaults.object(forKey: _secretDirSPKey) as? SecretDirMapObject {
+            self.data = data
+        } else {
+            self.data = SecretDirMapObject()
+        }
     }
     
     /// 添加文件记录

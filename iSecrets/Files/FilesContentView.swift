@@ -14,8 +14,8 @@ struct FilesContentView: View {
         GridItem(.flexible()),
     ]
     
-    let datas = ["图片", "视频", "文件", "文件", "文件", "文件"]
-    let headerWid = UIScreen.main.bounds.size.width - 48
+    let datas = ["图片", "视频", "文件", "文件1", "文件2", "文件3"]
+    let headerWid = UIScreen.main.bounds.size.width - 60
 
     @State private var showingAlert = false
     @State private var name = ""
@@ -25,7 +25,7 @@ struct FilesContentView: View {
             ScrollView {
                 VStack {
                     Spacer()
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
                         ForEach(datas, id: \.self) { item in
                             Text(item)
                                 .frame(width: headerWid/2, height: headerWid/2)
@@ -35,7 +35,7 @@ struct FilesContentView: View {
                                     print("1111")
                                 }
                         }
-                    }
+                    }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 }
             }
             .navigationTitle("文件夹")
