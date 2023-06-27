@@ -19,6 +19,8 @@ struct FilesContentView: View {
 
     @State private var showingAlert = false
     @State private var name = ""
+    @State private var presetnKey = false
+    @State private var pushKey = false
 
     var body: some View {
         NavigationStack {
@@ -32,7 +34,8 @@ struct FilesContentView: View {
                                 .background(.cyan)
                                 .cornerRadius(5)
                                 .onTapGesture {
-                                    print("1111")
+                                    print("1111 \(item)")
+                                    self.pushKey.toggle()
                                 }
                         }
                     }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
@@ -53,6 +56,12 @@ struct FilesContentView: View {
                         }
                     }
                 }
+            })
+            .fullScreenCover(isPresented: $presetnKey, content: {
+                AlbumContentView()
+            })
+            .navigationDestination(isPresented: $pushKey, destination: {
+                AlbumContentView()
             })
             .navigationBarTitleDisplayMode(.large)
         }

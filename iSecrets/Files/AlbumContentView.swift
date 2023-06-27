@@ -29,7 +29,7 @@ struct AlbumContentView: View {
     ]
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns) {
                     ForEach(1..<origins.count, id:\.self) { index in
@@ -43,8 +43,8 @@ struct AlbumContentView: View {
                     }
                 }
             }
-            .navigationBarTitle(Text("SwiftUI Example"))
-        }
+//            .navigationBarTitle(Text("SwiftUI Example"))
+//        }
     }
 }
 
