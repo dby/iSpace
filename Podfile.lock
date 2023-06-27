@@ -1,3 +1,23 @@
-PODFILE CHECKSUM: dd95cbfa33f8ef630d002df9057d9b9e9686b994
+PODS:
+  - JFHeroBrowser (1.4.3):
+    - JRBaseKit (~> 1.0.0)
+  - JRBaseKit (1.0.0)
+
+DEPENDENCIES:
+  - JFHeroBrowser (from `./`)
+
+SPEC REPOS:
+  trunk:
+    - JRBaseKit
+
+EXTERNAL SOURCES:
+  JFHeroBrowser:
+    :path: "./"
+
+SPEC CHECKSUMS:
+  JFHeroBrowser: 97c58d9ce865f9ff6caaa608438b3be23d18be79
+  JRBaseKit: ed75cfce9e340a3316bee0eaac0fa1c400714287
+
+PODFILE CHECKSUM: 94b14dc50dcc6938f52ee051c40d2a66181f10b1
 
 COCOAPODS: 1.11.3

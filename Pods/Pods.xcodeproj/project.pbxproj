@@ -7,43 +7,204 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D53583273B4ED460621B8F53496A861 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		D36B9AEEB62B1CF54F53E09739B1AAFD /* Pods-iSecrets-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A749CF54CEB32502C6021BFA3C229B /* Pods-iSecrets-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D72C0F5AF33D9BDC92DED03FC1A47767 /* Pods-iSecrets-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A20F6BE9B1D87C79E1B8DDC1D1420390 /* Pods-iSecrets-dummy.m */; };
+		0238F1D3FC5F5F66B6AEBCE9FC0D41A6 /* JRBaseKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF266220584A30F1D296A288A34A1CD8 /* JRBaseKit-dummy.m */; };
+		072D6A7A98E911E49D4C60FAE875634D /* UIView+JFRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F75E72E5CC0ADBE191CF26921AC511 /* UIView+JFRect.swift */; };
+		09DD7EB560DF86525F4B0EEB20FDF131 /* Hero+UIViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021B26A1077F676667561D741B50F587 /* Hero+UIViewContoller.swift */; };
+		11411C8C42F26A10C61092656ED59D07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		155CD9184B157E3EC7024DB3967FAD93 /* JF.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70CD45FD2BCE81F97AE3BD82300FDA /* JF.swift */; };
+		1EA4B797B8AA8A8A6C644BD399701BDA /* Size+Extenison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C13C0ADA9ECF793CC610C7833363138 /* Size+Extenison.swift */; };
+		20D411C0695840BAF1B4B2B99C6410F2 /* HeroBrowserDataImageViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE7861544003D2027CDD94C42D1352A /* HeroBrowserDataImageViewModule.swift */; };
+		37E097E16EF3DFAEE2351BFA00F30160 /* HeroBrowserViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C0E79A3C129B9A2B87301C2029910A /* HeroBrowserViewModule.swift */; };
+		3FECD58BF52FA194BDDB1B7A8B35EF4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		4F7E757B36B9C0CCD5594F39A91740C4 /* Pods-iSecrets-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 808C4180A8FC9E6F62F9E634B50A47F5 /* Pods-iSecrets-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5094B18AC8C3916576A8A1CF3C559044 /* HeroBundleTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD630B1017B6F1496849E32BE9BE8D /* HeroBundleTool.swift */; };
+		51F4E08CF915D3526853C2BC1ADA1111 /* HeroCircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6436146A7F31E319D1C3AC9D41A6AB /* HeroCircularProgressView.swift */; };
+		5C62D316ED4F4B37F9AB027C713B298E /* JRBaseKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 77A4DAED65F458C78D98F4A590414FD3 /* JRBaseKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63C61A8A9F68B0FAAE97764DDBB00714 /* HeroBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B61D170D10EBBA2C2EAD2E0012ABB4 /* HeroBrowser.swift */; };
+		6C364DF5E4194B6F5862F6406CA30411 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C971E958A62A0250B3EC99C763962034 /* UIColor+Extension.swift */; };
+		70B1EEE6033B7D97A5E978E8C1C51A58 /* JFHeroBrowser-JFHeroBrowser in Resources */ = {isa = PBXBuildFile; fileRef = A4CBE5F942677B3AE6548EDB77003623 /* JFHeroBrowser-JFHeroBrowser */; };
+		795B266E1285836A71159C55B3368711 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD621AEB1066BEF1C150F84E5AC63B6 /* Hero.swift */; };
+		7A256B29421FF413144252E25973A7BF /* HeroVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662182C271CBB2B14C62D665F6D3F63C /* HeroVideoView.swift */; };
+		88648D5107F5378D3B7CA1F87B28E14C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		8AA07A025EB9C8F96BA7F9F39433C158 /* HeroBrowserViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C14B4524A41CE04EBC1669CE4E33A /* HeroBrowserViewContainer.swift */; };
+		8AA58DD129498195B8E87CC02A5B6DA8 /* HeroBrowserVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87109268B9ABC9BD5B9B3327BA59BCA6 /* HeroBrowserVideoCell.swift */; };
+		B89C78E5A83A720AC495F12079F3329C /* HeroBrowserLocalImageViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BB1DC41698DF782D7A51649AF2D15 /* HeroBrowserLocalImageViewModule.swift */; };
+		BA4E690C304C30FB044747DC87C24F0B /* HeroTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1563164E93ECE297C8081D02A043934 /* HeroTransitionAnimation.swift */; };
+		BC918A6FCB2129DCC54678F76C58929E /* UIImage+JFColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BFA45CBCCEE4878E3E9825C86207C /* UIImage+JFColor.swift */; };
+		BDA5F1FC1BCF029F9F31ECE9B881B221 /* icon_video_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9B700719B4A0ABF9AA8565EDE41566 /* icon_video_loading@2x.png */; };
+		C6AFBCFA4BBCC06E1466F20674E118C8 /* JFHeroBrowser-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A67B64FDE1C17DDCDC4BC7250B769E /* JFHeroBrowser-dummy.m */; };
+		CB95ECF1B348EFF775C7C95FC8554C41 /* Pods-iSecrets-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1B78ECBCE06F1AB99D0C317962AE /* Pods-iSecrets-dummy.m */; };
+		D09C19CAB65971BD7D68EC546EB56734 /* JFHeroBrowser-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E61E739817461D42990211F9AA66DB5 /* JFHeroBrowser-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D560E4F7CD39EAA65BB2E7DD8CE48041 /* HeroBrowserBaseImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC7713DA79E6F32B9339DF5D2F951E /* HeroBrowserBaseImageCell.swift */; };
+		DA50B8C0A6A31D16DD4F70B1A6E18EE5 /* HeroBrowserHostedCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F122757CB8E28BC0F034DE7D6DBB7238 /* HeroBrowserHostedCellProtocol.swift */; };
+		E3719CD8D23545F182506473CF8645CD /* HeroBrowserNetworkImageViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6965C2376733913D7BD239122440A5C /* HeroBrowserNetworkImageViewModule.swift */; };
+		E5026635EFD8EBFF7652B274C8762448 /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F288CD49EA33E4225B1B67E0C92B8A32 /* icon_play@2x.png */; };
+		E930BE7729C95567E994B85B51AF8BE6 /* HeroBrowserVideoViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E92FB3CA284407119AECA29C8F2B38D /* HeroBrowserVideoViewModule.swift */; };
+		EA7FA629AD24D9CF0F2400C59C54DC11 /* HeroBrowserNetworkImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E51B88DD861C680CC0004903315393 /* HeroBrowserNetworkImageCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		18F98A1A557973478CD2F5A3DB979ABB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B1F32125DF013863A0D1368212EAA6B;
+			remoteInfo = JFHeroBrowser;
+		};
+		44B30C0064B6470351EB29F42B668527 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D7D9F01E1687A74058CDBA76158597E;
+			remoteInfo = "JFHeroBrowser-JFHeroBrowser";
+		};
+		7FBA11D889788E39AA251B0F5173E58C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D56538E6467ED03E10BFE3D7E918159;
+			remoteInfo = JRBaseKit;
+		};
+		F4A31588E960B62A6A61FB7198C51AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D56538E6467ED03E10BFE3D7E918159;
+			remoteInfo = JRBaseKit;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		206B4DD82AF1BB0C40868FB499579969 /* Pods-iSecrets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iSecrets.debug.xcconfig"; sourceTree = "<group>"; };
-		25A749CF54CEB32502C6021BFA3C229B /* Pods-iSecrets-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iSecrets-umbrella.h"; sourceTree = "<group>"; };
-		2E662ED6F1519DC0EF8681479B4F77E1 /* Pods-iSecrets-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iSecrets-Info.plist"; sourceTree = "<group>"; };
+		021B26A1077F676667561D741B50F587 /* Hero+UIViewContoller.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Hero+UIViewContoller.swift"; sourceTree = "<group>"; };
+		0A58FC8921CE1D13EC3CD2CD25772329 /* Pods-iSecrets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iSecrets.release.xcconfig"; sourceTree = "<group>"; };
+		12E05E4072ED12B42ADFEA5E6EADCC63 /* Pods-iSecrets.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iSecrets.modulemap"; sourceTree = "<group>"; };
+		152E8CE045A41149AF2F1C7BC79DD041 /* JRBaseKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JRBaseKit.release.xcconfig; sourceTree = "<group>"; };
+		193C14B4524A41CE04EBC1669CE4E33A /* HeroBrowserViewContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserViewContainer.swift; sourceTree = "<group>"; };
+		19B61D170D10EBBA2C2EAD2E0012ABB4 /* HeroBrowser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowser.swift; sourceTree = "<group>"; };
+		1E92FB3CA284407119AECA29C8F2B38D /* HeroBrowserVideoViewModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserVideoViewModule.swift; sourceTree = "<group>"; };
+		2A6436146A7F31E319D1C3AC9D41A6AB /* HeroCircularProgressView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroCircularProgressView.swift; sourceTree = "<group>"; };
+		38A67B64FDE1C17DDCDC4BC7250B769E /* JFHeroBrowser-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JFHeroBrowser-dummy.m"; sourceTree = "<group>"; };
+		3E101E8EFEE86741927607AEC9883C73 /* JFHeroBrowser-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "JFHeroBrowser-Info.plist"; sourceTree = "<group>"; };
+		41DECBFD495F1F7A9BFC030FF46AB36A /* JRBaseKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JRBaseKit; path = JRBaseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C13C0ADA9ECF793CC610C7833363138 /* Size+Extenison.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Size+Extenison.swift"; path = "Classes/Size+Extenison.swift"; sourceTree = "<group>"; };
+		4D951F210E603505F5AD5F4AE3D52FA4 /* JRBaseKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "JRBaseKit-Info.plist"; sourceTree = "<group>"; };
+		51BB1B78ECBCE06F1AB99D0C317962AE /* Pods-iSecrets-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iSecrets-dummy.m"; sourceTree = "<group>"; };
+		5642DAE936288A39BF7DE7D6293AD1A8 /* JFHeroBrowser-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JFHeroBrowser-prefix.pch"; sourceTree = "<group>"; };
+		59C0E79A3C129B9A2B87301C2029910A /* HeroBrowserViewModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserViewModule.swift; sourceTree = "<group>"; };
+		5C851416437F4BE236298C4FDB80EE88 /* JFHeroBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JFHeroBrowser.release.xcconfig; sourceTree = "<group>"; };
+		5CE7861544003D2027CDD94C42D1352A /* HeroBrowserDataImageViewModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserDataImageViewModule.swift; sourceTree = "<group>"; };
+		5FCD630B1017B6F1496849E32BE9BE8D /* HeroBundleTool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBundleTool.swift; sourceTree = "<group>"; };
+		62BFBF0526C9196571957D6A45E3C035 /* JFHeroBrowser */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JFHeroBrowser; path = JFHeroBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		641BB1DC41698DF782D7A51649AF2D15 /* HeroBrowserLocalImageViewModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserLocalImageViewModule.swift; sourceTree = "<group>"; };
+		662182C271CBB2B14C62D665F6D3F63C /* HeroVideoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroVideoView.swift; sourceTree = "<group>"; };
+		6ADC7713DA79E6F32B9339DF5D2F951E /* HeroBrowserBaseImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserBaseImageCell.swift; sourceTree = "<group>"; };
 		72EF08F7B9FD6FE9549C5BF0A0FA83E6 /* Pods-iSecrets */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iSecrets"; path = Pods_iSecrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		77ABD731037DE2277C213CC58EFEE4D7 /* Pods-iSecrets.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iSecrets.modulemap"; sourceTree = "<group>"; };
-		9991923F947C62DF36E1B169022D55CF /* Pods-iSecrets-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iSecrets-acknowledgements.markdown"; sourceTree = "<group>"; };
+		77A4DAED65F458C78D98F4A590414FD3 /* JRBaseKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JRBaseKit-umbrella.h"; sourceTree = "<group>"; };
+		788E00C2B4D4B100B793A1C0E18DEFE9 /* JRBaseKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JRBaseKit.modulemap; sourceTree = "<group>"; };
+		7F63A352ADB55112D3C316667F7F738F /* ResourceBundle-JFHeroBrowser-JFHeroBrowser-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-JFHeroBrowser-JFHeroBrowser-Info.plist"; sourceTree = "<group>"; };
+		808C4180A8FC9E6F62F9E634B50A47F5 /* Pods-iSecrets-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iSecrets-umbrella.h"; sourceTree = "<group>"; };
+		8388947D0554335E42BBD20B0550799F /* Pods-iSecrets-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iSecrets-acknowledgements.markdown"; sourceTree = "<group>"; };
+		87109268B9ABC9BD5B9B3327BA59BCA6 /* HeroBrowserVideoCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserVideoCell.swift; sourceTree = "<group>"; };
+		871470EAF18226B44961B5DBF8EB3B27 /* JRBaseKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JRBaseKit.debug.xcconfig; sourceTree = "<group>"; };
+		8E61E739817461D42990211F9AA66DB5 /* JFHeroBrowser-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JFHeroBrowser-umbrella.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A20F6BE9B1D87C79E1B8DDC1D1420390 /* Pods-iSecrets-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iSecrets-dummy.m"; sourceTree = "<group>"; };
-		B3F516CD4E87B89D702FD8B160EA0733 /* Pods-iSecrets-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iSecrets-acknowledgements.plist"; sourceTree = "<group>"; };
-		D4ED6B2D0E888C0ACACFCEE575EEA26F /* Pods-iSecrets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iSecrets.release.xcconfig"; sourceTree = "<group>"; };
+		A4CBE5F942677B3AE6548EDB77003623 /* JFHeroBrowser-JFHeroBrowser */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "JFHeroBrowser-JFHeroBrowser"; path = JFHeroBrowser.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6965C2376733913D7BD239122440A5C /* HeroBrowserNetworkImageViewModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserNetworkImageViewModule.swift; sourceTree = "<group>"; };
+		AF266220584A30F1D296A288A34A1CD8 /* JRBaseKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JRBaseKit-dummy.m"; sourceTree = "<group>"; };
+		B03BFA45CBCCEE4878E3E9825C86207C /* UIImage+JFColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+JFColor.swift"; path = "Classes/UIImage+JFColor.swift"; sourceTree = "<group>"; };
+		B1B36EEEBEEF82136D5ADCBB9B234FF6 /* JRBaseKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JRBaseKit-prefix.pch"; sourceTree = "<group>"; };
+		B36739DBFFB9C79EFB378C62C3A2A549 /* JFHeroBrowser.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JFHeroBrowser.modulemap; sourceTree = "<group>"; };
+		C2F75E72E5CC0ADBE191CF26921AC511 /* UIView+JFRect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+JFRect.swift"; path = "Classes/UIView+JFRect.swift"; sourceTree = "<group>"; };
+		C4E51B88DD861C680CC0004903315393 /* HeroBrowserNetworkImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserNetworkImageCell.swift; sourceTree = "<group>"; };
+		C971E958A62A0250B3EC99C763962034 /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "Classes/UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CE70CD45FD2BCE81F97AE3BD82300FDA /* JF.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JF.swift; path = Classes/JF.swift; sourceTree = "<group>"; };
+		D091291F19717DD28F64A9539FB92736 /* Pods-iSecrets-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iSecrets-acknowledgements.plist"; sourceTree = "<group>"; };
+		D6758F7A1EE54B4B7A887B74BA9EC038 /* Pods-iSecrets-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iSecrets-Info.plist"; sourceTree = "<group>"; };
+		DFD621AEB1066BEF1C150F84E5AC63B6 /* Hero.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		E1563164E93ECE297C8081D02A043934 /* HeroTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroTransitionAnimation.swift; sourceTree = "<group>"; };
+		E1B957B6E102694A71C3B530DE08097B /* JFHeroBrowser.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = JFHeroBrowser.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EC02D65A31F2DC2A40A6476DCD6AC8AC /* Pods-iSecrets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iSecrets.debug.xcconfig"; sourceTree = "<group>"; };
+		EC9B700719B4A0ABF9AA8565EDE41566 /* icon_video_loading@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "icon_video_loading@2x.png"; path = "JFHeroBrowser/Assets/icon_video_loading@2x.png"; sourceTree = "<group>"; };
+		F122757CB8E28BC0F034DE7D6DBB7238 /* HeroBrowserHostedCellProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeroBrowserHostedCellProtocol.swift; sourceTree = "<group>"; };
+		F288CD49EA33E4225B1B67E0C92B8A32 /* icon_play@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "icon_play@2x.png"; path = "JFHeroBrowser/Assets/icon_play@2x.png"; sourceTree = "<group>"; };
+		F3BFAF1D32A2D5EA1D9911185A247221 /* JFHeroBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JFHeroBrowser.debug.xcconfig; sourceTree = "<group>"; };
+		FFEEE867EDD0DD2D6550A595AA6F9B9C /* Pods-iSecrets-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iSecrets-frameworks.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		934AD88B98650C550275CC15FCCD02F0 /* Frameworks */ = {
+		2A3BCDD15133CD924F9F2735034D6E61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D53583273B4ED460621B8F53496A861 /* Foundation.framework in Frameworks */,
+				11411C8C42F26A10C61092656ED59D07 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32D9784A48CBAEA12E2EDD4B935259A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88648D5107F5378D3B7CA1F87B28E14C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		461D31B96700B11A3191A4ECEDF44E0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2DA27D10965AA3EDE13F11947E7FB1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FECD58BF52FA194BDDB1B7A8B35EF4C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C2F731AB3CBB2C90AA03858F4C7B9FA /* Products */ = {
+		08ADC02E0E4EBD17EEA2DDA87056D33B /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				72EF08F7B9FD6FE9549C5BF0A0FA83E6 /* Pods-iSecrets */,
+				9581446C5ACD9DF700D87A8C85038B7D /* Pods-iSecrets */,
 			);
-			name = Products;
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		1C7C3A2097B3E7803AAD419C612A133A /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				E1B957B6E102694A71C3B530DE08097B /* JFHeroBrowser.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		29E41D4EDF129531B97A3ABA4EDBFE50 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				788E00C2B4D4B100B793A1C0E18DEFE9 /* JRBaseKit.modulemap */,
+				AF266220584A30F1D296A288A34A1CD8 /* JRBaseKit-dummy.m */,
+				4D951F210E603505F5AD5F4AE3D52FA4 /* JRBaseKit-Info.plist */,
+				B1B36EEEBEEF82136D5ADCBB9B234FF6 /* JRBaseKit-prefix.pch */,
+				77A4DAED65F458C78D98F4A590414FD3 /* JRBaseKit-umbrella.h */,
+				871470EAF18226B44961B5DBF8EB3B27 /* JRBaseKit.debug.xcconfig */,
+				152E8CE045A41149AF2F1C7BC79DD041 /* JRBaseKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/JRBaseKit";
+			sourceTree = "<group>";
+		};
+		56AEADA004AD5C0D98837C212CA602CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				19B61D170D10EBBA2C2EAD2E0012ABB4 /* HeroBrowser.swift */,
+			);
+			name = Controller;
+			path = JFHeroBrowser/Classes/Controller;
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -54,21 +215,93 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		9368695934D843472C8C19FB79803AD2 /* Targets Support Files */ = {
+		5A55A473471A4FA739E25F48DB5A36AB /* JFHeroBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				F6CE71DD905A8A365F73858E0A0624AD /* Pods-iSecrets */,
+				F288CD49EA33E4225B1B67E0C92B8A32 /* icon_play@2x.png */,
+				EC9B700719B4A0ABF9AA8565EDE41566 /* icon_video_loading@2x.png */,
+				834AEA7FB5CA37DBDF397B4C7E5A1306 /* Base */,
+				56AEADA004AD5C0D98837C212CA602CD /* Controller */,
+				1C7C3A2097B3E7803AAD419C612A133A /* Pod */,
+				EB75A138301DF2AFC47EFDE213BA3451 /* Support Files */,
+				F9695CB5E7814D62B7C0CE4A40F2186C /* View */,
+				FC82DFF4F2AA71E8ED834CEA276FEA37 /* ViewModule */,
 			);
-			name = "Targets Support Files";
+			name = JFHeroBrowser;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		64F737B7C066BC05D4A6C7662F3D5641 /* JRBaseKit */ = {
+			isa = PBXGroup;
+			children = (
+				CE70CD45FD2BCE81F97AE3BD82300FDA /* JF.swift */,
+				4C13C0ADA9ECF793CC610C7833363138 /* Size+Extenison.swift */,
+				C971E958A62A0250B3EC99C763962034 /* UIColor+Extension.swift */,
+				B03BFA45CBCCEE4878E3E9825C86207C /* UIImage+JFColor.swift */,
+				C2F75E72E5CC0ADBE191CF26921AC511 /* UIView+JFRect.swift */,
+				29E41D4EDF129531B97A3ABA4EDBFE50 /* Support Files */,
+			);
+			name = JRBaseKit;
+			path = JRBaseKit;
+			sourceTree = "<group>";
+		};
+		834AEA7FB5CA37DBDF397B4C7E5A1306 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DFD621AEB1066BEF1C150F84E5AC63B6 /* Hero.swift */,
+				021B26A1077F676667561D741B50F587 /* Hero+UIViewContoller.swift */,
+				5FCD630B1017B6F1496849E32BE9BE8D /* HeroBundleTool.swift */,
+				E1563164E93ECE297C8081D02A043934 /* HeroTransitionAnimation.swift */,
+			);
+			name = Base;
+			path = JFHeroBrowser/Classes/Base;
+			sourceTree = "<group>";
+		};
+		9581446C5ACD9DF700D87A8C85038B7D /* Pods-iSecrets */ = {
+			isa = PBXGroup;
+			children = (
+				12E05E4072ED12B42ADFEA5E6EADCC63 /* Pods-iSecrets.modulemap */,
+				8388947D0554335E42BBD20B0550799F /* Pods-iSecrets-acknowledgements.markdown */,
+				D091291F19717DD28F64A9539FB92736 /* Pods-iSecrets-acknowledgements.plist */,
+				51BB1B78ECBCE06F1AB99D0C317962AE /* Pods-iSecrets-dummy.m */,
+				FFEEE867EDD0DD2D6550A595AA6F9B9C /* Pods-iSecrets-frameworks.sh */,
+				D6758F7A1EE54B4B7A887B74BA9EC038 /* Pods-iSecrets-Info.plist */,
+				808C4180A8FC9E6F62F9E634B50A47F5 /* Pods-iSecrets-umbrella.h */,
+				EC02D65A31F2DC2A40A6476DCD6AC8AC /* Pods-iSecrets.debug.xcconfig */,
+				0A58FC8921CE1D13EC3CD2CD25772329 /* Pods-iSecrets.release.xcconfig */,
+			);
+			name = "Pods-iSecrets";
+			path = "Target Support Files/Pods-iSecrets";
+			sourceTree = "<group>";
+		};
+		960119E706CB4DD14A36E2EF65BFEF4B /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A55A473471A4FA739E25F48DB5A36AB /* JFHeroBrowser */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		972267834FA5987C209F6846BC128530 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				62BFBF0526C9196571957D6A45E3C035 /* JFHeroBrowser */,
+				A4CBE5F942677B3AE6548EDB77003623 /* JFHeroBrowser-JFHeroBrowser */,
+				41DECBFD495F1F7A9BFC030FF46AB36A /* JRBaseKit */,
+				72EF08F7B9FD6FE9549C5BF0A0FA83E6 /* Pods-iSecrets */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				960119E706CB4DD14A36E2EF65BFEF4B /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				2C2F731AB3CBB2C90AA03858F4C7B9FA /* Products */,
-				9368695934D843472C8C19FB79803AD2 /* Targets Support Files */,
+				F5AE739F11EED52842C522581B0A2692 /* Pods */,
+				972267834FA5987C209F6846BC128530 /* Products */,
+				08ADC02E0E4EBD17EEA2DDA87056D33B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,53 +313,162 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F6CE71DD905A8A365F73858E0A0624AD /* Pods-iSecrets */ = {
+		EB75A138301DF2AFC47EFDE213BA3451 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				77ABD731037DE2277C213CC58EFEE4D7 /* Pods-iSecrets.modulemap */,
-				9991923F947C62DF36E1B169022D55CF /* Pods-iSecrets-acknowledgements.markdown */,
-				B3F516CD4E87B89D702FD8B160EA0733 /* Pods-iSecrets-acknowledgements.plist */,
-				A20F6BE9B1D87C79E1B8DDC1D1420390 /* Pods-iSecrets-dummy.m */,
-				2E662ED6F1519DC0EF8681479B4F77E1 /* Pods-iSecrets-Info.plist */,
-				25A749CF54CEB32502C6021BFA3C229B /* Pods-iSecrets-umbrella.h */,
-				206B4DD82AF1BB0C40868FB499579969 /* Pods-iSecrets.debug.xcconfig */,
-				D4ED6B2D0E888C0ACACFCEE575EEA26F /* Pods-iSecrets.release.xcconfig */,
+				B36739DBFFB9C79EFB378C62C3A2A549 /* JFHeroBrowser.modulemap */,
+				38A67B64FDE1C17DDCDC4BC7250B769E /* JFHeroBrowser-dummy.m */,
+				3E101E8EFEE86741927607AEC9883C73 /* JFHeroBrowser-Info.plist */,
+				5642DAE936288A39BF7DE7D6293AD1A8 /* JFHeroBrowser-prefix.pch */,
+				8E61E739817461D42990211F9AA66DB5 /* JFHeroBrowser-umbrella.h */,
+				F3BFAF1D32A2D5EA1D9911185A247221 /* JFHeroBrowser.debug.xcconfig */,
+				5C851416437F4BE236298C4FDB80EE88 /* JFHeroBrowser.release.xcconfig */,
+				7F63A352ADB55112D3C316667F7F738F /* ResourceBundle-JFHeroBrowser-JFHeroBrowser-Info.plist */,
 			);
-			name = "Pods-iSecrets";
-			path = "Target Support Files/Pods-iSecrets";
+			name = "Support Files";
+			path = "Pods/Target Support Files/JFHeroBrowser";
+			sourceTree = "<group>";
+		};
+		F5AE739F11EED52842C522581B0A2692 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				64F737B7C066BC05D4A6C7662F3D5641 /* JRBaseKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F9695CB5E7814D62B7C0CE4A40F2186C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6ADC7713DA79E6F32B9339DF5D2F951E /* HeroBrowserBaseImageCell.swift */,
+				F122757CB8E28BC0F034DE7D6DBB7238 /* HeroBrowserHostedCellProtocol.swift */,
+				C4E51B88DD861C680CC0004903315393 /* HeroBrowserNetworkImageCell.swift */,
+				87109268B9ABC9BD5B9B3327BA59BCA6 /* HeroBrowserVideoCell.swift */,
+				2A6436146A7F31E319D1C3AC9D41A6AB /* HeroCircularProgressView.swift */,
+				662182C271CBB2B14C62D665F6D3F63C /* HeroVideoView.swift */,
+			);
+			name = View;
+			path = JFHeroBrowser/Classes/View;
+			sourceTree = "<group>";
+		};
+		FC82DFF4F2AA71E8ED834CEA276FEA37 /* ViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				5CE7861544003D2027CDD94C42D1352A /* HeroBrowserDataImageViewModule.swift */,
+				641BB1DC41698DF782D7A51649AF2D15 /* HeroBrowserLocalImageViewModule.swift */,
+				A6965C2376733913D7BD239122440A5C /* HeroBrowserNetworkImageViewModule.swift */,
+				1E92FB3CA284407119AECA29C8F2B38D /* HeroBrowserVideoViewModule.swift */,
+				193C14B4524A41CE04EBC1669CE4E33A /* HeroBrowserViewContainer.swift */,
+				59C0E79A3C129B9A2B87301C2029910A /* HeroBrowserViewModule.swift */,
+			);
+			name = ViewModule;
+			path = JFHeroBrowser/Classes/ViewModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		630B2F81C90BB3518B722331213591C9 /* Headers */ = {
+		824C22EF8CC5FD5DE1FD622AFD953353 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D36B9AEEB62B1CF54F53E09739B1AAFD /* Pods-iSecrets-umbrella.h in Headers */,
+				D09C19CAB65971BD7D68EC546EB56734 /* JFHeroBrowser-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3A8A9D5D08772C84A9FE48D84C971EB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C62D316ED4F4B37F9AB027C713B298E /* JRBaseKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F92C489531069240535BE2A0BAEA4445 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F7E757B36B9C0CCD5594F39A91740C4 /* Pods-iSecrets-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		11CE080FFEEDD427E5B5CAD2ACFF1B7D /* Pods-iSecrets */ = {
+		0B1F32125DF013863A0D1368212EAA6B /* JFHeroBrowser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 72030EF0B85C6ADFF08E9D75CA5CB4C4 /* Build configuration list for PBXNativeTarget "Pods-iSecrets" */;
+			buildConfigurationList = B3B1F5C9C1BCB9D5CD2CF06200CDBF99 /* Build configuration list for PBXNativeTarget "JFHeroBrowser" */;
 			buildPhases = (
-				630B2F81C90BB3518B722331213591C9 /* Headers */,
-				C727AAAF3CB12B47BA16676FC47D338E /* Sources */,
-				934AD88B98650C550275CC15FCCD02F0 /* Frameworks */,
-				4BD8FA18C3D7A61F4A84368356A42F7F /* Resources */,
+				824C22EF8CC5FD5DE1FD622AFD953353 /* Headers */,
+				334B330B038F5C377EC7B644E847F233 /* Sources */,
+				32D9784A48CBAEA12E2EDD4B935259A8 /* Frameworks */,
+				15B5505BA56A1D2F583679AAF10E2ED6 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C6190EDD2CF08B9CA2FBDD1196B98880 /* PBXTargetDependency */,
+				500ED2FBCA3D606F2FBE86E9332B794C /* PBXTargetDependency */,
+			);
+			name = JFHeroBrowser;
+			productName = JFHeroBrowser;
+			productReference = 62BFBF0526C9196571957D6A45E3C035 /* JFHeroBrowser */;
+			productType = "com.apple.product-type.framework";
+		};
+		11CE080FFEEDD427E5B5CAD2ACFF1B7D /* Pods-iSecrets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C3E893D6848C613310E0E612A5F4CF4 /* Build configuration list for PBXNativeTarget "Pods-iSecrets" */;
+			buildPhases = (
+				F92C489531069240535BE2A0BAEA4445 /* Headers */,
+				AAFD4662C0AF16D1757192EF5E60CD58 /* Sources */,
+				D2DA27D10965AA3EDE13F11947E7FB1A /* Frameworks */,
+				824BB7E6885E367B3134D1C179099A18 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDA18F11BB1B1B6E6C9B6606B94FB067 /* PBXTargetDependency */,
+				EC7579E39947B174FB996D0DF5FAB62A /* PBXTargetDependency */,
 			);
 			name = "Pods-iSecrets";
 			productName = Pods_iSecrets;
 			productReference = 72EF08F7B9FD6FE9549C5BF0A0FA83E6 /* Pods-iSecrets */;
 			productType = "com.apple.product-type.framework";
+		};
+		1D56538E6467ED03E10BFE3D7E918159 /* JRBaseKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4A97CF7A0F7E717D2F73636210C60C8 /* Build configuration list for PBXNativeTarget "JRBaseKit" */;
+			buildPhases = (
+				C3A8A9D5D08772C84A9FE48D84C971EB /* Headers */,
+				1B7D5EAD74253E5F3582E462DD195056 /* Sources */,
+				2A3BCDD15133CD924F9F2735034D6E61 /* Frameworks */,
+				A21F207082B6B0D7DE9C88447390B189 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JRBaseKit;
+			productName = JRBaseKit;
+			productReference = 41DECBFD495F1F7A9BFC030FF46AB36A /* JRBaseKit */;
+			productType = "com.apple.product-type.framework";
+		};
+		8D7D9F01E1687A74058CDBA76158597E /* JFHeroBrowser-JFHeroBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5856EDE42E93172B462CCB39863D5BC3 /* Build configuration list for PBXNativeTarget "JFHeroBrowser-JFHeroBrowser" */;
+			buildPhases = (
+				7DCBBBF37F5ACBFABD26080D55B9F5EC /* Sources */,
+				461D31B96700B11A3191A4ECEDF44E0D /* Frameworks */,
+				1C53539CB5AB6132EFE49280166F9E1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JFHeroBrowser-JFHeroBrowser";
+			productName = JFHeroBrowser;
+			productReference = A4CBE5F942677B3AE6548EDB77003623 /* JFHeroBrowser-JFHeroBrowser */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -146,17 +488,44 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 2C2F731AB3CBB2C90AA03858F4C7B9FA /* Products */;
+			productRefGroup = 972267834FA5987C209F6846BC128530 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				0B1F32125DF013863A0D1368212EAA6B /* JFHeroBrowser */,
+				8D7D9F01E1687A74058CDBA76158597E /* JFHeroBrowser-JFHeroBrowser */,
+				1D56538E6467ED03E10BFE3D7E918159 /* JRBaseKit */,
 				11CE080FFEEDD427E5B5CAD2ACFF1B7D /* Pods-iSecrets */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4BD8FA18C3D7A61F4A84368356A42F7F /* Resources */ = {
+		15B5505BA56A1D2F583679AAF10E2ED6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70B1EEE6033B7D97A5E978E8C1C51A58 /* JFHeroBrowser-JFHeroBrowser in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C53539CB5AB6132EFE49280166F9E1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5026635EFD8EBFF7652B274C8762448 /* icon_play@2x.png in Resources */,
+				BDA5F1FC1BCF029F9F31ECE9B881B221 /* icon_video_loading@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		824BB7E6885E367B3134D1C179099A18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A21F207082B6B0D7DE9C88447390B189 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -166,17 +535,124 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C727AAAF3CB12B47BA16676FC47D338E /* Sources */ = {
+		1B7D5EAD74253E5F3582E462DD195056 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D72C0F5AF33D9BDC92DED03FC1A47767 /* Pods-iSecrets-dummy.m in Sources */,
+				155CD9184B157E3EC7024DB3967FAD93 /* JF.swift in Sources */,
+				0238F1D3FC5F5F66B6AEBCE9FC0D41A6 /* JRBaseKit-dummy.m in Sources */,
+				1EA4B797B8AA8A8A6C644BD399701BDA /* Size+Extenison.swift in Sources */,
+				6C364DF5E4194B6F5862F6406CA30411 /* UIColor+Extension.swift in Sources */,
+				BC918A6FCB2129DCC54678F76C58929E /* UIImage+JFColor.swift in Sources */,
+				072D6A7A98E911E49D4C60FAE875634D /* UIView+JFRect.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		334B330B038F5C377EC7B644E847F233 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				795B266E1285836A71159C55B3368711 /* Hero.swift in Sources */,
+				09DD7EB560DF86525F4B0EEB20FDF131 /* Hero+UIViewContoller.swift in Sources */,
+				63C61A8A9F68B0FAAE97764DDBB00714 /* HeroBrowser.swift in Sources */,
+				D560E4F7CD39EAA65BB2E7DD8CE48041 /* HeroBrowserBaseImageCell.swift in Sources */,
+				20D411C0695840BAF1B4B2B99C6410F2 /* HeroBrowserDataImageViewModule.swift in Sources */,
+				DA50B8C0A6A31D16DD4F70B1A6E18EE5 /* HeroBrowserHostedCellProtocol.swift in Sources */,
+				B89C78E5A83A720AC495F12079F3329C /* HeroBrowserLocalImageViewModule.swift in Sources */,
+				EA7FA629AD24D9CF0F2400C59C54DC11 /* HeroBrowserNetworkImageCell.swift in Sources */,
+				E3719CD8D23545F182506473CF8645CD /* HeroBrowserNetworkImageViewModule.swift in Sources */,
+				8AA58DD129498195B8E87CC02A5B6DA8 /* HeroBrowserVideoCell.swift in Sources */,
+				E930BE7729C95567E994B85B51AF8BE6 /* HeroBrowserVideoViewModule.swift in Sources */,
+				8AA07A025EB9C8F96BA7F9F39433C158 /* HeroBrowserViewContainer.swift in Sources */,
+				37E097E16EF3DFAEE2351BFA00F30160 /* HeroBrowserViewModule.swift in Sources */,
+				5094B18AC8C3916576A8A1CF3C559044 /* HeroBundleTool.swift in Sources */,
+				51F4E08CF915D3526853C2BC1ADA1111 /* HeroCircularProgressView.swift in Sources */,
+				BA4E690C304C30FB044747DC87C24F0B /* HeroTransitionAnimation.swift in Sources */,
+				7A256B29421FF413144252E25973A7BF /* HeroVideoView.swift in Sources */,
+				C6AFBCFA4BBCC06E1466F20674E118C8 /* JFHeroBrowser-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DCBBBF37F5ACBFABD26080D55B9F5EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAFD4662C0AF16D1757192EF5E60CD58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB95ECF1B348EFF775C7C95FC8554C41 /* Pods-iSecrets-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		500ED2FBCA3D606F2FBE86E9332B794C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JRBaseKit;
+			target = 1D56538E6467ED03E10BFE3D7E918159 /* JRBaseKit */;
+			targetProxy = F4A31588E960B62A6A61FB7198C51AE7 /* PBXContainerItemProxy */;
+		};
+		C6190EDD2CF08B9CA2FBDD1196B98880 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "JFHeroBrowser-JFHeroBrowser";
+			target = 8D7D9F01E1687A74058CDBA76158597E /* JFHeroBrowser-JFHeroBrowser */;
+			targetProxy = 44B30C0064B6470351EB29F42B668527 /* PBXContainerItemProxy */;
+		};
+		DDA18F11BB1B1B6E6C9B6606B94FB067 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JFHeroBrowser;
+			target = 0B1F32125DF013863A0D1368212EAA6B /* JFHeroBrowser */;
+			targetProxy = 18F98A1A557973478CD2F5A3DB979ABB /* PBXContainerItemProxy */;
+		};
+		EC7579E39947B174FB996D0DF5FAB62A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JRBaseKit;
+			target = 1D56538E6467ED03E10BFE3D7E918159 /* JRBaseKit */;
+			targetProxy = 7FBA11D889788E39AA251B0F5173E58C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2450440A2A37C81166CBC69AE24F3CFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3BFAF1D32A2D5EA1D9911185A247221 /* JFHeroBrowser.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JFHeroBrowser/JFHeroBrowser-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JFHeroBrowser/JFHeroBrowser-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/JFHeroBrowser/JFHeroBrowser.modulemap";
+				PRODUCT_MODULE_NAME = JFHeroBrowser;
+				PRODUCT_NAME = JFHeroBrowser;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		45285987FDC204B9DB7C0228892D4B3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -243,43 +719,21 @@
 			};
 			name = Debug;
 		};
-		4782E5401229043E9642669B347D186C /* Release */ = {
+		56649D7A9942E168D6EF1E299E0B8871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4ED6B2D0E888C0ACACFCEE575EEA26F /* Pods-iSecrets.release.xcconfig */;
+			baseConfigurationReference = F3BFAF1D32A2D5EA1D9911185A247221 /* JFHeroBrowser.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-iSecrets/Pods-iSecrets-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-iSecrets/Pods-iSecrets.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/JFHeroBrowser";
+				IBSC_MODULE = JFHeroBrowser;
+				INFOPLIST_FILE = "Target Support Files/JFHeroBrowser/ResourceBundle-JFHeroBrowser-JFHeroBrowser-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_NAME = JFHeroBrowser;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
 		6AF9D8D0B4F4FA4695A8EEF773CD3FBC /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -343,9 +797,80 @@
 			};
 			name = Release;
 		};
-		A4CA30B40E1529C7FF8EC032C76BCF3B /* Debug */ = {
+		7D88ABD9FB990625C20D96476A308626 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 206B4DD82AF1BB0C40868FB499579969 /* Pods-iSecrets.debug.xcconfig */;
+			baseConfigurationReference = 5C851416437F4BE236298C4FDB80EE88 /* JFHeroBrowser.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JFHeroBrowser/JFHeroBrowser-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JFHeroBrowser/JFHeroBrowser-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/JFHeroBrowser/JFHeroBrowser.modulemap";
+				PRODUCT_MODULE_NAME = JFHeroBrowser;
+				PRODUCT_NAME = JFHeroBrowser;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A93BB6CBEF921BA84C6CC006220F97CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 152E8CE045A41149AF2F1C7BC79DD041 /* JRBaseKit.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JRBaseKit/JRBaseKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JRBaseKit/JRBaseKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/JRBaseKit/JRBaseKit.modulemap";
+				PRODUCT_MODULE_NAME = JRBaseKit;
+				PRODUCT_NAME = JRBaseKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BF4ED371E591D6A397395EE9210AB311 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC02D65A31F2DC2A40A6476DCD6AC8AC /* Pods-iSecrets.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -380,6 +905,94 @@
 			};
 			name = Debug;
 		};
+		C5431FAB61A3B351B9E91C6131C5D3BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 871470EAF18226B44961B5DBF8EB3B27 /* JRBaseKit.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JRBaseKit/JRBaseKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JRBaseKit/JRBaseKit-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/JRBaseKit/JRBaseKit.modulemap";
+				PRODUCT_MODULE_NAME = JRBaseKit;
+				PRODUCT_NAME = JRBaseKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EAB6ED931DCE1D0D963095668D0724C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C851416437F4BE236298C4FDB80EE88 /* JFHeroBrowser.release.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/JFHeroBrowser";
+				IBSC_MODULE = JFHeroBrowser;
+				INFOPLIST_FILE = "Target Support Files/JFHeroBrowser/ResourceBundle-JFHeroBrowser-JFHeroBrowser-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_NAME = JFHeroBrowser;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		F9EA4C955A0A7E238FDB795FB7A9E086 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A58FC8921CE1D13EC3CD2CD25772329 /* Pods-iSecrets.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-iSecrets/Pods-iSecrets-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-iSecrets/Pods-iSecrets.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -392,11 +1005,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		72030EF0B85C6ADFF08E9D75CA5CB4C4 /* Build configuration list for PBXNativeTarget "Pods-iSecrets" */ = {
+		5856EDE42E93172B462CCB39863D5BC3 /* Build configuration list for PBXNativeTarget "JFHeroBrowser-JFHeroBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A4CA30B40E1529C7FF8EC032C76BCF3B /* Debug */,
-				4782E5401229043E9642669B347D186C /* Release */,
+				56649D7A9942E168D6EF1E299E0B8871 /* Debug */,
+				EAB6ED931DCE1D0D963095668D0724C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C3E893D6848C613310E0E612A5F4CF4 /* Build configuration list for PBXNativeTarget "Pods-iSecrets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF4ED371E591D6A397395EE9210AB311 /* Debug */,
+				F9EA4C955A0A7E238FDB795FB7A9E086 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3B1F5C9C1BCB9D5CD2CF06200CDBF99 /* Build configuration list for PBXNativeTarget "JFHeroBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2450440A2A37C81166CBC69AE24F3CFD /* Debug */,
+				7D88ABD9FB990625C20D96476A308626 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4A97CF7A0F7E717D2F73636210C60C8 /* Build configuration list for PBXNativeTarget "JRBaseKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5431FAB61A3B351B9E91C6131C5D3BB /* Debug */,
+				A93BB6CBEF921BA84C6CC006220F97CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
