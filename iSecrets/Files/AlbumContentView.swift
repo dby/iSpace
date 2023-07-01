@@ -7,6 +7,7 @@
 
 import SwiftUI
 import JFHeroBrowser
+import PhotosUI
 
 let keyWindow = UIApplication.shared.connectedScenes
                         .map({ $0 as? UIWindowScene })
@@ -28,23 +29,56 @@ struct AlbumContentView: View {
         GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
     ]
     
+    @State private var selectedImage: [PhotosPickerItem] = []
+    @State private var selectedImageData: [Data] = []
+    
     var body: some View {
-//        NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(1..<origins.count, id:\.self) { index in
-                        ImageCell(index: index).frame(height: columns.count == 1 ? 300 : 150).onTapGesture {
-                            var list: [HeroBrowserViewModule] = []
-                            for i in 0..<origins.count {
-                                list.append(HeroBrowserLocalImageViewModule(image: origins[i]))
+        NavigationStack {
+            VStack {
+                if selectedImageData.count > 0 {
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(selectedImageData, id: \.self) { dataitem in
+                                if let dataitem = dataitem, let uiImage = UIImage(data: dataitem) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .frame(height: 150)
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(10).onTapGesture {
+                                            var list: [HeroBrowserViewModule] = []
+                                            for i in 0..<selectedImageData.count {
+                                                list.append(HeroBrowserLocalImageViewModule(image: UIImage(data: selectedImageData[i])!))
+                                            }
+                                            myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: 0)
+                                        }
+                                }
                             }
-                            myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
+                        }
+                    }
+                } else {
+                    Spacer()
+                    Text("Please select image by tapping on image.")
+                }
+                Spacer()
+                Text("\(selectedImageData.count) Images")
+            }.toolbar {
+                PhotosPicker(selection: $selectedImage, matching: .images) {
+                    Image(systemName: "plus")
+                        .tint(.mint)
+                        .font(.title)
+                }.onChange(of: selectedImage) { newValue in
+                    Task {
+                        selectedImage = []
+                        for item in newValue {
+                            if let data = try? await item.loadTransferable(type: Data.self) {
+                                selectedImageData.append(data)
+                            }
                         }
                     }
                 }
             }
-//            .navigationBarTitle(Text("SwiftUI Example"))
-//        }
+        }
+        .padding()
     }
 }
 

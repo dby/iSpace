@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct FilesContentView: View {
     
@@ -21,6 +22,9 @@ struct FilesContentView: View {
     @State private var name = ""
     @State private var presetnKey = false
     @State private var pushKey = false
+    
+    @State private var selectedItems: [PhotosPickerItem] = []
+    @State private var selectedPhotosData: [Data] = []
 
     var body: some View {
         NavigationStack {
@@ -49,10 +53,10 @@ struct FilesContentView: View {
                     }.alert("新建文件夹", isPresented: $showingAlert) {
                         TextField("请为此文件夹输入名称", text: $name)
                         Button("Cancel") {
-                            
+
                         }
                         Button("OK") {
-                            
+
                         }
                     }
                 }
