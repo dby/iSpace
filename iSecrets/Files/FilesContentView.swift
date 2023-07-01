@@ -15,7 +15,7 @@ struct FilesContentView: View {
         GridItem(.flexible()),
     ]
     
-    let datas = ["图片", "视频", "文件", "文件1", "文件2", "文件3"]
+    let datas = ["图片", "视频", "文件"]
     let headerWid = UIScreen.main.bounds.size.width - 60
 
     @State private var showingAlert = false

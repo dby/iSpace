@@ -35,6 +35,11 @@ extension CoreObject {
     /// 启动
     func startUp() {
         self.loadSecretDirObjectsFromSP()
+        
+        if let rootDir = PathUtils.rootDir() {
+            print("RootDir[\(rootDir)]")
+            print("SubPath: \(FileUtils.subPathsAtPath(rootDir))")
+        }
     }
     
 //    func dealloc() {
