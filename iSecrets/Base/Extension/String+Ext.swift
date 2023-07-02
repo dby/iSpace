@@ -7,6 +7,7 @@
 
 import UIKit
 import CommonCrypto
+import CryptoKit
 
 extension String {
     var sha256: String {
@@ -15,5 +16,13 @@ extension String {
         CC_SHA256(utf8, CC_LONG(utf8!.count - 1), &digest)
         
         return digest.reduce("") { $0 + String(format:"%02x", $1) }
+    }
+    
+    var md5: String {
+        let digest = Insecure.MD5.hash(data: data(using: .utf8) ?? Data())
+
+        return digest.map {
+            String(format: "%02hhx", $0)
+        }.joined()
     }
 }

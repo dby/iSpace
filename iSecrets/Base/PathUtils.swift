@@ -27,7 +27,7 @@ class PathUtils: NSObject {
         }
         
         if let homeDoc = documents() {
-            return "\(homeDoc)/com.secret.Secrets/\(core.curAccount!.sha256)"
+            return "\(homeDoc)/com.secret.Secrets/\(core.curAccount.sha256)"
         }
         
         return nil

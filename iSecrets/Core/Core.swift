@@ -24,32 +24,53 @@ enum AccountState: Int {
 }
 
 class CoreObject: NSObject {
-    var curAccount: String? = ""
+    override init() {
+        super.init()
+    }
     
-    private var data: SecretDirMapObject = SecretDirMapObject()
     //MARK: -
+    var curAccount: String = ""
+    var secretDB: SecretDB!
 }
 
 //MARK: - Life Cycle -
 extension CoreObject {
     /// 启动
     func startUp() {
-        self.loadSecretDirObjectsFromSP()
+        self.secretDB = SecretDB()
         
         if let rootDir = PathUtils.rootDir() {
             print("RootDir[\(rootDir)]")
             print("SubPath: \(FileUtils.subPathsAtPath(rootDir))")
         }
+        
+        if self.secretDB.getAllSecretDirs().count == 0 {
+            //初次登录时，没有文件夹，此时应该添加兜底的目录
+            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .video,
+                                                         name: "Video",
+                                                         workingDir: "Video".md5,
+                                                         fileFormat: "video",
+                                                         cipher: "")
+            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .video,
+                                                         name: "Photo",
+                                                         workingDir: "Photo".md5,
+                                                         fileFormat: "photo",
+                                                         cipher: "")
+            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .video,
+                                                         name: "File",
+                                                         workingDir: "File".md5,
+                                                         fileFormat: "file",
+                                                         cipher: "")
+        }
     }
     
-//    func dealloc() {
-//
-//    }
+    func exitMannual() {
+        
+    }
 }
 
 //MARK: - Account -
 extension CoreObject {
-    
     /// 获得账户的状态
     func getAccountState() -> AccountState {
         if getMainSpaceAccount().count == 0 && getFakeSpaceAccount().count == 0 {
@@ -94,62 +115,14 @@ extension CoreObject {
         let userDefault = UserDefaults.standard
         return userDefault.string(forKey: _fakeSpacePasswordKey) ?? ""
     }
-    
-    /// 获得某路径下所有文件
-    /// - Parameter inDir: 工作路径
-    /// - Returns: [WCDBSecretFileObject]
-//    func getAllFiles(inDir: String) -> [WCDBSecretFileObject]? {
-//        return core.db.getAllObjects(fromWCDBSecretFileTable: inDir) as? [WCDBSecretFileObject]
-//    }
 }
 
 //MARK: - SecretDir
 extension CoreObject {
-    func loadSecretDirObjectsFromSP() {
-        let userDefaults = UserDefaults.standard
-        
-        if let data = userDefaults.object(forKey: _secretDirSPKey) as? SecretDirMapObject {
-            self.data = data
-        } else {
-            self.data = SecretDirMapObject()
-        }
-    }
-    
-    /// 添加文件记录
-    /// - Parameters:å
-    ///   - limitionCondition: 文件夹时，可设置上传文件的格式
-    ///   - name: 文件名称
-    ///   - workingDir: 工作目录
-    ///   - fileFormat: 文件格式
-    ///   - cipher: 可设置文件密码
-    /// - Returns: True/False
-    func addOrUpdateSecretFileRecord(limitionCondition: LimitCondition, name: String, workingDir: String, fileFormat: String, cipher: String) -> Bool {
-        let key = "\(workingDir)\(name)"
-        
-        if let item = self.data.dirMap[key] {
-            item.fileFormat = fileFormat
-            item.cipher = cipher
-            item.limitCondition = limitionCondition.rawValue
-            item.updateTime = Date.now.timeIntervalSince1970
-            syncDirs2SP()
-        } else {
-            let obj = SecretDirObject(limitCondition: limitionCondition.rawValue,
-                                      name: name,
-                                      workingDir: workingDir,
-                                      fileFormat: fileFormat,
-                                      cipher: cipher,
-                                      createTime: Date.now.timeIntervalSince1970,
-                                      updateTime: Date.now.timeIntervalSince1970)
-            self.data.dirMap[key] = obj
-            syncDirs2SP()
-        }
-        
-        return false
-    }
-    
-    private func syncDirs2SP() {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(self.data, forKey: _secretDirSPKey)
-        userDefaults.synchronize()
+    /// 获得当前所有的文件夹
+    func getAllSecretDirs() -> [SecretDirObject] {
+        return self.secretDB.getAllSecretDirs()
     }
 }
+
+//MARK: - SecretFile

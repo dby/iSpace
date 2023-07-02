@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
+		43304AE12A505D560031C434 /* SecretDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304AE02A505D560031C434 /* SecretDB.swift */; };
 		4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */; };
 		4334202F2A35C7AF00C4CA84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334202E2A35C7AF00C4CA84 /* ContentView.swift */; };
 		433420312A35C7B000C4CA84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433420302A35C7B000C4CA84 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		2288C6809AE172996B90A347 /* Pods_iSecrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSecrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
+		43304AE02A505D560031C434 /* SecretDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDB.swift; sourceTree = "<group>"; };
 		433420292A35C7AF00C4CA84 /* iSecrets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSecrets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSecretsApp.swift; sourceTree = "<group>"; };
 		4334202E2A35C7AF00C4CA84 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				433420402A361C8C00C4CA84 /* Core.swift */,
+				43304AE02A505D560031C434 /* SecretDB.swift */,
 				43B864082A376B3A00494852 /* iSecrets-Bridging-Header.h */,
 			);
 			path = Core;
@@ -276,6 +279,7 @@
 				4334203C2A35DB5600C4CA84 /* FilesContentView.swift in Sources */,
 				4334202F2A35C7AF00C4CA84 /* ContentView.swift in Sources */,
 				433420412A361C8C00C4CA84 /* Core.swift in Sources */,
+				43304AE12A505D560031C434 /* SecretDB.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,
 				43D2AAF32A3A0B6400841737 /* EnterPwdView.swift in Sources */,
 			);

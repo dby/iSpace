@@ -53,10 +53,15 @@ struct FilesContentView: View {
                     }.alert("新建文件夹", isPresented: $showingAlert) {
                         TextField("请为此文件夹输入名称", text: $name)
                         Button("Cancel") {
-
+                            
                         }
                         Button("OK") {
-
+                            _ = core.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .all,
+                                                                          name: name,
+                                                                          workingDir: name.sha256,
+                                                                          fileFormat: "",
+                                                                          cipher: "")
+                            name = ""
                         }
                     }
                 }
