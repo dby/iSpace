@@ -15,7 +15,6 @@ struct FilesContentView: View {
         GridItem(.flexible()),
     ]
     
-    let datas = ["图片", "视频", "文件"]
     let headerWid = UIScreen.main.bounds.size.width - 60
 
     @State private var showingAlert = false
@@ -23,6 +22,7 @@ struct FilesContentView: View {
     @State private var presetnKey = false
     @State private var pushKey = false
     
+    @State private var clickedSecretDir: SecretDirObject? = nil
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedPhotosData: [Data] = []
 
@@ -31,14 +31,15 @@ struct FilesContentView: View {
             ScrollView {
                 VStack {
                     Spacer()
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
-                        ForEach(datas, id: \.self) { item in
-                            Text(item)
+                    LazyVGrid(columns: twoGridLayout, spacing: 15) {
+                        ForEach(core.getAllSecretDirs(), id: \.name.self) { item in
+                            Text(item.name ?? "")
                                 .frame(width: headerWid/2, height: headerWid/2)
                                 .background(.cyan)
                                 .cornerRadius(5)
                                 .onTapGesture {
                                     print("1111 \(item)")
+                                    self.clickedSecretDir = item
                                     self.pushKey.toggle()
                                 }
                         }
@@ -56,21 +57,30 @@ struct FilesContentView: View {
                             
                         }
                         Button("OK") {
-                            _ = core.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .all,
-                                                                          name: name,
-                                                                          workingDir: name.sha256,
-                                                                          fileFormat: "",
-                                                                          cipher: "")
+                            if (core.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .all,
+                                                                         name: name,
+                                                                         workingDir: name.md5,
+                                                                         fileFormat: "",
+                                                                         cipher: "")) {
+                                if let rootDir = PathUtils.rootDir() {
+                                    _ = FileUtils.createFolder("\(rootDir)/\(name)")
+                                }
+                            }
+                            
                             name = ""
                         }
                     }
                 }
             })
             .fullScreenCover(isPresented: $presetnKey, content: {
-                AlbumContentView()
+                if clickedSecretDir != nil {
+                    AlbumContentView(secretDirObj: clickedSecretDir!)
+                }
             })
             .navigationDestination(isPresented: $pushKey, destination: {
-                AlbumContentView()
+                if clickedSecretDir != nil {
+                    AlbumContentView(secretDirObj: clickedSecretDir!)
+                }
             })
             .navigationBarTitleDisplayMode(.large)
         }

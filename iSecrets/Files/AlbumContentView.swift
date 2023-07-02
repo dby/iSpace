@@ -25,6 +25,8 @@ let origins: [UIImage] = {
 }()
 
 struct AlbumContentView: View {
+    var secretDirObj: SecretDirObject
+    
     @State var columns = [
         GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
     ]
@@ -60,18 +62,25 @@ struct AlbumContentView: View {
                     Text("Please select image by tapping on image.")
                 }
                 Spacer()
-                Text("\(selectedImageData.count) Images")
             }.toolbar {
                 PhotosPicker(selection: $selectedImage, matching: .images) {
                     Image(systemName: "plus")
                         .tint(.mint)
-                        .font(.title)
                 }.onChange(of: selectedImage) { newValue in
                     Task {
                         selectedImage = []
                         for item in newValue {
                             if let data = try? await item.loadTransferable(type: Data.self) {
                                 selectedImageData.append(data)
+                                
+                                if
+                                    let rootDir = PathUtils.rootDir(),
+                                    let folderName = secretDirObj.name
+                                {
+                                    let iconName: String = "\(data.md5)_\(Date.now.timeIntervalSince1970)"
+                                    let fullPath = "\(rootDir)/\(folderName)/\(iconName)"
+                                    _ = FileUtils.writeDataToPath(fullPath, data: data)
+                                }
                             }
                         }
                     }
@@ -84,7 +93,7 @@ struct AlbumContentView: View {
 
 struct AlbumContentView_Previews: PreviewProvider {
     static var previews: some View {
-        AlbumContentView()
+        AlbumContentView(secretDirObj: SecretDirObject())
     }
 }
 

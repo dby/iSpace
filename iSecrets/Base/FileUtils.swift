@@ -82,4 +82,17 @@ class FileUtils: NSObject {
         
         return []
     }
+    
+    static func writeDataToPath(_ atPath: String, data: Data) -> Bool {
+        var flag: Bool = false
+        do {
+            try data.write(to: URL(filePath: atPath), options: .atomic)
+            print("Data saved to \(atPath)")
+            flag = true
+        } catch {
+            print("Error saving data: \(error)")
+        }
+        
+        return flag
+    }
 }

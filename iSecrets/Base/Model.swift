@@ -12,6 +12,7 @@ enum LimitCondition: String {
     case video = "video" //视频
     case audio = "audio" //音频
     case photo = "photo" //相册
+    case file = "file" //文件
     case album = "album" //相册、视频、音频
     case all = "all" //不限制文件格式
     case ignore = "-" //此时，忽略该字段

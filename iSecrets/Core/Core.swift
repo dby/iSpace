@@ -47,20 +47,26 @@ extension CoreObject {
         if self.secretDB.getAllSecretDirs().count == 0 {
             //初次登录时，没有文件夹，此时应该添加兜底的目录
             _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .video,
-                                                         name: "Video",
-                                                         workingDir: "Video".md5,
+                                                         name: "Videos",
+                                                         workingDir: "Videos".md5,
                                                          fileFormat: "video",
                                                          cipher: "")
-            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .video,
-                                                         name: "Photo",
-                                                         workingDir: "Photo".md5,
+            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .photo,
+                                                         name: "Photos",
+                                                         workingDir: "Photos".md5,
                                                          fileFormat: "photo",
                                                          cipher: "")
-            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .video,
-                                                         name: "File",
-                                                         workingDir: "File".md5,
+            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .file,
+                                                         name: "Files",
+                                                         workingDir: "Files".md5,
                                                          fileFormat: "file",
                                                          cipher: "")
+            
+            if let rootPath = PathUtils.rootDir() {
+                _ = FileUtils.createFolder("\(rootPath)/Videos")
+                _ = FileUtils.createFolder("\(rootPath)/Photos")
+                _ = FileUtils.createFolder("\(rootPath)/Files")
+            }
         }
     }
     

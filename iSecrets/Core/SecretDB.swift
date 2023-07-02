@@ -128,6 +128,7 @@ extension SecretDB {
     ///   - cipher: 可设置文件密码
     /// - Returns: True/False
     func addOrUpdateSecretDirRecord(limitionCondition: LimitCondition, name: String, workingDir: String, fileFormat: String, cipher: String) -> Bool {
+        var flag = false
         do {
             try self.database?.run(transaction: { handle in
                 let existObjs: [SecretDirObject] = try handle.getObjects(on: [SecretDirObject.Properties.workingDir],
@@ -145,13 +146,15 @@ extension SecretDB {
                     obj.isAutoIncrement = true
                     
                     try handle.insertOrIgnore([obj], intoTable: SecretDirTableName)
+                    
+                    flag = true
                 }
             })
         } catch {
             print("Transaction failed with error: \(error)")
         }
         
-        return false
+        return flag
     }
     
     func addSecretFile(dirLocalID: Int, name: String, cipher: String) {
@@ -183,16 +186,4 @@ extension SecretDB {
         
         return []
     }
-    
-//    func insertSercretDir(_ obj: SecretDirObject) -> Bool {
-//        var flag = true
-//        do {
-//            try database?.insert(obj, intoTable: SecretDirTableName)
-//        } catch {
-//            flag = false
-//            print(error.localizedDescription)
-//        }
-//
-//        return flag
-//    }
 }
