@@ -31,25 +31,32 @@ struct AlbumContentView: View {
         GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
     ]
     
+    @StateObject var viewModel: AlbumViewModel = AlbumViewModel()
     @State private var selectedImage: [PhotosPickerItem] = []
-    @State private var selectedImageData: [Data] = []
     
     var body: some View {
         NavigationStack {
             VStack {
-                if selectedImageData.count > 0 {
+                if viewModel.datas.count > 0 {
                     ScrollView {
                         LazyVGrid(columns: columns) {
-                            ForEach(selectedImageData, id: \.self) { dataitem in
-                                if let dataitem = dataitem, let uiImage = UIImage(data: dataitem) {
+                            ForEach(viewModel.datas, id: \.name.self) { dataitem in
+                                if
+                                    let dataitem = dataitem,
+                                    let imgData = dataitem.data,
+                                    let uiImage = UIImage(data: imgData)
+                                {
                                     Image(uiImage: uiImage)
                                         .resizable()
                                         .frame(height: 150)
                                         .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(10).onTapGesture {
+                                        .cornerRadius(10)
+                                        .onTapGesture {
                                             var list: [HeroBrowserViewModule] = []
-                                            for i in 0..<selectedImageData.count {
-                                                list.append(HeroBrowserLocalImageViewModule(image: UIImage(data: selectedImageData[i])!))
+                                            for item in viewModel.datas {
+                                                if let imgData = item.data, let img = UIImage(data: imgData) {
+                                                    list.append(HeroBrowserLocalImageViewModule(image: img))
+                                                }
                                             }
                                             myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: 0)
                                         }
@@ -62,7 +69,10 @@ struct AlbumContentView: View {
                     Text("Please select image by tapping on image.")
                 }
                 Spacer()
-            }.toolbar {
+            }.onAppear {
+                viewModel.loadDatas(secretDirObj)
+            }
+            .toolbar {
                 PhotosPicker(selection: $selectedImage, matching: .images) {
                     Image(systemName: "plus")
                         .tint(.mint)
@@ -71,18 +81,23 @@ struct AlbumContentView: View {
                         selectedImage = []
                         for item in newValue {
                             if let data = try? await item.loadTransferable(type: Data.self) {
-                                selectedImageData.append(data)
-                                
                                 if
                                     let rootDir = PathUtils.rootDir(),
                                     let folderName = secretDirObj.name
                                 {
                                     let iconName: String = "\(data.md5)_\(Date.now.timeIntervalSince1970)"
                                     let fullPath = "\(rootDir)/\(folderName)/\(iconName)"
-                                    _ = FileUtils.writeDataToPath(fullPath, data: data)
+                                    
+                                    if (FileUtils.writeDataToPath(fullPath, data: data)) {
+                                        core.secretDB.addSecretFile(dirLocalID: secretDirObj.localID,
+                                                                    name: iconName,
+                                                                    cipher: "")
+                                    }
                                 }
                             }
                         }
+                        
+                        viewModel.loadDatas(secretDirObj)
                     }
                 }
             }

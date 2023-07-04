@@ -38,7 +38,6 @@ struct FilesContentView: View {
                                 .background(.cyan)
                                 .cornerRadius(5)
                                 .onTapGesture {
-                                    print("1111 \(item)")
                                     self.clickedSecretDir = item
                                     self.pushKey.toggle()
                                 }

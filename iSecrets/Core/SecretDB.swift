@@ -186,4 +186,19 @@ extension SecretDB {
         
         return []
     }
+    
+    func getAllSecretFiles(_ atDirID: Int) -> [SecretFileObject] {
+        do {
+            if let db = self.database {
+                let allObjs: [SecretFileObject] = try db.getObjects(on: SecretFileObject.Properties.all,
+                                                                    fromTable: SecretFileTableName,
+                                                                    where: SecretFileObject.Properties.dirID == atDirID)
+                return allObjs
+            }
+        } catch {
+            
+        }
+        
+        return []
+    }
 }
