@@ -5,4 +5,5 @@ use_frameworks!
 target 'iSecrets' do
   pod 'JFHeroBrowser', :path => './'
   pod 'WCDB.swift'
+  pod 'Kingfisher', '~> 7.0'
 end

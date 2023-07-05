@@ -8,6 +8,7 @@
 import SwiftUI
 import JFHeroBrowser
 import PhotosUI
+import Kingfisher
 
 let keyWindow = UIApplication.shared.connectedScenes
                         .map({ $0 as? UIWindowScene })
@@ -15,14 +16,6 @@ let keyWindow = UIApplication.shared.connectedScenes
                         .first?.windows.first
 
 let myAppRootVC : UIViewController? = keyWindow?.rootViewController
-
-let origins: [UIImage] = {
-    var temp: [UIImage] = []
-    for i in 1...20 {
-        temp.append(UIImage(named: "pwd_uninput")!)
-    }
-    return temp
-}()
 
 struct AlbumContentView: View {
     var secretDirObj: SecretDirObject
@@ -43,18 +36,40 @@ struct AlbumContentView: View {
                             ForEach(viewModel.datas, id: \.name.self) { dataitem in
                                 if
                                     let dataitem = dataitem,
-                                    let imgData = dataitem.data,
-                                    let uiImage = UIImage(data: imgData)
+                                    let rootDir = PathUtils.rootDir(),
+                                    let fileUrl = URL(filePath: "\(rootDir)/\(secretDirObj.name!)/\(dataitem.name!)")
                                 {
-                                    Image(uiImage: uiImage)
+                                    KFImage.url(fileUrl)
                                         .resizable()
+                                        .onSuccess { r in
+                                            print("Success: \(r.cacheType)")
+                                        }
+                                        .onFailure { e in
+                                            print("Error: \(e)")
+                                        }
+                                        .onProgress { downloaded, total in
+                                            print("\(downloaded) / \(total))")
+                                        }
+                                        .placeholder {
+                                            HStack {
+                                                Image(systemName: "arrow.2.circlepath.circle")
+                                                    .resizable()
+                                                    .frame(width: 50, height: 50)
+                                                    .padding(10)
+                                                Text("Loading...").font(.title3)
+                                            }
+                                            .foregroundColor(.gray)
+                                        }
                                         .frame(height: 150)
                                         .aspectRatio(contentMode: .fit)
                                         .cornerRadius(10)
                                         .onTapGesture {
                                             var list: [HeroBrowserViewModule] = []
                                             for item in viewModel.datas {
-                                                if let imgData = item.data, let img = UIImage(data: imgData) {
+                                                if
+                                                    let rootDir = PathUtils.rootDir(),
+                                                    let img = UIImage(contentsOfFile: "\(rootDir)/\(secretDirObj.name!)/\(item.name!)")
+                                                {
                                                     list.append(HeroBrowserLocalImageViewModule(image: img))
                                                 }
                                             }
@@ -120,7 +135,7 @@ struct ImageCell: View {
 
     let index: Int
     var image: UIImage {
-        origins[index]
+        return UIImage(systemName: "arrow.2.circlepath.circle")!
     }
 
     var body: some View {

@@ -2,6 +2,7 @@ PODS:
   - JFHeroBrowser (1.4.3):
     - JRBaseKit (~> 1.0.0)
   - JRBaseKit (1.0.0)
+  - Kingfisher (7.7.0)
   - WCDB.swift (2.0.1):
     - WCDB.swift/no-arc (= 2.0.1)
     - WCDBOptimizedSQLCipher (~> 1.4.0)
@@ -11,11 +12,13 @@ PODS:
 
 DEPENDENCIES:
   - JFHeroBrowser (from `./`)
+  - Kingfisher (~> 7.0)
   - WCDB.swift
 
 SPEC REPOS:
   trunk:
     - JRBaseKit
+    - Kingfisher
     - WCDB.swift
     - WCDBOptimizedSQLCipher
 
@@ -26,9 +29,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   JFHeroBrowser: 97c58d9ce865f9ff6caaa608438b3be23d18be79
   JRBaseKit: ed75cfce9e340a3316bee0eaac0fa1c400714287
+  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   WCDB.swift: 738cf27df8883c47ef732ea02c44e690da5bb66d
   WCDBOptimizedSQLCipher: 55124a19f70180eb38163c959dd56695b8af8b60
 
-PODFILE CHECKSUM: edf8f772dfdf3da12868392a20452cb861a94cee
+PODFILE CHECKSUM: 76956b56014b95886e6ca19909f902feb6a4fec9
 
 COCOAPODS: 1.11.3
