@@ -33,7 +33,7 @@ struct AlbumContentView: View {
                 if viewModel.datas.count > 0 {
                     ScrollView {
                         LazyVGrid(columns: columns) {
-                            ForEach(viewModel.datas, id: \.name.self) { dataitem in
+                            ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
                                 if
                                     let dataitem = dataitem,
                                     let rootDir = PathUtils.rootDir(),
@@ -73,7 +73,7 @@ struct AlbumContentView: View {
                                                     list.append(HeroBrowserLocalImageViewModule(image: img))
                                                 }
                                             }
-                                            myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: 0)
+                                            myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
                                         }
                                 }
                             }
