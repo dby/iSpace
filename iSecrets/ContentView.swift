@@ -30,6 +30,13 @@ struct ContentView: View {
             .background(.orange)
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
+            
+            MeContentView()
+            .tabItem({
+                Image(systemName: "3.square.fill")
+                Text("我的")
+            })
+            .tabViewStyle(.page)
         }
     }
 }
