@@ -13,7 +13,7 @@ struct iSecretsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeContentView()
         }
     }
 }
