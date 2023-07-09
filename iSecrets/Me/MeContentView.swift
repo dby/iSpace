@@ -14,55 +14,51 @@ struct MeContentView: View {
         ["分享给好友", "关于我们", "五星好评", "意见反馈"]
     ]
     
-    @State private var showNotification: Bool = false
+    @State private var idDeleteOrigFile: Bool = false
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible())],
-                      spacing: 0,
-                      pinnedViews: [.sectionHeaders]) {
-                ForEach(0..<titles.count, id: \.self) { index in
-                    Section(header: Text(" ")
-                        .bold()
-                        .font(.title3)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    ) {
-                        ForEach(titles[index], id: \.self) { item in
-                            VStack(spacing: 0) {
-                                HStack() {
-                                    Text(item)
-                                        .font(.title3)
-                                        .lineLimit(1)
-                                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                                    Spacer()
-                                    if index == 0 {
-                                        Toggle(isOn: $showNotification) {
-                                        }
-                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-                                        .frame(width:100)
-                                    } else {
-                                        NavigationLink(destination: AlbumContentView(secretDirObj: SecretDirObject())) {
-                                            EmptyView()
-                                        }
-                                        .buttonStyle(PlainButtonStyle())
-                                    }
-                                }
-                                .frame(height: 55)
-                                .background(Color(uiColor: UIColor.tertiarySystemGroupedBackground))
-                                
-                                Divider().foregroundColor(Color.blue)
-                            }.onTapGesture {
-                                
-                            }
+        List {
+            Section {
+                ForEach(titles[0], id: \.self) { item in
+                    HStack {
+                        Text(item)
+                        Spacer()
+                        Toggle(isOn: $idDeleteOrigFile) {
                         }
+                        .frame(width:100)
+                        .background(Color.clear)
                     }
                 }
-                
-                Spacer(minLength: 10)
+            } header: {
+                Text("我的设置")
             }
-            .padding()
+            
+            Section {
+                ForEach(titles[1], id: \.self) { item in
+                    HStack {
+                        Text(item)
+                        Spacer()
+                    }.onNavigation {
+                        
+                    }
+                }
+            } header: {
+                Text("常用功能")
+            }.headerProminence(.standard)
+            
+            Section {
+                ForEach(titles[2], id: \.self) { item in
+                    HStack {
+                        Text(item)
+                        Spacer()
+                    }.onNavigation {
+                        
+                    }
+                }
+            } header: {
+                Text("其他设置")
+            }
         }
-        .background(Color(uiColor: UIColor.systemBackground))
     }
 }
 

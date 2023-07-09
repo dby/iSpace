@@ -83,31 +83,6 @@ struct FilesContentView: View {
             })
             .navigationBarTitleDisplayMode(.large)
         }
-        
-                
-//        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())],
-//                  pinnedViews: [.sectionHeaders, .sectionFooters]) {
-//            ForEach(0 ..< 5){ index in
-//                Section(header: Text("Header \(index)")
-//                    .bold()
-//                    .font(.title)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .background(Color.white),
-//                        footer: Text("Footer \(index)")
-//                    .bold()
-//                    .font(.title)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .background(Color.white)
-//                ) {
-//
-//                    ForEach(datas, id: \.self) { item in
-//                        Text(item)
-//                            .background(.red)
-//                    }
-//                }
-//            }
-//        }
-//        .padding()
     }
 }
 

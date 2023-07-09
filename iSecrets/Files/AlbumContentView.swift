@@ -24,7 +24,7 @@ struct AlbumContentView: View {
         GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
     ]
     
-    @StateObject var viewModel: AlbumViewModel = AlbumViewModel()
+    @State var viewModel: AlbumViewModel = AlbumViewModel()
     @State private var selectedImage: [PhotosPickerItem] = []
     
     var body: some View {

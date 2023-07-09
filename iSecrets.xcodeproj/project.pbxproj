@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430A0C692A5A9C5A00AE6518 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C682A5A9C5A00AE6518 /* View+Ext.swift */; };
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
 		43304AE12A505D560031C434 /* SecretDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304AE02A505D560031C434 /* SecretDB.swift */; };
 		4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		2288C6809AE172996B90A347 /* Pods_iSecrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSecrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		430A0C682A5A9C5A00AE6518 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		43304AE02A505D560031C434 /* SecretDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDB.swift; sourceTree = "<group>"; };
 		433420292A35C7AF00C4CA84 /* iSecrets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSecrets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,7 @@
 				43B864122A37728400494852 /* String+Ext.swift */,
 				43E777D12A5310E8003C1D17 /* Data+Ext.swift */,
 				43E777D62A546E54003C1D17 /* SecretFileObject+Ext.swift */,
+				430A0C682A5A9C5A00AE6518 /* View+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				430A0C692A5A9C5A00AE6518 /* View+Ext.swift in Sources */,
 				43B864132A37728400494852 /* String+Ext.swift in Sources */,
 				43B864102A3771DA00494852 /* PathUtils.swift in Sources */,
 				43B8640E2A376C8900494852 /* Model.swift in Sources */,
