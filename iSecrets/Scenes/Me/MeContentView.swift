@@ -38,8 +38,6 @@ struct MeContentView: View {
                     HStack {
                         Text(item)
                         Spacer()
-                    }.onNavigation {
-                        
                     }
                 }
             } header: {
@@ -51,8 +49,6 @@ struct MeContentView: View {
                     HStack {
                         Text(item)
                         Spacer()
-                    }.onNavigation {
-                        
                     }
                 }
             } header: {

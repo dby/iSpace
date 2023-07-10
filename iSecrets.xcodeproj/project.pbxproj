@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		430A0C692A5A9C5A00AE6518 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C682A5A9C5A00AE6518 /* View+Ext.swift */; };
 		430A0C6C2A5AA55E00AE6518 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6B2A5AA55E00AE6518 /* HomeCoordinator.swift */; };
+		430A0C6E2A5AA7E800AE6518 /* FilesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */; };
+		430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */; };
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
 		43304AE12A505D560031C434 /* SecretDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304AE02A505D560031C434 /* SecretDB.swift */; };
 		4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */; };
@@ -24,7 +25,6 @@
 		43D2AAF12A3A09E100841737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D2AAF02A3A09E100841737 /* AppDelegate.swift */; };
 		43D2AAF32A3A0B6400841737 /* EnterPwdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D2AAF22A3A0B6400841737 /* EnterPwdView.swift */; };
 		43E777D22A5310E8003C1D17 /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E777D12A5310E8003C1D17 /* Data+Ext.swift */; };
-		43E777D42A5324D1003C1D17 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E777D32A5324D1003C1D17 /* AlbumViewModel.swift */; };
 		43E777D72A546E54003C1D17 /* SecretFileObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E777D62A546E54003C1D17 /* SecretFileObject+Ext.swift */; };
 		43E777DA2A586B1C003C1D17 /* MeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E777D92A586B1C003C1D17 /* MeContentView.swift */; };
 		C45E96F327F313C0D65C8101 /* Pods_iSecrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2288C6809AE172996B90A347 /* Pods_iSecrets.framework */; };
@@ -32,8 +32,9 @@
 
 /* Begin PBXFileReference section */
 		2288C6809AE172996B90A347 /* Pods_iSecrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSecrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		430A0C682A5A9C5A00AE6518 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		430A0C6B2A5AA55E00AE6518 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesCoordinator.swift; sourceTree = "<group>"; };
+		430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		43304AE02A505D560031C434 /* SecretDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDB.swift; sourceTree = "<group>"; };
 		433420292A35C7AF00C4CA84 /* iSecrets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSecrets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,7 +52,6 @@
 		43D2AAF02A3A09E100841737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D2AAF22A3A0B6400841737 /* EnterPwdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPwdView.swift; sourceTree = "<group>"; };
 		43E777D12A5310E8003C1D17 /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
-		43E777D32A5324D1003C1D17 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 		43E777D62A546E54003C1D17 /* SecretFileObject+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecretFileObject+Ext.swift"; sourceTree = "<group>"; };
 		43E777D92A586B1C003C1D17 /* MeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeContentView.swift; sourceTree = "<group>"; };
 		970F379BD89F8C1A5CA31C85 /* Pods-iSecrets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iSecrets.debug.xcconfig"; path = "Target Support Files/Pods-iSecrets/Pods-iSecrets.debug.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +79,15 @@
 				4334202E2A35C7AF00C4CA84 /* HomeContentView.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		430A0C6F2A5AFD3600AE6518 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */,
+				4334203E2A360F6900C4CA84 /* AlbumContentView.swift */,
+			);
+			path = Album;
 			sourceTree = "<group>";
 		};
 		433420202A35C7AF00C4CA84 = {
@@ -125,9 +134,9 @@
 		4334203A2A35DB3000C4CA84 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */,
 				4334203B2A35DB5600C4CA84 /* FilesContentView.swift */,
-				4334203E2A360F6900C4CA84 /* AlbumContentView.swift */,
-				43E777D32A5324D1003C1D17 /* AlbumViewModel.swift */,
+				430A0C6F2A5AFD3600AE6518 /* Album */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -159,7 +168,6 @@
 				43B864122A37728400494852 /* String+Ext.swift */,
 				43E777D12A5310E8003C1D17 /* Data+Ext.swift */,
 				43E777D62A546E54003C1D17 /* SecretFileObject+Ext.swift */,
-				430A0C682A5A9C5A00AE6518 /* View+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -304,8 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				430A0C692A5A9C5A00AE6518 /* View+Ext.swift in Sources */,
 				43B864132A37728400494852 /* String+Ext.swift in Sources */,
+				430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */,
 				43B864102A3771DA00494852 /* PathUtils.swift in Sources */,
 				43B8640E2A376C8900494852 /* Model.swift in Sources */,
 				43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */,
@@ -318,7 +326,7 @@
 				430A0C6C2A5AA55E00AE6518 /* HomeCoordinator.swift in Sources */,
 				433420412A361C8C00C4CA84 /* Core.swift in Sources */,
 				43E777D22A5310E8003C1D17 /* Data+Ext.swift in Sources */,
-				43E777D42A5324D1003C1D17 /* AlbumViewModel.swift in Sources */,
+				430A0C6E2A5AA7E800AE6518 /* FilesCoordinator.swift in Sources */,
 				43304AE12A505D560031C434 /* SecretDB.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,
 				43D2AAF32A3A0B6400841737 /* EnterPwdView.swift in Sources */,
@@ -459,6 +467,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,6 +500,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeContentView: View {
     var body: some View {
         TabView {
-            FilesContentView()
+            FilesContentView(coordinator: FilesCoordinator())
             .tabItem({
                 Image(systemName: "1.square.fill")
                 Text("文件")

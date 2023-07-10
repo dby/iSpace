@@ -18,15 +18,17 @@ let keyWindow = UIApplication.shared.connectedScenes
 let myAppRootVC : UIViewController? = keyWindow?.rootViewController
 
 struct AlbumContentView: View {
+    // MARK: Stored Properties
     var secretDirObj: SecretDirObject
-    
-    @State var columns = [
+    var columns = [
         GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
     ]
     
-    @State var viewModel: AlbumViewModel = AlbumViewModel()
+    @ObservedObject var viewModel: AlbumViewModel
+    
     @State private var selectedImage: [PhotosPickerItem] = []
     
+    // MARK: Views
     var body: some View {
         NavigationStack {
             VStack {
@@ -85,7 +87,7 @@ struct AlbumContentView: View {
                 }
                 Spacer()
             }.onAppear {
-                viewModel.loadDatas(secretDirObj)
+                //viewModel.loadDatas(secretDirObj)
             }
             .toolbar {
                 PhotosPicker(selection: $selectedImage, matching: .images) {
@@ -112,7 +114,7 @@ struct AlbumContentView: View {
                             }
                         }
                         
-                        viewModel.loadDatas(secretDirObj)
+                        //viewModel.loadDatas(secretDirObj)
                     }
                 }
             }
@@ -121,11 +123,11 @@ struct AlbumContentView: View {
     }
 }
 
-struct AlbumContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumContentView(secretDirObj: SecretDirObject())
-    }
-}
+//struct AlbumContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AlbumContentView(secretDirObj: SecretDirObject())
+//    }
+//}
 
 struct ImageCell: View {
     var alreadyCached: Bool {

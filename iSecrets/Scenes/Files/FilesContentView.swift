@@ -9,7 +9,8 @@ import SwiftUI
 import PhotosUI
 
 struct FilesContentView: View {
-    
+
+    // MARK: Stored Properties
     let twoGridLayout = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -25,27 +26,32 @@ struct FilesContentView: View {
     @State private var clickedSecretDir: SecretDirObject? = nil
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedPhotosData: [Data] = []
-
+    
+    @ObservedObject var coordinator: FilesCoordinator
+    
+    // MARK: Views
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
                     Spacer()
                     LazyVGrid(columns: twoGridLayout, spacing: 15) {
-                        ForEach(core.getAllSecretDirs(), id: \.name.self) { item in
+                        ForEach(coordinator.dirs, id: \.name.self) { item in
                             Text(item.name ?? "")
                                 .frame(width: headerWid/2, height: headerWid/2)
                                 .background(.cyan)
                                 .cornerRadius(5)
                                 .onTapGesture {
-                                    self.clickedSecretDir = item
                                     self.pushKey.toggle()
+                                    self.clickedSecretDir = item
+                                    self.coordinator.detailViewModel = item.viewmodel
                                 }
                         }
                     }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 }
             }
             .navigationTitle("文件夹")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {
                     Button("添加文件夹") {
@@ -72,22 +78,29 @@ struct FilesContentView: View {
                 }
             })
             .fullScreenCover(isPresented: $presetnKey, content: {
-                if clickedSecretDir != nil {
-                    AlbumContentView(secretDirObj: clickedSecretDir!)
-                }
+                albumView(coordinator.detailViewModel)
             })
             .navigationDestination(isPresented: $pushKey, destination: {
-                if clickedSecretDir != nil {
-                    AlbumContentView(secretDirObj: clickedSecretDir!)
-                }
+                albumView(coordinator.detailViewModel)
             })
-            .navigationBarTitleDisplayMode(.large)
+        }
+    }
+    
+    @ViewBuilder
+    private func albumView(_ viewModel: AlbumViewModel?) -> some View {
+        if viewModel != nil {
+            AlbumContentView(
+                secretDirObj: self.clickedSecretDir!,
+                viewModel: viewModel!
+            )
+        } else {
+            EmptyView()
         }
     }
 }
 
-struct FilesContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilesContentView()
-    }
-}
+//struct FilesContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FilesContentView()
+//    }
+//}
