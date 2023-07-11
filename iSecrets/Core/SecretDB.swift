@@ -23,6 +23,8 @@ final class SecretDirObject: TableCodable {
     var fileFormat: String? = nil
     /// 文件加密密码，文件可单独加密，只能输入正确，才能查看/
     var cipher: String? = nil
+    /// 封面
+    var thumb: String? = nil
     /// 创建时间
     var createTime: TimeInterval = 0
     /// 更新时间
@@ -36,6 +38,7 @@ final class SecretDirObject: TableCodable {
         case workingDir
         case fileFormat
         case cipher
+        case thumb
         case createTime
         case updateTime
         
@@ -141,6 +144,7 @@ extension SecretDB {
                     obj.workingDir = workingDir
                     obj.fileFormat = fileFormat
                     obj.cipher = cipher
+                    obj.thumb = "" //封面暂时填空
                     obj.createTime = Date.now.timeIntervalSince1970
                     obj.updateTime = Date.now.timeIntervalSince1970
                     obj.isAutoIncrement = true
@@ -170,6 +174,20 @@ extension SecretDB {
             try self.database?.insert([obj], intoTable: SecretFileTableName)
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    /// 更新 DIR 缩略图
+    func updateDirThumb(dirID: Int, thumb: String) {
+        do {
+            let obj = SecretDirObject()
+            obj.thumb = thumb
+            
+            try database?.update(table: SecretDirTableName,
+                                 on: [SecretDirObject.Properties.thumb],
+                                 with: obj)
+        } catch {
+            
         }
     }
     

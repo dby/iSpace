@@ -86,8 +86,6 @@ struct AlbumContentView: View {
                     Text("Please select image by tapping on image.")
                 }
                 Spacer()
-            }.onAppear {
-                //viewModel.loadDatas(secretDirObj)
             }
             .toolbar {
                 PhotosPicker(selection: $selectedImage, matching: .images) {
@@ -96,6 +94,7 @@ struct AlbumContentView: View {
                 }.onChange(of: selectedImage) { newValue in
                     Task {
                         selectedImage = []
+                        var lastIconName = ""
                         for item in newValue {
                             if let data = try? await item.loadTransferable(type: Data.self) {
                                 if
@@ -106,6 +105,7 @@ struct AlbumContentView: View {
                                     let fullPath = "\(rootDir)/\(folderName)/\(iconName)"
                                     
                                     if (FileUtils.writeDataToPath(fullPath, data: data)) {
+                                        lastIconName = iconName
                                         core.secretDB.addSecretFile(dirLocalID: secretDirObj.localID,
                                                                     name: iconName,
                                                                     cipher: "")
@@ -114,7 +114,9 @@ struct AlbumContentView: View {
                             }
                         }
                         
-                        //viewModel.loadDatas(secretDirObj)
+                        core.secretDB.updateDirThumb(dirID: secretDirObj.localID,
+                                                     thumb: lastIconName)
+                        viewModel.fetchFiles()
                     }
                 }
             }

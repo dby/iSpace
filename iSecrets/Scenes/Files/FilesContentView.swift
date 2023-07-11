@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import Kingfisher
 
 struct FilesContentView: View {
 
@@ -37,15 +38,33 @@ struct FilesContentView: View {
                     Spacer()
                     LazyVGrid(columns: twoGridLayout, spacing: 15) {
                         ForEach(coordinator.dirs, id: \.name.self) { item in
-                            Text(item.name ?? "")
-                                .frame(width: headerWid/2, height: headerWid/2)
-                                .background(.cyan)
-                                .cornerRadius(5)
-                                .onTapGesture {
-                                    self.pushKey.toggle()
-                                    self.clickedSecretDir = item
-                                    self.coordinator.detailViewModel = item.viewmodel
+                            ZStack {
+                                if let rootDir = PathUtils.rootDir(),
+                                   let fileUrl = URL(filePath: "\(rootDir)/\(item.name!)/\(item.thumb!)") {
+                                    KFImage.url(fileUrl)
+                                        .resizable()
+                                        .onSuccess { r in
+                                            print("Success: \(r.cacheType)")
+                                        }
+                                        .onFailure { e in
+                                            print("Error: \(e)")
+                                        }
+                                        .onProgress { downloaded, total in
+                                            print("\(downloaded) / \(total))")
+                                        }
                                 }
+                                
+                                Text(item.name ?? "")
+                                    .background(.red)
+                                    .cornerRadius(5)
+                            }
+                            .frame(width: headerWid/2, height: headerWid*0.66)
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                self.pushKey.toggle()
+                                self.clickedSecretDir = item
+                                self.coordinator.detailViewModel = item.viewmodel
+                            }
                         }
                     }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 }

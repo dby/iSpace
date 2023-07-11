@@ -15,15 +15,19 @@ class AlbumViewModel: ObservableObject {
     init(dirObj: SecretDirObject) {
         self.dirObj = dirObj
         
-        self.fetchFiles(atDir: dirObj.localID) { datas in
+        self.fetchFiles()
+    }
+    
+    func fetchFiles() {
+        self.fetchFiles { datas in
             self.datas = datas
         }
     }
     
-    func fetchFiles(atDir: Int, completion: @escaping ([SecretFileObject]) -> Void) {
+    private func fetchFiles(completion: @escaping ([SecretFileObject]) -> Void) {
         print("xxxx fetch \(dirObj.localID) dirs.")
         completion(
-            core.secretDB.getAllSecretFiles(atDir)
+            core.secretDB.getAllSecretFiles(self.dirObj.localID)
         )
     }
 }
