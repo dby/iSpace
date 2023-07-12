@@ -38,8 +38,9 @@ struct FilesContentView: View {
                     Spacer()
                     LazyVGrid(columns: twoGridLayout, spacing: 15) {
                         ForEach(coordinator.dirs, id: \.name.self) { item in
-                            ZStack {
+                            VStack(spacing: 0) {
                                 if let rootDir = PathUtils.rootDir(),
+                                   item.thumb != nil && item.thumb!.count != 0,
                                    let fileUrl = URL(filePath: "\(rootDir)/\(item.name!)/\(item.thumb!)") {
                                     KFImage.url(fileUrl)
                                         .resizable()
@@ -52,14 +53,34 @@ struct FilesContentView: View {
                                         .onProgress { downloaded, total in
                                             print("\(downloaded) / \(total))")
                                         }
+                                        .frame(height: headerWid*0.5)
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(5)
+                                } else {
+                                    Text("")
+                                        .frame(width: headerWid/2, height: headerWid*0.5)
+                                        .background(Color(uiColor: UIColor.blue))
+                                        .cornerRadius(5)
                                 }
                                 
-                                Text(item.name ?? "")
-                                    .background(.red)
-                                    .cornerRadius(5)
+                                VStack(spacing: 0) {
+                                    HStack {
+                                        Text(item.name ?? "")
+                                            .font(Font.system(size: 12))
+                                            .bold()
+                                            .frame(height: 20)
+                                            .cornerRadius(5)
+                                        Spacer()
+                                    }
+                                    HStack {
+                                        Text("\(item.fileCnt)")
+                                            .font(Font.system(size: 10))
+                                            .cornerRadius(5)
+                                        Spacer()
+                                    }
+                                }
                             }
-                            .frame(width: headerWid/2, height: headerWid*0.66)
-                            .cornerRadius(10)
+                            .frame(width: headerWid/2, height: headerWid*0.5 + 40)
                             .onTapGesture {
                                 self.pushKey.toggle()
                                 self.clickedSecretDir = item
@@ -98,9 +119,11 @@ struct FilesContentView: View {
             })
             .fullScreenCover(isPresented: $presetnKey, content: {
                 albumView(coordinator.detailViewModel)
+                    .navigationBarTitleDisplayMode(.inline)
             })
             .navigationDestination(isPresented: $pushKey, destination: {
                 albumView(coordinator.detailViewModel)
+                    .navigationBarTitleDisplayMode(.inline)
             })
         }
     }

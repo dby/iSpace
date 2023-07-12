@@ -185,7 +185,8 @@ extension SecretDB {
             
             try database?.update(table: SecretDirTableName,
                                  on: [SecretDirObject.Properties.thumb],
-                                 with: obj)
+                                 with: obj,
+                                 where: SecretDirObject.Properties.localID == dirID)
         } catch {
             
         }
@@ -203,6 +204,21 @@ extension SecretDB {
         }
         
         return []
+    }
+    
+    func getSecretFileCnt(_ atDirID: Int) -> Int {
+        do {
+            if let db = self.database {
+                let files: [SecretFileObject] = try db.getObjects(on: SecretFileObject.Properties.all,
+                                                                  fromTable: SecretFileTableName,
+                                                                  where: SecretFileObject.Properties.dirID == atDirID)
+                return files.count
+            }
+        } catch {
+            
+        }
+        
+        return 0
     }
     
     func getAllSecretFiles(_ atDirID: Int) -> [SecretFileObject] {

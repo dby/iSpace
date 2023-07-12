@@ -65,6 +65,7 @@ struct AlbumContentView: View {
                                         .frame(height: 150)
                                         .aspectRatio(contentMode: .fit)
                                         .cornerRadius(10)
+                                        .background(Color.clear)
                                         .onTapGesture {
                                             var list: [HeroBrowserViewModule] = []
                                             for item in viewModel.datas {
@@ -80,6 +81,7 @@ struct AlbumContentView: View {
                                 }
                             }
                         }
+                        Spacer()
                     }
                 } else {
                     Spacer()

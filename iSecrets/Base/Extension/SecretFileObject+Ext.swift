@@ -10,6 +10,7 @@ import Foundation
 struct AssociatedKeys {
     static var secretFileDataKey: String = "secretFileDataKeyName"
     static var secretDirDataKey: String = "SecretDirObjectDataKeyName"
+    static var secretDirFilesCntKey: String = "SecretDirFilesCntKey"
 }
 
 extension SecretFileObject {
