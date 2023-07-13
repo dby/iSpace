@@ -92,6 +92,9 @@ struct FilesContentView: View {
             }
             .navigationTitle("文件夹")
             .navigationBarTitleDisplayMode(.large)
+            .onAppear(perform: {
+                coordinator.refreshSecretDirs()
+            })
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {
                     Button("添加文件夹") {

@@ -35,6 +35,10 @@ class FilesCoordinator: ObservableObject {
     @Published var detailViewModel: AlbumViewModel?
     
     init() {
+        refreshSecretDirs()
+    }
+    
+    func refreshSecretDirs() {
         dirs = []
         for item in core.getAllSecretDirs() {
             item.viewmodel = AlbumViewModel(dirObj: item)

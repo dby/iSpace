@@ -118,6 +118,7 @@ struct AlbumContentView: View {
                         
                         core.secretDB.updateDirThumb(dirID: secretDirObj.localID,
                                                      thumb: lastIconName)
+                        
                         viewModel.fetchFiles()
                     }
                 }
