@@ -39,27 +39,33 @@ struct FilesContentView: View {
                     LazyVGrid(columns: twoGridLayout, spacing: 15) {
                         ForEach(coordinator.dirs, id: \.name.self) { item in
                             VStack(spacing: 0) {
-                                if let rootDir = PathUtils.rootDir(),
-                                   item.thumb != nil && item.thumb!.count != 0,
-                                   let fileUrl = URL(filePath: "\(rootDir)/\(item.name!)/\(item.thumb!)") {
-                                    KFImage.url(fileUrl)
-                                        .resizable()
-                                        .onSuccess { r in
-                                            print("Success: \(r.cacheType)")
-                                        }
-                                        .onFailure { e in
-                                            print("Error: \(e)")
-                                        }
-                                        .onProgress { downloaded, total in
-                                            print("\(downloaded) / \(total))")
-                                        }
-                                        .frame(height: headerWid*0.5)
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(5)
+                                if
+                                    item.thumb != nil && item.thumb!.count != 0,
+                                    item.name != nil && item.name!.count != 0,
+                                    let fullPicThumbPath = FileUtils.getFilePath(item.name!, iconName: item.thumb!, ext: .picThumb),
+                                    FileUtils.fileExists(atPath: fullPicThumbPath),
+                                    let fullPicThumbUrl = URL(fileURLWithPath: fullPicThumbPath)
+                                {
+                                    GeometryReader { geo in
+                                        KFImage.url(fullPicThumbUrl)
+                                            .resizable()
+                                            .onSuccess { r in
+                                                print("Success: \(r.cacheType)")
+                                            }
+                                            .onFailure { e in
+                                                print("Error: \(e)")
+                                            }
+                                            .onProgress { downloaded, total in
+                                                print("\(downloaded) / \(total))")
+                                            }
+                                            .frame(height: geo.size.width)
+                                            .aspectRatio(1, contentMode: .fit)
+                                            .cornerRadius(5)
+                                    }
                                 } else {
                                     Text("")
                                         .frame(width: headerWid/2, height: headerWid*0.5)
-                                        .background(Color(uiColor: UIColor.blue))
+                                        .background(Color(uiColor: UIColor.lightGray))
                                         .cornerRadius(5)
                                 }
                                 

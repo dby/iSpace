@@ -7,6 +7,19 @@
 
 import Foundation
 
+enum FileExtension: String {
+    /// 照片
+    case pic = "pic"
+    /// 视频
+    case video = "video"
+    /// 文件
+    case file = "file"
+    /// 图片缩略图
+    case picThumb = "pic_thumb"
+    /// 视频缩略图
+    case videoThumb = "video_thumb"
+}
+
 class FileUtils: NSObject {
     static func contentsOfDirectory(atPath: String) -> [String] {
         let contentsOfPath = try? FileManager.default.contentsOfDirectory(atPath: atPath)
@@ -94,5 +107,13 @@ class FileUtils: NSObject {
         }
         
         return flag
+    }
+    
+    static func getFilePath(_ folderName: String, iconName: String, ext: FileExtension) -> String? {
+        if let rootDir = PathUtils.rootDir() {
+            return "\(rootDir)/\(folderName)/\(iconName).\(ext)"
+        }
+        
+        return nil
     }
 }

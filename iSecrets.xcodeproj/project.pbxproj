@@ -10,6 +10,7 @@
 		430A0C6C2A5AA55E00AE6518 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6B2A5AA55E00AE6518 /* HomeCoordinator.swift */; };
 		430A0C6E2A5AA7E800AE6518 /* FilesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */; };
 		430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */; };
+		430A0C732A604F0400AE6518 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C722A604F0400AE6518 /* Utils.swift */; };
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
 		43304AE12A505D560031C434 /* SecretDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304AE02A505D560031C434 /* SecretDB.swift */; };
 		4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */; };
@@ -35,6 +36,7 @@
 		430A0C6B2A5AA55E00AE6518 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesCoordinator.swift; sourceTree = "<group>"; };
 		430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
+		430A0C722A604F0400AE6518 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		43304AE02A505D560031C434 /* SecretDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDB.swift; sourceTree = "<group>"; };
 		433420292A35C7AF00C4CA84 /* iSecrets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSecrets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 				43304ACE2A4DD6580031C434 /* FileUtils.swift */,
 				43B8640F2A3771DA00494852 /* PathUtils.swift */,
 				43B8640D2A376C8900494852 /* Model.swift */,
+				430A0C722A604F0400AE6518 /* Utils.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				430A0C6E2A5AA7E800AE6518 /* FilesCoordinator.swift in Sources */,
 				43304AE12A505D560031C434 /* SecretDB.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,
+				430A0C732A604F0400AE6518 /* Utils.swift in Sources */,
 				43D2AAF32A3A0B6400841737 /* EnterPwdView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

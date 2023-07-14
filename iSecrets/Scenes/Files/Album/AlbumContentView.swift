@@ -25,7 +25,6 @@ struct AlbumContentView: View {
     ]
     
     @ObservedObject var viewModel: AlbumViewModel
-    
     @State private var selectedImage: [PhotosPickerItem] = []
     
     // MARK: Views
@@ -38,46 +37,48 @@ struct AlbumContentView: View {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
                                 if
                                     let dataitem = dataitem,
-                                    let rootDir = PathUtils.rootDir(),
-                                    let fileUrl = URL(filePath: "\(rootDir)/\(secretDirObj.name!)/\(dataitem.name!)")
+                                    let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb),
+                                    let fileUrl = URL(filePath: fullPicThumbPath)
                                 {
-                                    KFImage.url(fileUrl)
-                                        .resizable()
-                                        .onSuccess { r in
-                                            print("Success: \(r.cacheType)")
-                                        }
-                                        .onFailure { e in
-                                            print("Error: \(e)")
-                                        }
-                                        .onProgress { downloaded, total in
-                                            print("\(downloaded) / \(total))")
-                                        }
-                                        .placeholder {
-                                            HStack {
-                                                Image(systemName: "arrow.2.circlepath.circle")
-                                                    .resizable()
-                                                    .frame(width: 50, height: 50)
-                                                    .padding(10)
-                                                Text("Loading...").font(.title3)
+                                    GeometryReader { geo in
+                                        KFImage.url(fileUrl)
+                                            .resizable()
+                                            .onSuccess { r in
+                                                print("Success: \(r.cacheType)")
                                             }
-                                            .foregroundColor(.gray)
-                                        }
-                                        .frame(height: 150)
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(10)
-                                        .background(Color.clear)
-                                        .onTapGesture {
-                                            var list: [HeroBrowserViewModule] = []
-                                            for item in viewModel.datas {
-                                                if
-                                                    let rootDir = PathUtils.rootDir(),
-                                                    let img = UIImage(contentsOfFile: "\(rootDir)/\(secretDirObj.name!)/\(item.name!)")
-                                                {
-                                                    list.append(HeroBrowserLocalImageViewModule(image: img))
+                                            .onFailure { e in
+                                                print("Error: \(e)")
+                                            }
+                                            .onProgress { downloaded, total in
+                                                print("\(downloaded) / \(total))")
+                                            }
+                                            .placeholder {
+                                                HStack {
+                                                    Image(systemName: "arrow.2.circlepath.circle")
+                                                        .resizable()
+                                                        .frame(width: 50, height: 50)
+                                                        .padding(10)
+                                                    Text("Loading...").font(.title3)
                                                 }
+                                                .foregroundColor(.gray)
                                             }
-                                            myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
-                                        }
+                                            .aspectRatio(1, contentMode: .fit)
+                                            .frame(height: geo.size.width)
+                                            .cornerRadius(10)
+                                            .background(Color.clear)
+                                            .onTapGesture {
+                                                var list: [HeroBrowserViewModule] = []
+                                                for item in viewModel.datas {
+                                                    if
+                                                        let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
+                                                        let img = UIImage(contentsOfFile: fullPicPath)
+                                                    {
+                                                        list.append(HeroBrowserLocalImageViewModule(image: img))
+                                                    }
+                                                }
+                                                myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
+                                            }
+                                    }
                                 }
                             }
                         }
@@ -99,18 +100,24 @@ struct AlbumContentView: View {
                         var lastIconName = ""
                         for item in newValue {
                             if let data = try? await item.loadTransferable(type: Data.self) {
-                                if
-                                    let rootDir = PathUtils.rootDir(),
-                                    let folderName = secretDirObj.name
-                                {
+                                if let folderName = secretDirObj.name {
                                     let iconName: String = "\(data.md5)_\(Date.now.timeIntervalSince1970)"
-                                    let fullPath = "\(rootDir)/\(folderName)/\(iconName)"
+                                    let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .pic)
+                                    let fullPicThumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb)
                                     
-                                    if (FileUtils.writeDataToPath(fullPath, data: data)) {
+                                    guard let fullPicPath = fullPicPath else { continue }
+                                    guard let fullPicThumbPath = fullPicThumbPath else { continue }
+
+                                    if (FileUtils.writeDataToPath(fullPicPath, data: data)) {
+                                        if let thumbData = genThumbnail(for: data, thumbnailSize: CGSizeMake(150, 150))  {
+                                            _ = FileUtils.writeDataToPath(fullPicThumbPath, data: thumbData)
+                                        }
+                                        
                                         lastIconName = iconName
                                         core.secretDB.addSecretFile(dirLocalID: secretDirObj.localID,
                                                                     name: iconName,
                                                                     cipher: "")
+
                                     }
                                 }
                             }
