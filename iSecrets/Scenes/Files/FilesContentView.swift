@@ -21,7 +21,7 @@ struct FilesContentView: View {
 
     @State private var showingAlert = false
     @State private var name = ""
-    @State private var presetnKey = false
+    @State private var presetnKey = true
     @State private var pushKey = false
     
     @State private var clickedSecretDir: SecretDirObject? = nil
@@ -43,11 +43,10 @@ struct FilesContentView: View {
                                     item.thumb != nil && item.thumb!.count != 0,
                                     item.name != nil && item.name!.count != 0,
                                     let fullPicThumbPath = FileUtils.getFilePath(item.name!, iconName: item.thumb!, ext: .picThumb),
-                                    FileUtils.fileExists(atPath: fullPicThumbPath),
-                                    let fullPicThumbUrl = URL(fileURLWithPath: fullPicThumbPath)
+                                    FileUtils.fileExists(atPath: fullPicThumbPath)
                                 {
                                     GeometryReader { geo in
-                                        KFImage.url(fullPicThumbUrl)
+                                        KFImage.url(URL(fileURLWithPath: fullPicThumbPath))
                                             .resizable()
                                             .onSuccess { r in
                                                 print("Success: \(r.cacheType)")
@@ -127,7 +126,7 @@ struct FilesContentView: View {
                 }
             })
             .fullScreenCover(isPresented: $presetnKey, content: {
-                albumView(coordinator.detailViewModel)
+                EnterPwdView()
                     .navigationBarTitleDisplayMode(.inline)
             })
             .navigationDestination(isPresented: $pushKey, destination: {

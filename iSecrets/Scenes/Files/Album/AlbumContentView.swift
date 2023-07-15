@@ -35,13 +35,9 @@ struct AlbumContentView: View {
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
-                                if
-                                    let dataitem = dataitem,
-                                    let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb),
-                                    let fileUrl = URL(filePath: fullPicThumbPath)
-                                {
+                                if let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
                                     GeometryReader { geo in
-                                        KFImage.url(fileUrl)
+                                        KFImage.url(URL(filePath: fullPicThumbPath))
                                             .resizable()
                                             .onSuccess { r in
                                                 print("Success: \(r.cacheType)")

@@ -26,16 +26,27 @@ struct EnterPwdView: View {
     @State private var inputStep: Int = 0
     @State private var pwdStr: String = ""
     
+    @State private var hint: String = "请设置锁屏密码"
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         VStack {
-            Text("iSecret")
-                .font(.largeTitle)
+            Text("iSpace")
+                .font(.system(size: 50))
+                .bold()
+            
+            Spacer().frame(height: 35)
+            
+            Text(hint)
+            
+            Spacer().frame(height:30)
             
             LazyVGrid(columns: sixGridItem) {
                 ForEach(0 ..< 6) { index in
                     index >= inputStep ? Image("pwd_uninput") : Image("pwd_inputed")
                 }
-            }.frame(width: 200)
+            }
+            .frame(width: 200, height: 20)
             
             LazyVGrid(columns: threeGridItem) {
                 ForEach(data, id: \.self){ item in
@@ -76,10 +87,34 @@ struct EnterPwdView: View {
                             default:
                                 break
                             }
+                            
+                            if pwdStr.count >= 6 {
+                                _ = core.tryLoginOrRegister(pwdStr)
+                                
+                                if core.account.0 == .registerSetpOne {
+                                    hint = "请确定密码"
+                                    pwdStr = ""
+                                    inputStep = 0
+                                } else if core.account.0 == .registerSetpTwo {
+                                    core.saveMainSpaceAccount(pwdStr)
+                                    core.account = (.mainSpace, pwdStr)
+                                    
+                                    self.presentationMode.wrappedValue.dismiss()
+                                } else if core.account.0 == .mainSpace || core.account.0 == .fakeSpace {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                            }
                         }
                 }
-            }.padding(EdgeInsets(top: 50, leading: 30, bottom: 0, trailing: 30))
-        }
+            }
+            .padding(EdgeInsets(top: 50, leading: 30, bottom: 0, trailing: 30))
+        }.onAppear(perform: {
+            if core.account.0 == .notLogin {
+                hint = "请输入锁屏密码"
+            } else if core.account.0 == .notCreate {
+                hint = "请设置锁屏密码"
+            }
+        })
     }
 }
 

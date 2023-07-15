@@ -21,13 +21,13 @@ class PathUtils: NSObject {
     /// - Returns: path to Documents/com.secret.Secrets/XXX
     static func rootDir() -> String? {
         
-        guard core.getAccountState() != .notLogin else {
+        guard core.account.0 != .notLogin else {
             // 账户不合法
             return nil
         }
         
         if let homeDoc = documents() {
-            return "\(homeDoc)/com.secret.Secrets/\(core.curAccount.sha256)"
+            return "\(homeDoc)/com.secret.Secrets/\(core.account.1.sha256)"
         }
         
         return nil

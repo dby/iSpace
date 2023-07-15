@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct HomeContentView: View {
+    @StateObject var filesCoordinator: FilesCoordinator = FilesCoordinator()
+    
     var body: some View {
         TabView {
-            FilesContentView(coordinator: FilesCoordinator())
+            FilesContentView(coordinator: filesCoordinator)
             .tabItem({
                 Image(systemName: "1.square.fill")
                 Text("文件")

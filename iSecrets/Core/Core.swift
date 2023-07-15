@@ -12,9 +12,18 @@ private let _mainSpacePasswordKey = "main_Space_Password_Key"
 private let _fakeSpacePasswordKey = "fake_Space_Password_Key"
 private let _secretDirSPKey = "Secret_Dir_SP_Key"
 
+/// 状态机
+/// notCreate --> registerStepOne --> registerStepTwo --> mainSpace
+///                                      --> fakeSpace
+/// notLogin  --> mainSpace
+///        --> fakeSpace
 enum AccountState: Int {
     /// 账户尚未创建
     case notCreate
+    /// 注册流程One
+    case registerSetpOne
+    /// 注册流程Two
+    case registerSetpTwo
     /// 已经创建账户，但是尚未注册
     case notLogin
     /// 伪装空间账号登录
@@ -29,8 +38,8 @@ class CoreObject: NSObject {
     }
     
     //MARK: -
-    var curAccount: String = ""
     var secretDB: SecretDB!
+    var account: (AccountState, String) = (.notCreate, "")
 }
 
 //MARK: - Life Cycle -
@@ -42,6 +51,12 @@ extension CoreObject {
         if let rootDir = PathUtils.rootDir() {
             print("RootDir[\(rootDir)]")
             print("SubPath: \(FileUtils.subPathsAtPath(rootDir))")
+        }
+        
+        if getFakeSpaceAccount().isEmpty && getMainSpaceAccount().isEmpty {
+            self.account = (.notCreate, "")
+        } else {
+            self.account = (.notLogin, "")
         }
         
         if self.secretDB.getAllSecretDirs().count == 0 {
@@ -77,29 +92,12 @@ extension CoreObject {
 
 //MARK: - Account -
 extension CoreObject {
-    /// 获得账户的状态
-    func getAccountState() -> AccountState {
-        if getMainSpaceAccount().count == 0 && getFakeSpaceAccount().count == 0 {
-            return .notCreate
-        }
-        
-        if getMainSpaceAccount() == curAccount {
-            return .mainSpace
-        }
-        
-        if getFakeSpaceAccount() == curAccount {
-            return .fakeSpace
-        }
-        
-        return .notLogin
-    }
-    
     func saveMainSpaceAccount(_ pwd: String) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(pwd, forKey: _mainSpacePasswordKey)
         userDefaults.synchronize()
         
-        curAccount = pwd
+        self.account = (.mainSpace, pwd)
     }
     
     func saveFakeSpaceAccount(_ pwd: String) {
@@ -107,7 +105,38 @@ extension CoreObject {
         userDefaults.set(pwd, forKey: _fakeSpacePasswordKey)
         userDefaults.synchronize()
         
-        curAccount = pwd
+        self.account = (.fakeSpace, pwd)
+    }
+    
+    /// 尝试登录
+    func tryLoginOrRegister(_ pwd: String) -> Bool {
+        switch self.account.0 {
+        case .notCreate:
+            self.account = (.registerSetpOne, pwd)
+        case .registerSetpOne:
+            self.account = (.registerSetpTwo, pwd)
+        case .registerSetpTwo:
+            guard self.account.0 == .registerSetpOne else {
+                self.account = (.notCreate, "")
+                return false
+            }
+            
+            if (self.account.1 == pwd) {
+                //注册成功
+                self.account = (.mainSpace, pwd)
+            }
+        case .notLogin:
+            if (getMainSpaceAccount() == pwd) {
+                self.account = (.mainSpace, pwd)
+            } else if (getFakeSpaceAccount() == pwd) {
+                self.account = (.fakeSpace, pwd)
+            }
+            break
+        default:
+            break
+        }
+        
+        return false
     }
     
     /// 获得主空间的账户
