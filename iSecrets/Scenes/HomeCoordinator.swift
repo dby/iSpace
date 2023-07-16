@@ -9,4 +9,11 @@ import SwiftUI
 
 class HomeCoordinator: ObservableObject {
     
+    @Published var filesCoordinator: FilesCoordinator!
+    
+    let camera = Camera()
+    
+    init() {
+        self.filesCoordinator = FilesCoordinator()
+    }
 }

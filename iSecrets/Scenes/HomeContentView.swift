@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct HomeContentView: View {
-    @StateObject var filesCoordinator: FilesCoordinator = FilesCoordinator()
+    @ObservedObject var coordinator: HomeCoordinator
     
     var body: some View {
         TabView {
-            FilesContentView(coordinator: filesCoordinator)
+            FilesContentView(coordinator: coordinator.filesCoordinator)
             .tabItem({
                 Image(systemName: "1.square.fill")
                 Text("文件")
@@ -43,8 +43,8 @@ struct HomeContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeContentView()
+//    }
+//}

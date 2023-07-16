@@ -130,6 +130,9 @@ extension CoreObject {
                 self.account = (.mainSpace, pwd)
             } else if (getFakeSpaceAccount() == pwd) {
                 self.account = (.fakeSpace, pwd)
+            } else {
+                //登录失败
+                
             }
             break
         default:

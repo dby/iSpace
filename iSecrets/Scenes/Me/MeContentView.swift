@@ -14,7 +14,8 @@ struct MeContentView: View {
         ["分享给好友", "关于我们", "五星好评", "意见反馈"]
     ]
     
-    @State private var idDeleteOrigFile: Bool = false
+    @State private var isDeleteOrigFile: Bool = false
+    @State private var isIntrusionCapture: Bool = false
     
     var body: some View {
         List {
@@ -23,10 +24,17 @@ struct MeContentView: View {
                     HStack {
                         Text(item)
                         Spacer()
-                        Toggle(isOn: $idDeleteOrigFile) {
+                        if (item == "导入中自动删除原文件") {
+                            Toggle(isOn: $isDeleteOrigFile) {
+                            }
+                            .frame(width:100, height: 20)
+                            .background(Color.clear)
+                        } else {
+                            Toggle(isOn: $isIntrusionCapture) {
+                            }
+                            .frame(width:100, height: 20)
+                            .background(Color.clear)
                         }
-                        .frame(width:100)
-                        .background(Color.clear)
                     }
                 }
             } header: {

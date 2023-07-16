@@ -11,9 +11,11 @@ import SwiftUI
 struct iSecretsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    @StateObject var coordinator = HomeCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            HomeContentView()
+            HomeContentView(coordinator: coordinator)
         }
     }
 }
