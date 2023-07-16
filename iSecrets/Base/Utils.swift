@@ -27,3 +27,12 @@ import Foundation
     
     return nil
 }
+
+@inlinable func genThumbnailAspectFill(for imgData: Data) -> Data? {
+    guard let image = UIImage(data: imgData) else { return nil }
+    
+    let imageSize = image.size
+    let targetW = min(imageSize.width, imageSize.height)
+    
+    return genThumbnail(for: imgData, thumbnailSize: CGSizeMake(targetW, targetW))
+}

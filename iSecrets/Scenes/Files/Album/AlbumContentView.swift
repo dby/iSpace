@@ -105,7 +105,7 @@ struct AlbumContentView: View {
                                     guard let fullPicThumbPath = fullPicThumbPath else { continue }
                                     
                                     if (FileUtils.writeDataToPath(fullPicPath, data: data)) {
-                                        if let thumbData = genThumbnail(for: data, thumbnailSize: CGSizeMake(150, 150))  {
+                                        if let thumbData = genThumbnailAspectFill(for: data)  {
                                             _ = FileUtils.writeDataToPath(fullPicThumbPath, data: thumbData)
                                         }
                                         
