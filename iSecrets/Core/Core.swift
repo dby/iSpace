@@ -40,6 +40,33 @@ class CoreObject: NSObject {
     //MARK: -
     var secretDB: SecretDB!
     var account: (AccountState, String) = (.notCreate, "")
+    private var _mainSpaceAccount: String = ""
+    private var _fakeSpaceAccount: String = ""
+    
+    //MARK: - Getter and Setter -
+    /// 获得主空间的账户
+    var mainSpaceAccount: String {
+        get {
+            if _mainSpaceAccount.isEmpty {
+                let userDefault = UserDefaults.standard
+                _mainSpaceAccount = userDefault.string(forKey: _mainSpacePasswordKey) ?? ""
+            }
+            
+            return _mainSpaceAccount
+        }
+    }
+    
+    /// 获得伪装空间的账户
+    var fakeSpaceAccount: String {
+        get {
+            if _fakeSpaceAccount.isEmpty {
+                let userDefault = UserDefaults.standard
+                _fakeSpaceAccount = userDefault.string(forKey: _fakeSpacePasswordKey) ?? ""
+            }
+            
+            return _fakeSpaceAccount
+        }
+    }
 }
 
 //MARK: - Life Cycle -
@@ -53,7 +80,7 @@ extension CoreObject {
             print("SubPath: \(FileUtils.subPathsAtPath(rootDir))")
         }
         
-        if getFakeSpaceAccount().isEmpty && getMainSpaceAccount().isEmpty {
+        if self.fakeSpaceAccount.isEmpty && self.mainSpaceAccount.isEmpty {
             self.account = (.notCreate, "")
         } else {
             self.account = (.notLogin, "")
@@ -106,52 +133,6 @@ extension CoreObject {
         userDefaults.synchronize()
         
         self.account = (.fakeSpace, pwd)
-    }
-    
-    /// 尝试登录
-    func tryLoginOrRegister(_ pwd: String) -> Bool {
-        switch self.account.0 {
-        case .notCreate:
-            self.account = (.registerSetpOne, pwd)
-        case .registerSetpOne:
-            self.account = (.registerSetpTwo, pwd)
-        case .registerSetpTwo:
-            guard self.account.0 == .registerSetpOne else {
-                self.account = (.notCreate, "")
-                return false
-            }
-            
-            if (self.account.1 == pwd) {
-                //注册成功
-                self.account = (.mainSpace, pwd)
-            }
-        case .notLogin:
-            if (getMainSpaceAccount() == pwd) {
-                self.account = (.mainSpace, pwd)
-            } else if (getFakeSpaceAccount() == pwd) {
-                self.account = (.fakeSpace, pwd)
-            } else {
-                //登录失败
-                
-            }
-            break
-        default:
-            break
-        }
-        
-        return false
-    }
-    
-    /// 获得主空间的账户
-    private func getMainSpaceAccount() -> String {
-        let userDefault = UserDefaults.standard
-        return userDefault.string(forKey: _mainSpacePasswordKey) ?? ""
-    }
-    
-    /// 获得伪装空间的账户
-    private func getFakeSpaceAccount() -> String {
-        let userDefault = UserDefaults.standard
-        return userDefault.string(forKey: _fakeSpacePasswordKey) ?? ""
     }
 }
 

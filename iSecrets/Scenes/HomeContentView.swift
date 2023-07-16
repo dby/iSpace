@@ -13,12 +13,13 @@ struct HomeContentView: View {
     var body: some View {
         TabView {
             FilesContentView(coordinator: coordinator.filesCoordinator)
-            .tabItem({
-                Image(systemName: "1.square.fill")
-                Text("文件")
-            })
-            .background(.red)
-            .tabViewStyle(.page)
+                .environmentObject(coordinator)
+                .tabItem({
+                    Image(systemName: "1.square.fill")
+                    Text("文件")
+                })
+                .background(.red)
+                .tabViewStyle(.page)
             
             TabView {
                 Text("aaa")
@@ -34,11 +35,11 @@ struct HomeContentView: View {
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             
             MeContentView()
-            .tabItem({
-                Image(systemName: "3.square.fill")
-                Text("我的")
-            })
-            .tabViewStyle(.page)
+                .tabItem({
+                    Image(systemName: "3.square.fill")
+                    Text("我的")
+                })
+                .tabViewStyle(.page)
         }
     }
 }

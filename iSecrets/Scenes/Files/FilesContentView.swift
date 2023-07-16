@@ -29,7 +29,8 @@ struct FilesContentView: View {
     @State private var selectedPhotosData: [Data] = []
     
     @ObservedObject var coordinator: FilesCoordinator
-    
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
+
     // MARK: Views
     var body: some View {
         NavigationStack {
@@ -127,6 +128,7 @@ struct FilesContentView: View {
             })
             .fullScreenCover(isPresented: $presetnKey, content: {
                 EnterPwdView()
+                    .environmentObject(coordinator)
                     .navigationBarTitleDisplayMode(.inline)
             })
             .navigationDestination(isPresented: $pushKey, destination: {

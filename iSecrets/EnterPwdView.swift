@@ -25,9 +25,10 @@ struct EnterPwdView: View {
     
     @State private var inputStep: Int = 0
     @State private var pwdStr: String = ""
-    
     @State private var hint: String = "请设置锁屏密码"
+
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
     
     var body: some View {
         VStack {
@@ -89,7 +90,7 @@ struct EnterPwdView: View {
                             }
                             
                             if pwdStr.count >= 6 {
-                                _ = core.tryLoginOrRegister(pwdStr)
+                                _ = homeCoordinator.tryLoginOrRegister(pwdStr)
                                 
                                 if core.account.0 == .registerSetpOne {
                                     hint = "请确定密码"
@@ -102,6 +103,9 @@ struct EnterPwdView: View {
                                     self.presentationMode.wrappedValue.dismiss()
                                 } else if core.account.0 == .mainSpace || core.account.0 == .fakeSpace {
                                     self.presentationMode.wrappedValue.dismiss()
+                                } else if core.account.0 == .notLogin {
+                                    pwdStr = ""
+                                    inputStep = 0
                                 }
                             }
                         }
@@ -118,8 +122,8 @@ struct EnterPwdView: View {
     }
 }
 
-struct EnterPwdView_Previews: PreviewProvider {
-    static var previews: some View {
-        EnterPwdView()
-    }
-}
+//struct EnterPwdView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EnterPwdView()
+//    }
+//}
