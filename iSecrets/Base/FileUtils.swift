@@ -51,6 +51,11 @@ class FileUtils: NSObject {
         return ret
     }
     
+    static func EnsureCreateParentDir(_ filePath: String) {
+        let fileUrl = URL(filePath: filePath)
+        _ = createFolder(fileUrl.deletingLastPathComponent().absoluteString)
+    }
+    
     /// 赋值文件
     /// - Parameters:
     ///   - atPath: 绝对路径
@@ -99,7 +104,10 @@ class FileUtils: NSObject {
     static func writeDataToPath(_ atPath: String, data: Data) -> Bool {
         var flag: Bool = false
         do {
-            try data.write(to: URL(filePath: atPath), options: .atomic)
+            let fileUrl = URL(filePath: atPath)
+            _ = createFolder(fileUrl.deletingLastPathComponent().absoluteString)
+            
+            try data.write(to: fileUrl)
             print("Data saved to \(atPath)")
             flag = true
         } catch {

@@ -97,13 +97,13 @@ struct AlbumContentView: View {
                         for item in newValue {
                             if let data = try? await item.loadTransferable(type: Data.self) {
                                 if let folderName = secretDirObj.name {
-                                    let iconName: String = "\(data.md5)_\(Date.now.timeIntervalSince1970)"
+                                    let iconName: String = "\(data.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
                                     let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .pic)
                                     let fullPicThumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb)
                                     
                                     guard let fullPicPath = fullPicPath else { continue }
                                     guard let fullPicThumbPath = fullPicThumbPath else { continue }
-
+                                    
                                     if (FileUtils.writeDataToPath(fullPicPath, data: data)) {
                                         if let thumbData = genThumbnail(for: data, thumbnailSize: CGSizeMake(150, 150))  {
                                             _ = FileUtils.writeDataToPath(fullPicThumbPath, data: thumbData)
@@ -113,7 +113,6 @@ struct AlbumContentView: View {
                                         core.secretDB.addSecretFile(dirLocalID: secretDirObj.localID,
                                                                     name: iconName,
                                                                     cipher: "")
-
                                     }
                                 }
                             }
