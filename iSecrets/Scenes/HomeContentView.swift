@@ -35,6 +35,7 @@ struct HomeContentView: View {
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             
             MeContentView()
+                .environmentObject(coordinator)
                 .tabItem({
                     Image(systemName: "3.square.fill")
                     Text("我的")
