@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+struct Constants {
+    /// 抓拍记录
+    static let _intrusionCapture: String = "入侵记录"
+    static let _fakeSpace: String = "伪装空间"
+    static let _changePws: String = "修改密码"
+    static let _shareToFriends: String = "分享给好友"
+    static let _aboutUS: String = "关于我们"
+    static let _feedback: String = "意见反馈"
+}
+
 struct MeContentView: View {
     private var titles: [[String]] = [
         ["导入中自动删除原文件", "启用入侵抓拍"],
@@ -16,13 +26,16 @@ struct MeContentView: View {
     
     @State private var isDeleteOrigFile: Bool = false
     @State private var isIntrusionCapture: Bool = false
-    @State private var newPwd: String = ""
-    @State private var isPresenting: Bool = false
     
+    @StateObject private var meRouter: MeRouter
     @EnvironmentObject var homeCoordinator: HomeCoordinator
     
+    init(router: MeRouter) {
+        _meRouter = StateObject(wrappedValue: router)
+    }
+    
     var body: some View {
-        NavigationStack {
+        RoutingView(router: meRouter, content: {
             List {
                 Section {
                     ForEach(titles[0], id: \.self) { item in
@@ -48,10 +61,14 @@ struct MeContentView: View {
                 
                 Section {
                     ForEach(titles[1], id: \.self) { item in
-                        NavigationLink(value: Route.settings(item)) {
-                            HStack {
-                                Text(item)
-                                Spacer()
+                        HStack {
+                            Text(item)
+                            Spacer()
+                        }.onTapGesture {
+                            if (item == "修改密码") {
+                                meRouter.presentFullScreen(.detail(item))
+                            } else {
+                                meRouter.presentDetail(description: item)
                             }
                         }
                     }
@@ -66,32 +83,19 @@ struct MeContentView: View {
                             Spacer()
                         }
                         .onTapGesture {
-                            self.isPresenting = true
+                            meRouter.presentDetail(description: item)
                         }
                     }
                 } header: {
                     Text("其他设置")
                 }
             }
-            .fullScreenCover(isPresented: $isPresenting, content: {
-                EnterPwdView()
-                    .environmentObject(homeCoordinator)
-                    .ignoresSafeArea()
-            })
-            .navigationDestination(for: Route.self) { route in
-                switch route {
-                case let .settings(title):
-                    if title == "入侵记录" {
-                        IntrusionRecordView()
-                    }
-                }
-            }
-        }
+        })
     }
 }
 
-struct MeContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MeContentView()
-    }
-}
+//struct MeContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MeContentView()
+//    }
+//}

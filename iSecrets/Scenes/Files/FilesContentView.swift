@@ -126,15 +126,14 @@ struct FilesContentView: View {
                     }
                 }
             })
-            .fullScreenCover(isPresented: $presetnKey, content: {
-                EnterPwdView()
-                    .environmentObject(coordinator)
-                    .navigationBarTitleDisplayMode(.inline)
-            })
-            .navigationDestination(isPresented: $pushKey, destination: {
-                albumView(coordinator.detailViewModel)
-                    .navigationBarTitleDisplayMode(.inline)
-            })
+//            .fullScreenCover(isPresented: $presetnKey, content: {
+//                EnterPwdView(viewModel: homeCoordinator.enterPwdViewModel!)
+//                    .navigationBarTitleDisplayMode(.inline)
+//            })
+//            .navigationDestination(isPresented: $pushKey, destination: {
+//                albumView(coordinator.detailViewModel)
+//                    .navigationBarTitleDisplayMode(.inline)
+//            })
         }
     }
     

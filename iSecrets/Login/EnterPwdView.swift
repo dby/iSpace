@@ -28,7 +28,8 @@ struct EnterPwdView: View {
     @State private var hint: String = "请设置锁屏密码"
 
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var homeCoordinator: HomeCoordinator
+    
+    @ObservedObject var viewModel: EnterPwdViewModel
     
     var body: some View {
         VStack {
@@ -90,13 +91,13 @@ struct EnterPwdView: View {
                             }
                             
                             if pwdStr.count >= 6 {
-                                _ = homeCoordinator.tryLoginOrRegister(pwdStr)
+                                _ = viewModel.tryLoginOrRegister(pwdStr)
                                 
-                                if core.account.0 == .registerSetpOne {
+                                if viewModel.state == .registerSetpOne {
                                     hint = "请确定密码"
                                     pwdStr = ""
                                     inputStep = 0
-                                } else if core.account.0 == .registerSetpTwo {
+                                } else if viewModel.state == .registerSetpTwo {
                                     core.saveMainSpaceAccount(pwdStr)
                                     core.account = (.mainSpace, pwdStr)
                                     

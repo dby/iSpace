@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeContentView: View {
     @ObservedObject var coordinator: HomeCoordinator
+    @StateObject private var meRouter = MeRouter(isPresented: .constant(.main))
     
     var body: some View {
         TabView {
@@ -34,7 +35,7 @@ struct HomeContentView: View {
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             
-            MeContentView()
+            MeContentView(router: meRouter)
                 .environmentObject(coordinator)
                 .tabItem({
                     Image(systemName: "3.square.fill")

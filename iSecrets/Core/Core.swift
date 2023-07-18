@@ -12,20 +12,12 @@ private let _mainSpacePasswordKey = "main_Space_Password_Key"
 private let _fakeSpacePasswordKey = "fake_Space_Password_Key"
 private let _secretDirSPKey = "Secret_Dir_SP_Key"
 
-/// 状态机
-/// notCreate --> registerStepOne --> registerStepTwo --> mainSpace
-///                                      --> fakeSpace
-/// notLogin  --> mainSpace
-///        --> fakeSpace
 enum AccountState: Int {
-    /// 账户尚未创建
-    case notCreate
-    /// 注册流程One
-    case registerSetpOne
-    /// 注册流程Two
-    case registerSetpTwo
-    /// 已经创建账户，但是尚未注册
+    case idle
+    /// 未登录
     case notLogin
+    /// 未创建
+    case notCreate
     /// 伪装空间账号登录
     case fakeSpace
     /// 主空间登录登录
@@ -39,7 +31,7 @@ class CoreObject: NSObject {
     
     //MARK: -
     var secretDB: SecretDB!
-    var account: (AccountState, String) = (.notCreate, "")
+    var account: (AccountState, String) = (.idle, "")
     private var _mainSpaceAccount: String = ""
     private var _fakeSpaceAccount: String = ""
     
