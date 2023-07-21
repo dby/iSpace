@@ -26,7 +26,8 @@ struct EnterPwdView: View {
     @State private var inputStep: Int = 0
     @State private var pwdStr: String = ""
     @State private var hint: String = "请设置锁屏密码"
-
+    @State private var offset = CGSize.zero
+    
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel: EnterPwdViewModel
@@ -40,12 +41,21 @@ struct EnterPwdView: View {
             Spacer().frame(height: 35)
             
             Text(hint)
+                .foregroundColor(Color.black)
             
             Spacer().frame(height:30)
             
             LazyVGrid(columns: sixGridItem) {
                 ForEach(0 ..< 6) { index in
-                    index >= inputStep ? Image("pwd_uninput") : Image("pwd_inputed")
+                    if index >= inputStep {
+                        Image("pwd_uninput")
+                            .offset(x: offset.width, y: 0)
+                            .animation(.easeIn, value: 0.5)
+                    } else {
+                        Image("pwd_inputed")
+                            .offset(x: offset.width, y: 0)
+                            .animation(.easeIn, value: 0.5)
+                    }
                 }
             }
             .frame(width: 200, height: 20)
@@ -91,22 +101,41 @@ struct EnterPwdView: View {
                             }
                             
                             if pwdStr.count >= 6 {
-                                _ = viewModel.tryLoginOrRegister(pwdStr)
+                                viewModel.tryLoginOrRegister(pwdStr)
                                 
                                 if viewModel.state == .registerSetpOne {
-                                    hint = "请确定密码"
+                                    hint = "请设置密码"
                                     pwdStr = ""
                                     inputStep = 0
                                 } else if viewModel.state == .registerSetpTwo {
+                                    hint = "请确定密码"
+                                    pwdStr = ""
+                                    inputStep = 0
+                                } else if viewModel.state == .registerSucceed {
                                     core.saveMainSpaceAccount(pwdStr)
                                     core.account = (.mainSpace, pwdStr)
                                     
                                     self.presentationMode.wrappedValue.dismiss()
-                                } else if core.account.0 == .mainSpace || core.account.0 == .fakeSpace {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                } else if core.account.0 == .notLogin {
+                                } else if viewModel.state == .registerFailed {
                                     pwdStr = ""
                                     inputStep = 0
+                                    
+                                    viewModel.state = .registerSetpOne
+                                } else if viewModel.state == .loginSucceed {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                } else if viewModel.state == .loginFailed {
+                                    pwdStr = ""
+                                    inputStep = 0
+                                    
+                                    viewModel.state = .login
+                                    
+                                    withAnimation(Animation.linear(duration: 0.1).repeatCount(3, autoreverses: true)) {
+                                        if (self.offset.width == 0 || self.offset.width == 2) {
+                                            self.offset = CGSize(width: -2, height: 0)
+                                        } else {
+                                            self.offset = CGSize(width: 2, height: 0)
+                                        }
+                                    }
                                 }
                             }
                         }

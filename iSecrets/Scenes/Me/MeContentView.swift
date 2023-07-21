@@ -26,6 +26,8 @@ struct MeContentView: View {
     
     @State private var isDeleteOrigFile: Bool = false
     @State private var isIntrusionCapture: Bool = false
+    @State private var isShowingAlert: Bool = false
+    @State private var oldPwd: String = ""
     
     @StateObject private var meRouter: MeRouter
     @EnvironmentObject var homeCoordinator: HomeCoordinator
@@ -63,10 +65,21 @@ struct MeContentView: View {
                     ForEach(titles[1], id: \.self) { item in
                         HStack {
                             Text(item)
+                                .frame(height:30)
                             Spacer()
-                        }.onTapGesture {
-                            if (item == "修改密码") {
+                        }
+                        .alert("请输入原密码", isPresented: $isShowingAlert) {
+                            TextField("请输入原密码", text: $oldPwd)
+                            Button("OK") {
                                 meRouter.presentFullScreen(.detail(item))
+                            }
+                            Button("Cancel") {
+                                
+                            }
+                        }
+                        .onTapGesture {
+                            if item == "修改密码" {
+                                self.isShowingAlert = true
                             } else {
                                 meRouter.presentDetail(description: item)
                             }

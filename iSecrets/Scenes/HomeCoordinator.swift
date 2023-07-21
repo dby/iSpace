@@ -14,14 +14,18 @@ class HomeCoordinator: ObservableObject {
     
     init() {
         self.filesCoordinator = FilesCoordinator()
+        
+        if core.account.0 == .notCreate {
+            self.enterPwdViewModel = EnterPwdViewModel(state: .registerSetpOne)
+        } else {
+            self.enterPwdViewModel = EnterPwdViewModel(state: .login)
+        }
     }
 }
 
 extension HomeCoordinator {
     
     func openLoginView() {
-        self.enterPwdViewModel = EnterPwdViewModel()
-        self.enterPwdViewModel?.state = .login
     }
     
     func openRegisterPwdView() {

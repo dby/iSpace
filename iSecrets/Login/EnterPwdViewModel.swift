@@ -13,12 +13,14 @@ import SwiftUI
 ///                                              --> fakeSpace
 /// idle  --> mainSpace
 ///       --> fakeSpace
-enum AccountEventState {
+enum AccountEventState: Int {
     case idle
+    /// register flow
     case registerSetpOne
     case registerSetpTwo
     case registerSucceed
     case registerFailed
+    /// login flow
     case login
     case loginSucceed
     case loginFailed
@@ -27,11 +29,15 @@ enum AccountEventState {
 class EnterPwdViewModel: ObservableObject {
     @Published var state: AccountEventState = .idle
     
+    init(state: AccountEventState) {
+        self.state = state
+    }
+    
     var inputingPwd: String = ""
     let camera = Camera()
     
     /// 尝试登录
-    func tryLoginOrRegister(_ pwd: String) -> Bool {
+    func tryLoginOrRegister(_ pwd: String) {
         switch state {
         case .idle:
             print("should never run here.")
@@ -63,7 +69,5 @@ class EnterPwdViewModel: ObservableObject {
             print("Not Handle State[\(state)].")
             break
         }
-        
-        return false
     }
 }

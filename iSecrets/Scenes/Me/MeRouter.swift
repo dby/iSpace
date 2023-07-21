@@ -41,7 +41,7 @@ private extension MeRouter {
             } else if description == Constants._fakeSpace {
                 
             } else if description == Constants._changePws {
-                let curViewModel = EnterPwdViewModel()
+                let curViewModel = EnterPwdViewModel(state: .registerSetpOne)
                 EnterPwdView(viewModel: curViewModel)
             } else if description == Constants._shareToFriends {
                 
