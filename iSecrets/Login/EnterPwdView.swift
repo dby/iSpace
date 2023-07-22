@@ -71,6 +71,8 @@ struct EnterPwdView: View {
                         ).onTapGesture {
                             self.inputStep = self.inputStep + 1
                             switch item {
+                            case "0":
+                                pwdStr.append("0")
                             case "1":
                                 pwdStr.append("1")
                             case "2":
@@ -91,10 +93,16 @@ struct EnterPwdView: View {
                                 pwdStr.append("9")
                                 break
                             case "DEL":
+                                if pwdStr.count >= 1 {
+                                    pwdStr.removeLast()
+                                    self.inputStep = self.inputStep - 2
+                                } else {
+                                    pwdStr = ""
+                                    self.inputStep = 0
+                                }
                                 break
-                            case "0":
-                                pwdStr.append("0")
                             case "OK":
+                                self.inputStep = self.inputStep - 1
                                 print("pwd: \(pwdStr)")
                             default:
                                 break
