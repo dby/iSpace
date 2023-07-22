@@ -120,7 +120,6 @@ struct EnterPwdView: View {
                                     pwdStr = ""
                                     inputStep = 0
                                 } else if viewModel.state == .registerSucceed {
-                                    core.saveMainSpaceAccount(pwdStr)
                                     core.account = (.mainSpace, pwdStr)
                                     
                                     self.presentationMode.wrappedValue.dismiss()

@@ -10,6 +10,34 @@ import WCDBSwift
 
 private let SecretDirTableName = "SecretDirTable"
 private let SecretFileTableName = "SecretFileTable"
+private let SecretAccountTableName = "SecretAccountTable"
+
+final class SecretAccountObject: TableCodable {
+    var localID: Int = 0
+    /// 账户名称
+    var name: String = ""
+    /// 账户级别
+    var level: Int = 0
+    /// 创建时间
+    var createTime: TimeInterval = 0
+    /// 更新时间
+    var updateTime: TimeInterval = 0
+    
+    enum CodingKeys: String, CodingTableKey {
+        typealias Root = SecretAccountObject
+        case localID
+        case name
+        case level
+        case createTime
+        case updateTime
+        
+        static let objectRelationalMapping = TableBinding(CodingKeys.self) {
+            BindColumnConstraint(localID, isPrimary: true, isAutoIncrement: true)
+        }
+    }
+    
+    var isAutoIncrement: Bool = false // 用于定义是否使用自增的方式插入
+}
 
 final class SecretDirObject: TableCodable {
     var localID: Int = 0
@@ -93,6 +121,7 @@ class SecretDB: NSObject {
         do {
             try database?.create(table: SecretDirTableName, of: SecretDirObject.self)
             try database?.create(table: SecretFileTableName, of: SecretFileObject.self)
+            try database?.create(table: SecretAccountTableName, of: SecretAccountObject.self)
         } catch {
             print(error.localizedDescription)
         }
@@ -224,5 +253,73 @@ extension SecretDB {
         }
         
         return []
+    }
+    
+    func getMainSpaceAccount() -> SecretAccountObject? {
+        var accounts: [SecretAccountObject] = []
+        do {
+            if let db = self.database {
+                accounts = try db.getObjects(on: SecretAccountObject.Properties.all,
+                                             fromTable: SecretAccountTableName,
+                                             where: SecretAccountObject.Properties.level == AccountLevel.mainSpace.rawValue)
+            }
+        } catch {
+            
+        }
+        
+        return accounts.count == 0 ? nil : accounts.first
+    }
+    
+    func getFakeSpaceAccount() -> [SecretAccountObject] {
+        var accounts: [SecretAccountObject] = []
+        do {
+            if let db = self.database {
+                accounts = try db.getObjects(on: SecretAccountObject.Properties.all,
+                                             fromTable: SecretAccountTableName,
+                                             where: SecretAccountObject.Properties.level == AccountLevel.fakeSpace.rawValue)
+            }
+        } catch {
+            
+        }
+        
+        return accounts
+    }
+    
+    func registerWithUsrName(_ usrName: String, level: AccountLevel) {
+        guard !usrName.isEmpty else { return }
+        do {
+            try self.database?.run(transaction: { handle in
+                let existObjs: [SecretAccountObject] = try handle.getObjects(on: [SecretAccountObject.Properties.name],
+                                                                             fromTable: SecretAccountTableName,
+                                                                             where: SecretAccountObject.Properties.name == usrName)
+                if (existObjs.count > 0) {
+                    assert(true)
+                    // name必须是唯一的
+                    return
+                }
+                
+                if level == .mainSpace {
+                    let mainSpaceAccounts: [SecretAccountObject] = try handle.getObjects(on: SecretAccountObject.Properties.all,
+                                                                                         fromTable: SecretAccountTableName,
+                                                                                         where: SecretAccountObject.Properties.level == AccountLevel.mainSpace.rawValue)
+                    if (mainSpaceAccounts.count > 0) {
+                        assert(true)
+                        // MainSpace 账户只能有一个
+                        return
+                    }
+                }
+                
+                let obj = SecretAccountObject()
+                obj.name = usrName
+                obj.level = level.rawValue
+                obj.createTime = Date.now.timeIntervalSince1970
+                obj.updateTime = Date.now.timeIntervalSince1970
+                obj.isAutoIncrement = true
+                
+                try handle.insertOrIgnore([obj], intoTable: SecretAccountTableName)
+            })
+        } catch {
+            print("Transaction failed with error: \(error)")
+        }
     }
 }

@@ -55,16 +55,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3F32D8AF-F118-46A5-8847-B6218EDE3DEC"
-            shouldBeEnabled = "Yes"
+            uuid = "6AA03A97-DAF5-43A5-8038-ECBF38A1431D"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iSecrets/Core/Core.swift"
+            filePath = "iSecrets/Core/SecretDB.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "startUp()"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "registerWithUsrName(_:level:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D79378AF-3EAC-4843-B95A-A201916F865F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iSecrets/Core/SecretDB.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "registerWithUsrName(_:level:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

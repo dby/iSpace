@@ -8,9 +8,6 @@
 import Foundation
 
 let core = CoreObject()
-private let _mainSpacePasswordKey = "main_Space_Password_Key"
-private let _fakeSpacePasswordKey = "fake_Space_Password_Key"
-private let _secretDirSPKey = "Secret_Dir_SP_Key"
 
 enum AccountState: Int {
     case idle
@@ -24,6 +21,11 @@ enum AccountState: Int {
     case mainSpace
 }
 
+enum AccountLevel: Int {
+    case mainSpace = 1
+    case fakeSpace = 2
+}
+
 class CoreObject: NSObject {
     override init() {
         super.init()
@@ -33,15 +35,14 @@ class CoreObject: NSObject {
     var secretDB: SecretDB!
     var account: (AccountState, String) = (.idle, "")
     private var _mainSpaceAccount: String = ""
-    private var _fakeSpaceAccount: String = ""
+    private var _fakeSpaceAccount: [String] = []
     
     //MARK: - Getter and Setter -
     /// 获得主空间的账户
     var mainSpaceAccount: String {
         get {
             if _mainSpaceAccount.isEmpty {
-                let userDefault = UserDefaults.standard
-                _mainSpaceAccount = userDefault.string(forKey: _mainSpacePasswordKey) ?? ""
+                _mainSpaceAccount = core.secretDB.getMainSpaceAccount()?.name ?? ""
             }
             
             return _mainSpaceAccount
@@ -49,11 +50,15 @@ class CoreObject: NSObject {
     }
     
     /// 获得伪装空间的账户
-    var fakeSpaceAccount: String {
+    var fakeSpaceAccount: [String] {
         get {
             if _fakeSpaceAccount.isEmpty {
-                let userDefault = UserDefaults.standard
-                _fakeSpaceAccount = userDefault.string(forKey: _fakeSpacePasswordKey) ?? ""
+                var tmps: [String] = []
+                for item in core.secretDB.getFakeSpaceAccount() {
+                    tmps.append(item.name)
+                }
+                
+                _fakeSpaceAccount = tmps
             }
             
             return _fakeSpaceAccount
@@ -100,25 +105,6 @@ extension CoreObject {
     
     func exitMannual() {
         
-    }
-}
-
-//MARK: - Account -
-extension CoreObject {
-    func saveMainSpaceAccount(_ pwd: String) {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(pwd, forKey: _mainSpacePasswordKey)
-        userDefaults.synchronize()
-        
-        self.account = (.mainSpace, pwd)
-    }
-    
-    func saveFakeSpaceAccount(_ pwd: String) {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(pwd, forKey: _fakeSpacePasswordKey)
-        userDefaults.synchronize()
-        
-        self.account = (.fakeSpace, pwd)
     }
 }
 

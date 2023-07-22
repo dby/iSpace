@@ -48,6 +48,8 @@ class EnterPwdViewModel: ObservableObject {
         case .registerSetpTwo:
             if (inputingPwd == pwd) {
                 core.account = (.mainSpace, pwd)
+                core.secretDB.registerWithUsrName(pwd, level: .mainSpace)
+                
                 self.state = .registerSucceed
                 self.createDefaultDirIfNeed()
             } else {
@@ -57,7 +59,7 @@ class EnterPwdViewModel: ObservableObject {
             if (core.mainSpaceAccount == pwd) {
                 core.account = (.mainSpace, pwd)
                 self.state = .loginSucceed
-            } else if (core.fakeSpaceAccount == pwd) {
+            } else if (core.fakeSpaceAccount.contains(pwd)) {
                 core.account = (.fakeSpace, pwd)
                 self.state = .loginSucceed
             } else {
