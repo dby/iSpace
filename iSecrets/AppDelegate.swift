@@ -19,7 +19,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func setUpKingfisher() {
-        let imageCacheDirectory = libraryPath()
+        let imageCacheDirectory = kingfisherImageCachePath()
         let url = NSURL(fileURLWithPath: imageCacheDirectory) as URL
         if let imageCache = try? ImageCache(name: "iSpace", cacheDirectoryURL: url) {
             imageCache.diskStorage.config.sizeLimit = 1_073_741_824  // 1GB

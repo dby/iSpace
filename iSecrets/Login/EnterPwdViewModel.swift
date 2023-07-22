@@ -49,6 +49,7 @@ class EnterPwdViewModel: ObservableObject {
             if (inputingPwd == pwd) {
                 core.account = (.mainSpace, pwd)
                 self.state = .registerSucceed
+                self.createDefaultDirIfNeed()
             } else {
                 self.state = .registerFailed
             }
@@ -68,6 +69,14 @@ class EnterPwdViewModel: ObservableObject {
         default:
             print("Not Handle State[\(state)].")
             break
+        }
+    }
+    
+    func createDefaultDirIfNeed() {
+        if let rootPath = PathUtils.rootDir() {
+            _ = FileUtils.createFolder("\(rootPath)/Videos")
+            _ = FileUtils.createFolder("\(rootPath)/Photos")
+            _ = FileUtils.createFolder("\(rootPath)/Files")
         }
     }
 }

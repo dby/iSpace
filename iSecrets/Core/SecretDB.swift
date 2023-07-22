@@ -87,10 +87,8 @@ class SecretDB: NSObject {
     override init() {
         super.init()
         
-        if let dbPath = self.dbPath() {
-            database = Database(at: dbPath)
-            database?.tag = Tag("iSecret")
-        }
+        database = Database(at: dbPath())
+        database?.tag = Tag("iSecret")
         
         do {
             try database?.create(table: SecretDirTableName, of: SecretDirObject.self)
@@ -102,14 +100,6 @@ class SecretDB: NSObject {
     
     //
     private var database: Database?
-    
-    private func dbPath() -> String? {
-        if let prefix = PathUtils.rootDir() {
-            return "\(prefix)/iSecrets.db"
-        }
-                
-        return nil
-    }
 }
 
 /// SecretDB 增删改查

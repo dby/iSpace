@@ -8,43 +8,31 @@
 import Foundation
 
 class PathUtils: NSObject {
-    
-    @objc static func dbPath() -> String? {
-        if let prefix = rootDir() {
-            return "\(prefix)/secrets.db"
-        }
-                
-        return nil
-    }
-    
     /// 路径前缀
     /// - Returns: path to Documents/com.secret.Secrets/XXX
     static func rootDir() -> String? {
+        guard core.account.0 != .notLogin else { return nil }
+        guard core.account.0 != .notCreate else { return nil }
         
-        guard core.account.0 != .notLogin else {
-            // 账户不合法
-            return nil
-        }
-        
-        if let homeDoc = documents() {
-            return "\(homeDoc)/com.secret.Secrets/\(core.account.1.sha256)"
-        }
-        
-        return nil
-    }
-    
-    /// Document目录，此处有问题～～～～～～～～～～～
-    private static func documents() -> String? {
-        let documentPaths = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true)
-        return documentPaths.first ?? nil
+        return "\(basePath())/\(core.account.1.sha256)"
     }
 }
 
-#if DEBUG
-public let DIR_NAME = "iSpace_debug"
-#else
-public let DIR_NAME = "iSpace"
-#endif
+/// 基础路径
+/// - Returns: path to Documents/com.secret.Secrets/
+@inlinable func basePath() -> String {
+    let dir = dirPath(of: .applicationSupportDirectory).appending("/com.secret.Secrets")
+    generateDirectory(dir)
+    return dir
+}
+
+@inlinable func dbPath() -> String {
+    return "\(basePath())/iSecrets.db"
+}
+
+@inlinable func kingfisherImageCachePath() -> String {
+    return "\(basePath())/ImageCache"
+}
 
 @inlinable func dirPath(of path: FileManager.SearchPathDirectory) -> String {
     let dirs = NSSearchPathForDirectoriesInDomains(path,
@@ -52,12 +40,6 @@ public let DIR_NAME = "iSpace"
                                                    true)
     precondition(!dirs.isEmpty)
     return dirs[0]
-}
-
-@inlinable func libraryPath() -> String {
-    let dir = dirPath(of: .applicationSupportDirectory).appending("/\(DIR_NAME)")
-    generateDirectory(dir)
-    return dir
 }
 
 @inlinable func generateDirectory(_ path: String) {

@@ -45,6 +45,7 @@ class FileUtils: NSObject {
             //withIntermediateDirectories为ture表示路径中间如果有不存在的文件夹都会创建
             try manager.createDirectory(atPath:folderPath, withIntermediateDirectories:true, attributes:nil)
         } catch {
+            print("CreateDir \(error.localizedDescription)")
             ret = false
         }
         
@@ -104,8 +105,8 @@ class FileUtils: NSObject {
     static func writeDataToPath(_ atPath: String, data: Data) -> Bool {
         var flag: Bool = false
         do {
+            EnsureCreateParentDir(atPath)
             let fileUrl = URL(filePath: atPath)
-            _ = createFolder(fileUrl.deletingLastPathComponent().absoluteString)
             
             try data.write(to: fileUrl)
             print("Data saved to \(atPath)")

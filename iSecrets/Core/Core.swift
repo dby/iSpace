@@ -95,12 +95,6 @@ extension CoreObject {
                                                          workingDir: "Files".md5,
                                                          fileFormat: "file",
                                                          cipher: "")
-            
-            if let rootPath = PathUtils.rootDir() {
-                _ = FileUtils.createFolder("\(rootPath)/Videos")
-                _ = FileUtils.createFolder("\(rootPath)/Photos")
-                _ = FileUtils.createFolder("\(rootPath)/Files")
-            }
         }
     }
     
