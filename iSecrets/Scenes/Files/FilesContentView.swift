@@ -63,10 +63,12 @@ struct FilesContentView: View {
                                             .cornerRadius(5)
                                     }
                                 } else {
-                                    Text("")
-                                        .frame(width: headerWid/2, height: headerWid*0.5)
-                                        .background(Color(uiColor: UIColor.lightGray))
-                                        .cornerRadius(5)
+                                    GeometryReader { geo in
+                                        Text("")
+                                            .frame(width: geo.size.width, height: geo.size.width)
+                                            .background(Color(uiColor: UIColor.lightGray))
+                                            .cornerRadius(5)
+                                    }
                                 }
                                 
                                 VStack(spacing: 0) {
