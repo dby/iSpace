@@ -13,11 +13,11 @@ struct FilesContentView: View {
 
     // MARK: Stored Properties
     let twoGridLayout = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
+        GridItem(.flexible(), spacing: 0),
+        GridItem(.flexible(), spacing: 0),
     ]
     
-    let headerWid = UIScreen.main.bounds.size.width - 60
+    let headerWid = UIScreen.main.bounds.size.width - 40
 
     @State private var showingAlert = false
     @State private var name = ""
@@ -37,7 +37,7 @@ struct FilesContentView: View {
             ScrollView {
                 VStack {
                     Spacer()
-                    LazyVGrid(columns: twoGridLayout, spacing: 15) {
+                    LazyVGrid(columns: twoGridLayout, spacing: 10) {
                         ForEach(coordinator.dirs, id: \.name.self) { item in
                             VStack(spacing: 0) {
                                 if
@@ -58,45 +58,64 @@ struct FilesContentView: View {
                                             .onProgress { downloaded, total in
                                                 print("\(downloaded) / \(total))")
                                             }
-                                            .frame(height: geo.size.width)
+                                            .frame(height: geo.size.width - 10)
                                             .aspectRatio(1, contentMode: .fit)
+                                            .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                                             .cornerRadius(5)
                                             .blur(radius: 5)
                                     }
                                 } else {
                                     GeometryReader { geo in
                                         Text("")
-                                            .frame(width: geo.size.width, height: geo.size.width)
+                                            .frame(width: geo.size.width - 10, height: geo.size.width - 10)
                                             .background(Color(uiColor: UIColor.lightGray))
                                             .cornerRadius(5)
+                                            .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                                     }
                                 }
                                 
-                                VStack(spacing: 0) {
-                                    HStack {
-                                        Text(item.name ?? "")
-                                            .font(Font.system(size: 12))
-                                            .bold()
-                                            .frame(height: 20)
-                                            .cornerRadius(5)
-                                        Spacer()
-                                    }
-                                    HStack {
-                                        Text("\(item.fileCnt)")
-                                            .font(Font.system(size: 10))
-                                            .cornerRadius(5)
-                                        Spacer()
-                                    }
+                                HStack {
+                                    Text(item.name ?? "")
+                                        .font(Font.system(size: 12))
+                                        .bold()
+                                        .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
+                                        .cornerRadius(5)
+                                    Spacer()
                                 }
+                                HStack {
+                                    Text("\(item.fileCnt)")
+                                        .font(Font.system(size: 10))
+                                        .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+                                        .cornerRadius(5)
+                                    Spacer()
+                                }
+                                
+                                Spacer()
                             }
                             .frame(width: headerWid/2, height: headerWid*0.5 + 40)
+                            .background(Color.red)
                             .onTapGesture {
                                 self.pushKey.toggle()
                                 self.clickedSecretDir = item
                                 self.coordinator.detailViewModel = item.viewmodel
+                            }.contextMenu {
+                                Button(action: {
+                                    // 操作1
+                                }) {
+                                    Text("操作1")
+                                    Image(systemName: "star.fill")
+                                }
+
+                                Button(action: {
+                                    // 操作2
+                                }) {
+                                    Text("操作2")
+                                    Image(systemName: "heart.fill")
+                                }
                             }
                         }
-                    }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 }
             }
             .navigationTitle("文件夹")
