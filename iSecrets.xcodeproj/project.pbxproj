@@ -518,6 +518,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "iSpace需要访问您的相机，以便您可以拍摄照片并将其用于应用程序中。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "iSpace需要访问您的相册，以便您可以选择要在应用程序中使用的照片。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -551,6 +553,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "iSpace需要访问您的相机，以便您可以拍摄照片并将其用于应用程序中。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "iSpace需要访问您的相册，以便您可以选择要在应用程序中使用的照片。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

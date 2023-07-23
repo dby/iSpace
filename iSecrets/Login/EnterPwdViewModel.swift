@@ -31,6 +31,9 @@ class EnterPwdViewModel: ObservableObject {
     
     init(state: AccountEventState) {
         self.state = state
+        Task {
+            await camera.start()
+        }
     }
     
     var inputingPwd: String = ""
