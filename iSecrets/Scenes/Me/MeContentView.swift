@@ -27,18 +27,28 @@ struct MeContentView: View {
     @State private var isDeleteOrigFile: Bool = false
     @State private var isIntrusionCapture: Bool = false
     @State private var isShowingAlert: Bool = false
-    @State private var oldPwd: String = ""
+    @State private var oldPwd: String = "1234"
     
     @StateObject private var meRouter: MeRouter
+    @ObservedObject var viewModel: MeViewModel
     @EnvironmentObject var homeCoordinator: HomeCoordinator
     
-    init(router: MeRouter) {
+    init(router: MeRouter, viewModel: MeViewModel) {
         _meRouter = StateObject(wrappedValue: router)
+        _viewModel = ObservedObject(wrappedValue: viewModel)
     }
     
     var body: some View {
         RoutingView(router: meRouter, content: {
             List {
+                VStack {
+                    ProgressView(viewModel.diskUsageText, value: viewModel.diskUsage, total: FILESIZE_1G)
+                        .font(Font.system(size: 15))
+                        .foregroundColor(Color.gray)
+                        .progressViewStyle(.linear)
+                }
+                .padding()
+                
                 Section {
                     ForEach(titles[0], id: \.self) { item in
                         HStack {
@@ -105,11 +115,14 @@ struct MeContentView: View {
                 }
             }
         })
+        .onAppear(perform: {
+            self.viewModel.calcDiskUsage()
+        })
     }
 }
 
-//struct MeContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MeContentView()
-//    }
-//}
+struct MeContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        MeContentView(router: MeRouter(isPresented: .constant(.main)), viewModel: MeViewModel())
+    }
+}

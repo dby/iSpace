@@ -102,6 +102,38 @@ class FileUtils: NSObject {
         return []
     }
     
+    /// 获取单个文件的大小
+    class func getFileSize(atPath filePath : String) -> CGFloat {
+        guard fileExists(atPath: filePath) else {
+            return 0
+        }
+        
+        guard let dict = try? FileManager.default.attributesOfItem(atPath: filePath) as NSDictionary else {
+            return 0
+        }
+        
+        return CGFloat(dict.fileSize())
+    }
+    
+    /// 遍历文件夹获取目录下的所有的文件 遍历计算大小
+    class func folderSizeAtPath(_ folderPath: String) -> CGFloat {
+        if folderPath.count == 0 {
+            return 0
+        }
+        
+        guard fileExists(atPath: folderPath) else {
+            return 0
+        }
+        
+        var fileSize: CGFloat = 0.0
+        for path in subPathsAtPath(folderPath) {
+            let fullPath = "\(folderPath)/\(path)"
+            fileSize = fileSize + getFileSize(atPath: fullPath)
+        }
+        
+        return fileSize
+    }
+    
     static func writeDataToPath(_ atPath: String, data: Data) -> Bool {
         var flag: Bool = false
         do {

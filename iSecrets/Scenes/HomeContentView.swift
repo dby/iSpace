@@ -35,7 +35,7 @@ struct HomeContentView: View {
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
             
-            MeContentView(router: meRouter)
+            MeContentView(router: meRouter, viewModel: MeViewModel())
                 .environmentObject(coordinator)
                 .tabItem({
                     Image(systemName: "3.square.fill")

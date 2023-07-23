@@ -22,7 +22,7 @@
 		433420412A361C8C00C4CA84 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433420402A361C8C00C4CA84 /* Core.swift */; };
 		43A3BC562A639C0B0054E280 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC552A639C0B0054E280 /* Camera.swift */; };
 		43A3BC582A642F8A0054E280 /* IntrusionRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */; };
-		43A3BC5A2A6439080054E280 /* MeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC592A6439080054E280 /* MeModel.swift */; };
+		43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC592A6439080054E280 /* MeViewModel.swift */; };
 		43A3BC6B2A66DC460054E280 /* EnterPwdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC6A2A66DC460054E280 /* EnterPwdViewModel.swift */; };
 		43A3BC6E2A6829070054E280 /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC6D2A6829070054E280 /* RoutingView.swift */; };
 		43A3BC702A6829370054E280 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC6F2A6829370054E280 /* Router.swift */; };
@@ -58,7 +58,7 @@
 		433420402A361C8C00C4CA84 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		43A3BC552A639C0B0054E280 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrusionRecordView.swift; sourceTree = "<group>"; };
-		43A3BC592A6439080054E280 /* MeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeModel.swift; sourceTree = "<group>"; };
+		43A3BC592A6439080054E280 /* MeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
 		43A3BC6A2A66DC460054E280 /* EnterPwdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPwdViewModel.swift; sourceTree = "<group>"; };
 		43A3BC6D2A6829070054E280 /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
 		43A3BC6F2A6829370054E280 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 		43E777D82A571A4A003C1D17 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				43A3BC592A6439080054E280 /* MeModel.swift */,
+				43A3BC592A6439080054E280 /* MeViewModel.swift */,
 				43E777D92A586B1C003C1D17 /* MeContentView.swift */,
 				43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */,
 				43A3BC752A682A950054E280 /* MeRouter.swift */,
@@ -363,7 +363,7 @@
 				43A3BC702A6829370054E280 /* Router.swift in Sources */,
 				43B864102A3771DA00494852 /* PathUtils.swift in Sources */,
 				43A3BC762A682A950054E280 /* MeRouter.swift in Sources */,
-				43A3BC5A2A6439080054E280 /* MeModel.swift in Sources */,
+				43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */,
 				43A3BC6B2A66DC460054E280 /* EnterPwdViewModel.swift in Sources */,
 				43B8640E2A376C8900494852 /* Model.swift in Sources */,
 				43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */,

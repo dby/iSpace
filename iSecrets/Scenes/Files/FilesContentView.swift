@@ -61,6 +61,7 @@ struct FilesContentView: View {
                                             .frame(height: geo.size.width)
                                             .aspectRatio(1, contentMode: .fit)
                                             .cornerRadius(5)
+                                            .blur(radius: 5)
                                     }
                                 } else {
                                     GeometryReader { geo in
