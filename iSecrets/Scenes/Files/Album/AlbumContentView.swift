@@ -21,7 +21,12 @@ struct AlbumContentView: View {
     // MARK: Stored Properties
     var secretDirObj: SecretDirObject
     var columns = [
-        GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())
+        GridItem(.flexible(), spacing: 2),
+        GridItem(.flexible(), spacing: 2),
+        GridItem(.flexible(), spacing: 2),
+//        GridItem(.flexible(), spacing: 2),
+//        GridItem(.flexible(), spacing: 2),
+//        GridItem(.flexible(), spacing: 2)
     ]
     
     @ObservedObject var viewModel: AlbumViewModel
@@ -33,48 +38,50 @@ struct AlbumContentView: View {
             VStack {
                 if viewModel.datas.count > 0 {
                     ScrollView {
-                        LazyVGrid(columns: columns) {
+                        LazyVGrid(columns: columns, spacing: 2) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
                                 if let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
-                                    GeometryReader { geo in
-                                        KFImage.url(URL(filePath: fullPicThumbPath))
-                                            .resizable()
-                                            .onSuccess { r in
-                                                print("Success: \(r.cacheType)")
-                                            }
-                                            .onFailure { e in
-                                                print("Error: \(e)")
-                                            }
-                                            .onProgress { downloaded, total in
-                                                print("\(downloaded) / \(total))")
-                                            }
-                                            .placeholder {
-                                                HStack {
-                                                    Image(systemName: "arrow.2.circlepath.circle")
-                                                        .resizable()
-                                                        .frame(width: 50, height: 50)
-                                                        .padding(10)
-                                                    Text("Loading...").font(.title3)
+                                    VStack {
+                                        GeometryReader { geo in
+                                            KFImage.url(URL(filePath: fullPicThumbPath))
+                                                .resizable()
+                                                .onSuccess { r in
+                                                    print("Success: \(r.cacheType)")
                                                 }
-                                                .foregroundColor(.gray)
-                                            }
-                                            .aspectRatio(1, contentMode: .fit)
-                                            .frame(height: geo.size.width)
-                                            .cornerRadius(10)
-                                            .background(Color.clear)
-                                            .onTapGesture {
-                                                var list: [HeroBrowserViewModule] = []
-                                                for item in viewModel.datas {
-                                                    if
-                                                        let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
-                                                        let img = UIImage(contentsOfFile: fullPicPath)
-                                                    {
-                                                        list.append(HeroBrowserLocalImageViewModule(image: img))
+                                                .onFailure { e in
+                                                    print("Error: \(e)")
+                                                }
+                                                .onProgress { downloaded, total in
+                                                    print("\(downloaded) / \(total))")
+                                                }
+                                                .placeholder {
+                                                    HStack {
+                                                        Image(systemName: "arrow.2.circlepath.circle")
+                                                            .resizable()
+                                                            .frame(width: 50, height: 50)
+                                                            .padding(10)
+                                                        Text("Loading...").font(.title3)
                                                     }
+                                                    .foregroundColor(.gray)
                                                 }
-                                                myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
-                                            }
+                                                .aspectRatio(1, contentMode: .fit)
+                                                .frame(height: geo.size.width)
+                                                .background(Color.clear)
+                                                .onTapGesture {
+                                                    var list: [HeroBrowserViewModule] = []
+                                                    for item in viewModel.datas {
+                                                        if
+                                                            let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
+                                                            let img = UIImage(contentsOfFile: fullPicPath)
+                                                        {
+                                                            list.append(HeroBrowserLocalImageViewModule(image: img))
+                                                        }
+                                                    }
+                                                    myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
+                                                }
+                                        }
                                     }
+                                    .aspectRatio(1, contentMode: .fit) //设置宽高比例为 1:1
                                 }
                             }
                         }
