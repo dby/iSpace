@@ -68,13 +68,14 @@ struct MeContentView: View {
                                 .frame(height:30)
                             Spacer()
                         }
+                        .background(Color(uiColor: UIColor.systemBackground))
                         .alert("请输入原密码", isPresented: $isShowingAlert) {
                             TextField("请输入原密码", text: $oldPwd)
-                            Button("OK") {
-                                meRouter.presentFullScreen(.detail(item))
-                            }
                             Button("Cancel") {
                                 
+                            }
+                            Button("OK") {
+                                meRouter.presentFullScreen(.detail(item))
                             }
                         }
                         .onTapGesture {
