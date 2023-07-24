@@ -180,6 +180,16 @@ extension SecretDB {
         return flag
     }
     
+    func deleteSecretDirRecord(localID: Int) {
+        if let db = self.database {
+            do {
+                try db.delete(fromTable: SecretDirTableName, where: SecretDirObject.Properties.localID == localID)
+            } catch {
+                print("delete failed. \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func addSecretFile(dirLocalID: Int, name: String, cipher: String) {
         do {
             let obj = SecretFileObject()

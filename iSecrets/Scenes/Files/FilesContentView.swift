@@ -20,6 +20,7 @@ struct FilesContentView: View {
     let headerWid = UIScreen.main.bounds.size.width - 40
 
     @State private var showingAlert = false
+    @State private var showingRenameDirAlert = false
     @State private var name = ""
     @State private var presetnKey = true
     @State private var pushKey = false
@@ -93,24 +94,41 @@ struct FilesContentView: View {
                                 Spacer()
                             }
                             .frame(width: headerWid/2, height: headerWid*0.5 + 40)
-                            .background(Color.red)
                             .onTapGesture {
                                 self.pushKey.toggle()
                                 self.clickedSecretDir = item
                                 self.coordinator.detailViewModel = item.viewmodel
                             }.contextMenu {
-                                Button(action: {
-                                    // 操作1
-                                }) {
-                                    Text("操作1")
-                                    Image(systemName: "star.fill")
+                                Button {
+                                    
+                                } label: {
+                                    Text("添加")
+                                    Image(systemName: "plus")
                                 }
-
-                                Button(action: {
-                                    // 操作2
-                                }) {
-                                    Text("操作2")
-                                    Image(systemName: "heart.fill")
+                                
+                                Button {
+                                    
+                                } label: {
+                                    Text("锁定文件夹")
+                                    Image(systemName: "lock")
+                                }
+                                
+                                Divider()
+                                
+                                Button {
+                                    self.showingRenameDirAlert = true
+                                } label: {
+                                    Text("重新命名文件夹")
+                                    Image(systemName: "pencil")
+                                }
+                                
+                                Button {
+                                    let dirPath = "\(basePath())/\(item.name!)"
+                                    FileUtils.removeAllItems(atDirPath: dirPath)
+                                    core.secretDB.deleteSecretDirRecord(localID: item.localID)
+                                } label: {
+                                    Text("删除文件夹")
+                                    Image(systemName: "trash")
                                 }
                             }
                         }

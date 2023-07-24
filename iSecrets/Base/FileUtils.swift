@@ -82,10 +82,10 @@ class FileUtils: NSObject {
     /// 删除该目录下所有文件
     /// - Parameter atDirPath: 目录绝对路径
     static func removeAllItems(atDirPath: String) {
-        let fileManager = FileManager.default
-        let fileArray = fileManager.subpaths(atPath: atDirPath)
-        for fn in fileArray!{
-            try? fileManager.removeItem(atPath: atDirPath + "/\(fn)")
+        if let fileArray = FileManager.default.subpaths(atPath: atDirPath) {
+            for fn in fileArray {
+                try? FileManager.default.removeItem(atPath: atDirPath + "/\(fn)")
+            }
         }
     }
     
