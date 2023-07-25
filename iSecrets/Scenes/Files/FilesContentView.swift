@@ -47,23 +47,34 @@ struct FilesContentView: View {
                                     let fullPicThumbPath = FileUtils.getFilePath(item.name!, iconName: item.thumb!, ext: .picThumb),
                                     FileUtils.fileExists(atPath: fullPicThumbPath)
                                 {
-                                    GeometryReader { geo in
-                                        KFImage.url(URL(fileURLWithPath: fullPicThumbPath))
-                                            .resizable()
-                                            .onSuccess { r in
-                                                print("Success: \(r.cacheType)")
+                                    ZStack {
+                                        GeometryReader { geo in
+                                            KFImage.url(URL(fileURLWithPath: fullPicThumbPath))
+                                                .resizable()
+                                                .onSuccess { r in
+                                                    print("Success: \(r.cacheType)")
+                                                }
+                                                .onFailure { e in
+                                                    print("Error: \(e)")
+                                                }
+                                                .onProgress { downloaded, total in
+                                                    print("\(downloaded) / \(total))")
+                                                }
+                                                .frame(height: geo.size.width - 10)
+                                                .aspectRatio(1, contentMode: .fit)
+                                                .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+                                                .cornerRadius(5)
+                                                //.blur(radius: 5)
+                                        }
+                                        VStack {
+                                            Spacer()
+                                            HStack {
+                                                Image(systemName: "lock.shield.fill")
+                                                    .foregroundColor(Color(uiColor: UIColor.white))
+                                                    .frame(width: 60, height: 60)
+                                                Spacer()
                                             }
-                                            .onFailure { e in
-                                                print("Error: \(e)")
-                                            }
-                                            .onProgress { downloaded, total in
-                                                print("\(downloaded) / \(total))")
-                                            }
-                                            .frame(height: geo.size.width - 10)
-                                            .aspectRatio(1, contentMode: .fit)
-                                            .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
-                                            .cornerRadius(5)
-                                            .blur(radius: 5)
+                                        }.opacity(item.cipher == "" ? 0 : 1)
                                     }
                                 } else {
                                     GeometryReader { geo in
@@ -107,10 +118,12 @@ struct FilesContentView: View {
                                 }
                                 
                                 Button {
-                                    
+                                    let newCipher = (item.cipher == "" ? core.account.1 : "")
+                                    core.secretDB.updateDirCipher(dirID: item.localID,
+                                                                  cipher: newCipher)
                                 } label: {
-                                    Text("锁定文件夹")
-                                    Image(systemName: "lock")
+                                    Text(item.cipher == "" ? "锁定文件夹" : "取消锁定")
+                                    Image(systemName: item.cipher == "" ? "lock" : "lock.open")
                                 }
                                 
                                 Divider()

@@ -221,6 +221,21 @@ extension SecretDB {
         }
     }
     
+    func updateDirCipher(dirID: Int, cipher: String) {
+        do {
+            let obj = SecretDirObject()
+            obj.cipher = cipher
+            
+            try database?.update(table: SecretDirTableName,
+                                 on: [SecretDirObject.Properties.cipher],
+                                 with: obj,
+                                 where: SecretDirObject.Properties.localID == dirID)
+        } catch {
+            
+        }
+
+    }
+    
     func getAllSecretDirs() -> [SecretDirObject] {
         do {
             if let db = self.database {
