@@ -35,19 +35,19 @@ private extension MeRouter {
             EmptyView()
             //ListView(router: router(route: route))
         case .detail(let description):
-            if description == Constants._intrusionCapture {
+            if description == MeConstants._intrusionCapture {
                 IntrusionRecordView()
                     .ignoresSafeArea()
-            } else if description == Constants._fakeSpace {
+            } else if description == MeConstants._fakeSpace {
                 
-            } else if description == Constants._changePws {
+            } else if description == MeConstants._changePws {
                 let curViewModel = EnterPwdViewModel(state: .registerSetpOne)
                 EnterPwdView(viewModel: curViewModel)
-            } else if description == Constants._shareToFriends {
+            } else if description == MeConstants._shareToFriends {
                 
-            } else if description == Constants._aboutUS {
+            } else if description == MeConstants._aboutUS {
                 
-            } else if description == Constants._feedback {
+            } else if description == MeConstants._feedback {
                 
             }
         case .alert:

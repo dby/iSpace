@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Constants {
+struct MeConstants {
     /// 抓拍记录
     static let _intrusionCapture: String = "入侵记录"
     static let _fakeSpace: String = "伪装空间"
