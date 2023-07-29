@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		430A0C6C2A5AA55E00AE6518 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6B2A5AA55E00AE6518 /* HomeCoordinator.swift */; };
-		430A0C6E2A5AA7E800AE6518 /* FilesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */; };
+		430A0C6E2A5AA7E800AE6518 /* FilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6D2A5AA7E800AE6518 /* FilesViewModel.swift */; };
 		430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */; };
 		430A0C732A604F0400AE6518 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C722A604F0400AE6518 /* Utils.swift */; };
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
@@ -43,7 +43,7 @@
 /* Begin PBXFileReference section */
 		2288C6809AE172996B90A347 /* Pods_iSecrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iSecrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		430A0C6B2A5AA55E00AE6518 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesCoordinator.swift; sourceTree = "<group>"; };
+		430A0C6D2A5AA7E800AE6518 /* FilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewModel.swift; sourceTree = "<group>"; };
 		430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 		430A0C722A604F0400AE6518 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		4334203A2A35DB3000C4CA84 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				430A0C6D2A5AA7E800AE6518 /* FilesCoordinator.swift */,
+				430A0C6D2A5AA7E800AE6518 /* FilesViewModel.swift */,
 				4334203B2A35DB5600C4CA84 /* FilesContentView.swift */,
 				430A0C6F2A5AFD3600AE6518 /* Album */,
 			);
@@ -380,7 +380,7 @@
 				433420412A361C8C00C4CA84 /* Core.swift in Sources */,
 				43E777D22A5310E8003C1D17 /* Data+Ext.swift in Sources */,
 				43A3BC562A639C0B0054E280 /* Camera.swift in Sources */,
-				430A0C6E2A5AA7E800AE6518 /* FilesCoordinator.swift in Sources */,
+				430A0C6E2A5AA7E800AE6518 /* FilesViewModel.swift in Sources */,
 				43A3BC722A6829610054E280 /* ViewSpec.swift in Sources */,
 				43304AE12A505D560031C434 /* SecretDB.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,

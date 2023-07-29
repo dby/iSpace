@@ -29,7 +29,7 @@ struct FilesContentView: View {
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedPhotosData: [Data] = []
     
-    @ObservedObject var coordinator: FilesCoordinator
+    @ObservedObject var viewModel: FilesViewModel
     @EnvironmentObject var homeCoordinator: HomeCoordinator
 
     // MARK: Views
@@ -39,7 +39,7 @@ struct FilesContentView: View {
                 VStack {
                     Spacer()
                     LazyVGrid(columns: twoGridLayout, spacing: 10) {
-                        ForEach(coordinator.dirs, id: \.name.self) { item in
+                        ForEach(viewModel.dirs, id: \.name.self) { item in
                             VStack(spacing: 0) {
                                 if
                                     item.thumb != nil && item.thumb!.count != 0,
@@ -108,40 +108,19 @@ struct FilesContentView: View {
                             .onTapGesture {
                                 self.pushKey.toggle()
                                 self.clickedSecretDir = item
-                                self.coordinator.detailViewModel = item.viewmodel
+                                self.viewModel.detailViewModel = item.viewmodel
                             }.contextMenu {
-                                Button {
-                                    
-                                } label: {
-                                    Text("添加")
-                                    Image(systemName: "plus")
-                                }
-                                
-                                Button {
-                                    let newCipher = (item.cipher == "" ? core.account.1 : "")
-                                    core.secretDB.updateDirCipher(dirID: item.localID,
-                                                                  cipher: newCipher)
-                                } label: {
-                                    Text(item.cipher == "" ? "锁定文件夹" : "取消锁定")
-                                    Image(systemName: item.cipher == "" ? "lock" : "lock.open")
-                                }
-                                
-                                Divider()
-                                
-                                Button {
-                                    self.showingRenameDirAlert = true
-                                } label: {
-                                    Text("重新命名文件夹")
-                                    Image(systemName: "pencil")
-                                }
-                                
-                                Button {
-                                    let dirPath = "\(basePath())/\(item.name!)"
-                                    FileUtils.removeAllItems(atDirPath: dirPath)
-                                    core.secretDB.deleteSecretDirRecord(localID: item.localID)
-                                } label: {
-                                    Text("删除文件夹")
-                                    Image(systemName: "trash")
+                                ForEach(viewModel.menuTitles(item), id: \.0.self) { pair in
+                                    Button {
+                                        if (pair.0 == FilesConstants.menuRenameDir) {
+                                            self.showingAlert = true
+                                        } else {
+                                            viewModel.contextMenuDidClicked(pair.0, dirObj: item)
+                                        }
+                                    } label: {
+                                        Text(pair.0)
+                                        Image(systemName: pair.1)
+                                    }
                                 }
                             }
                         }
@@ -152,7 +131,7 @@ struct FilesContentView: View {
             .navigationTitle("文件夹")
             .navigationBarTitleDisplayMode(.large)
             .onAppear(perform: {
-                coordinator.refreshSecretDirs()
+                viewModel.refreshSecretDirs()
             })
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {
@@ -164,16 +143,7 @@ struct FilesContentView: View {
                             
                         }
                         Button("OK") {
-                            if (core.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .all,
-                                                                         name: name,
-                                                                         workingDir: name.md5,
-                                                                         fileFormat: "",
-                                                                         cipher: "")) {
-                                if let rootDir = PathUtils.rootDir() {
-                                    _ = FileUtils.createFolder("\(rootDir)/\(name)")
-                                }
-                            }
-                            
+                            viewModel.createNewDirWithName(name)                            
                             name = ""
                         }
                     }
@@ -184,7 +154,7 @@ struct FilesContentView: View {
                     .navigationBarTitleDisplayMode(.inline)
             })
             .navigationDestination(isPresented: $pushKey, destination: {
-                albumView(coordinator.detailViewModel)
+                albumView(viewModel.detailViewModel)
                     .navigationBarTitleDisplayMode(.inline)
             })
         }

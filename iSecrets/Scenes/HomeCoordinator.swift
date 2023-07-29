@@ -9,11 +9,11 @@ import SwiftUI
 
 class HomeCoordinator: ObservableObject {
     
-    @Published var filesCoordinator: FilesCoordinator!
+    @Published var filesViewModel: FilesViewModel!
     @Published var enterPwdViewModel: EnterPwdViewModel?
     
     init() {
-        self.filesCoordinator = FilesCoordinator()
+        self.filesViewModel = FilesViewModel()
         
         if core.account.0 == .notCreate {
             self.enterPwdViewModel = EnterPwdViewModel(state: .registerSetpOne)

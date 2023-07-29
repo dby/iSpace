@@ -13,7 +13,7 @@ struct HomeContentView: View {
     
     var body: some View {
         TabView {
-            FilesContentView(coordinator: coordinator.filesCoordinator)
+            FilesContentView(viewModel: coordinator.filesViewModel)
                 .environmentObject(coordinator)
                 .tabItem({
                     Image(systemName: "1.square.fill")
