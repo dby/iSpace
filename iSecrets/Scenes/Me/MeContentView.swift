@@ -16,6 +16,7 @@ struct MeConstants {
     static let _shareToFriends: String = "分享给好友"
     static let _aboutUS: String = "关于我们"
     static let _feedback: String = "意见反馈"
+    static let _isDeleteOrigFileKey: String = "DeleteOrigFiles"
 }
 
 struct MeContentView: View {
@@ -25,7 +26,11 @@ struct MeContentView: View {
         ["分享给好友", "关于我们", "五星好评", "意见反馈"]
     ]
     
-    @State private var isDeleteOrigFile: Bool = false
+    @State private var isDeleteOrigFile: Bool = Settings.isDeleteOrigFile {
+        didSet {
+            Settings.isDeleteOrigFile = isDeleteOrigFile
+        }
+    }
     @State private var isIntrusionCapture: Bool = false
     @State private var isShowingAlert: Bool = false
     @State private var oldPwd: String = ""
@@ -57,10 +62,13 @@ struct MeContentView: View {
                             Text(item)
                             Spacer()
                             if (item == "导入中自动删除原文件") {
-                                Toggle(isOn: $isDeleteOrigFile) {
-                                }
+                                Toggle(isOn: $isDeleteOrigFile) { }
                                 .frame(width:100, height: 20)
                                 .background(Color.clear)
+                                .onTapGesture {
+                                    print("toggle isDeleteOrigFile to \(!isDeleteOrigFile)")
+                                    Settings.isDeleteOrigFile = !isDeleteOrigFile
+                                }
                             } else {
                                 Toggle(isOn: $isIntrusionCapture) {
                                 }

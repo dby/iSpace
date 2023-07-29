@@ -23,7 +23,7 @@ struct AlbumContentView: View {
     var columns = [
         GridItem(.flexible(), spacing: 2),
         GridItem(.flexible(), spacing: 2),
-        GridItem(.flexible(), spacing: 2),
+        GridItem(.flexible(), spacing: 2)
 //        GridItem(.flexible(), spacing: 2),
 //        GridItem(.flexible(), spacing: 2),
 //        GridItem(.flexible(), spacing: 2)
@@ -91,15 +91,38 @@ struct AlbumContentView: View {
                     Spacer()
                     Text("Please select image by tapping on image.")
                 }
-                Spacer()
+                Spacer().background(Color.red)
             }
             .toolbar {
-                PhotosPicker(selection: $selectedImage, matching: .images) {
+                PhotosPicker(selection: $selectedImage, matching: .images, photoLibrary: .shared()) {
                     Image(systemName: "plus")
                         .tint(.mint)
                 }.onChange(of: selectedImage) { newValue in
                     Task {
                         selectedImage = []
+                        
+                        if Settings.isDeleteOrigFile {
+                            var pendingDeleteAssets: [PHAsset] = []
+                            for item in newValue {
+                                if let localIdentifier = item.itemIdentifier {
+                                    let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [localIdentifier], options: nil)
+                                    if let asset = fetchResult.firstObject {
+                                        pendingDeleteAssets.append(asset)
+                                    }
+                                }
+                            }
+                            
+                            PHPhotoLibrary.shared().performChanges({
+                                PHAssetChangeRequest.deleteAssets(pendingDeleteAssets as NSArray)
+                            }, completionHandler: { success, error in
+                                if success {
+                                    print("照片已成功删除")
+                                } else if let error = error {
+                                    print("删除照片时出错：\(error.localizedDescription)")
+                                }
+                            })
+                        }
+                        
                         var lastIconName = ""
                         for item in newValue {
                             if let data = try? await item.loadTransferable(type: Data.self) {
@@ -121,6 +144,8 @@ struct AlbumContentView: View {
                                                                     name: iconName,
                                                                     cipher: "")
                                     }
+                                    
+                                    viewModel.deleteImage(UIImage(data: data))
                                 }
                             }
                         }
@@ -157,34 +182,8 @@ struct ImageCell: View {
     var body: some View {
         HStack(alignment: .center) {
             Spacer()
-//            KFImage.url(url)
-//                .resizable()
-//                .onSuccess { r in
-//                    print("Success: \(self.index) - \(r.cacheType)")
-//                }
-//                .onFailure { e in
-//                    print("Error \(self.index): \(e)")
-//                }
-//                .onProgress { downloaded, total in
-//                    print("\(downloaded) / \(total))")
-//                }
-//                .placeholder {
-//                    HStack {
-//                        Image(systemName: "arrow.2.circlepath.circle")
-//                            .resizable()
-//                            .frame(width: 50, height: 50)
-//                            .padding(10)
-//                        Text("Loading...").font(.title)
-//                    }
-//                    .foregroundColor(.gray)
-//                }
-//
-//                .cornerRadius(20)
-
             Image(uiImage: image)
-            
             Spacer()
         }.padding(.vertical, 12)
     }
-
 }

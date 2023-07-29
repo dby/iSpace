@@ -22,6 +22,7 @@
 		433420412A361C8C00C4CA84 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433420402A361C8C00C4CA84 /* Core.swift */; };
 		435E16C62A754F330092AC43 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E16C52A754F330092AC43 /* AboutUsView.swift */; };
 		435E16C82A75595F0092AC43 /* ToastParas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E16C72A75595F0092AC43 /* ToastParas.swift */; };
+		435E16CA2A7634D40092AC43 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E16C92A7634D40092AC43 /* Settings.swift */; };
 		43A3BC562A639C0B0054E280 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC552A639C0B0054E280 /* Camera.swift */; };
 		43A3BC582A642F8A0054E280 /* IntrusionRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */; };
 		43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC592A6439080054E280 /* MeViewModel.swift */; };
@@ -60,6 +61,7 @@
 		433420402A361C8C00C4CA84 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		435E16C52A754F330092AC43 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		435E16C72A75595F0092AC43 /* ToastParas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastParas.swift; sourceTree = "<group>"; };
+		435E16C92A7634D40092AC43 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		43A3BC552A639C0B0054E280 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrusionRecordView.swift; sourceTree = "<group>"; };
 		43A3BC592A6439080054E280 /* MeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				433420402A361C8C00C4CA84 /* Core.swift */,
 				43304AE02A505D560031C434 /* SecretDB.swift */,
 				43B864082A376B3A00494852 /* iSecrets-Bridging-Header.h */,
+				435E16C92A7634D40092AC43 /* Settings.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				43A3BC6E2A6829070054E280 /* RoutingView.swift in Sources */,
 				433420412A361C8C00C4CA84 /* Core.swift in Sources */,
 				43E777D22A5310E8003C1D17 /* Data+Ext.swift in Sources */,
+				435E16CA2A7634D40092AC43 /* Settings.swift in Sources */,
 				43A3BC562A639C0B0054E280 /* Camera.swift in Sources */,
 				430A0C6E2A5AA7E800AE6518 /* FilesViewModel.swift in Sources */,
 				43A3BC722A6829610054E280 /* ViewSpec.swift in Sources */,
