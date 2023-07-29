@@ -20,6 +20,7 @@
 		4334203C2A35DB5600C4CA84 /* FilesContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334203B2A35DB5600C4CA84 /* FilesContentView.swift */; };
 		4334203F2A360F6900C4CA84 /* AlbumContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334203E2A360F6900C4CA84 /* AlbumContentView.swift */; };
 		433420412A361C8C00C4CA84 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433420402A361C8C00C4CA84 /* Core.swift */; };
+		435E16C62A754F330092AC43 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E16C52A754F330092AC43 /* AboutUsView.swift */; };
 		43A3BC562A639C0B0054E280 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC552A639C0B0054E280 /* Camera.swift */; };
 		43A3BC582A642F8A0054E280 /* IntrusionRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */; };
 		43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC592A6439080054E280 /* MeViewModel.swift */; };
@@ -56,6 +57,7 @@
 		4334203B2A35DB5600C4CA84 /* FilesContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesContentView.swift; sourceTree = "<group>"; };
 		4334203E2A360F6900C4CA84 /* AlbumContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumContentView.swift; sourceTree = "<group>"; };
 		433420402A361C8C00C4CA84 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		435E16C52A754F330092AC43 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
 		43A3BC552A639C0B0054E280 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrusionRecordView.swift; sourceTree = "<group>"; };
 		43A3BC592A6439080054E280 /* MeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
@@ -131,9 +133,9 @@
 		4334202B2A35C7AF00C4CA84 /* iSecrets */ = {
 			isa = PBXGroup;
 			children = (
-				430A0C6A2A5AA4A400AE6518 /* Scenes */,
 				43B8640C2A376C7900494852 /* Base */,
 				43B864072A376B1700494852 /* Core */,
+				430A0C6A2A5AA4A400AE6518 /* Scenes */,
 				43A3BC692A66DB760054E280 /* Login */,
 				4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */,
 				43D2AAF02A3A09E100841737 /* AppDelegate.swift */,
@@ -222,6 +224,7 @@
 				43E777D92A586B1C003C1D17 /* MeContentView.swift */,
 				43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */,
 				43A3BC752A682A950054E280 /* MeRouter.swift */,
+				435E16C52A754F330092AC43 /* AboutUsView.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				43A3BC562A639C0B0054E280 /* Camera.swift in Sources */,
 				430A0C6E2A5AA7E800AE6518 /* FilesViewModel.swift in Sources */,
 				43A3BC722A6829610054E280 /* ViewSpec.swift in Sources */,
+				435E16C62A754F330092AC43 /* AboutUsView.swift in Sources */,
 				43304AE12A505D560031C434 /* SecretDB.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,
 				430A0C732A604F0400AE6518 /* Utils.swift in Sources */,

@@ -46,7 +46,8 @@ private extension MeRouter {
             } else if description == MeConstants._shareToFriends {
                 
             } else if description == MeConstants._aboutUS {
-                
+                AboutUsView()
+                    .ignoresSafeArea()
             } else if description == MeConstants._feedback {
                 
             }
