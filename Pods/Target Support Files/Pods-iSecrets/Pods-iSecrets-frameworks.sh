@@ -176,6 +176,7 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AlertToast/AlertToast.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JFHeroBrowser/JFHeroBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JRBaseKit/JRBaseKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
@@ -183,6 +184,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/WCDBOptimizedSQLCipher/sqlcipher.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/AlertToast/AlertToast.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JFHeroBrowser/JFHeroBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JRBaseKit/JRBaseKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"

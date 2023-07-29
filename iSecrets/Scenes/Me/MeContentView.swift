@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct MeConstants {
     /// 抓拍记录
@@ -27,7 +28,8 @@ struct MeContentView: View {
     @State private var isDeleteOrigFile: Bool = false
     @State private var isIntrusionCapture: Bool = false
     @State private var isShowingAlert: Bool = false
-    @State private var oldPwd: String = "1234"
+    @State private var oldPwd: String = ""
+    @State private var toastPara: ToastParas = ToastParas()
     
     @StateObject private var meRouter: MeRouter
     @ObservedObject var viewModel: MeViewModel
@@ -85,7 +87,14 @@ struct MeContentView: View {
                                 
                             }
                             Button("OK") {
-                                meRouter.presentFullScreen(.detail(item))
+                                if core.account.1 == oldPwd {
+                                    meRouter.presentFullScreen(.detail(MeConstants._changePws))
+                                } else {
+                                    self.toastPara.title = "密码错误"
+                                    self.toastPara.showing = true
+                                }
+                                
+                                oldPwd = ""
                             }
                         }
                         .onTapGesture {
@@ -115,6 +124,9 @@ struct MeContentView: View {
                 }
             }
         })
+        .toast(isPresenting: $toastPara.showing) {
+            AlertToast(displayMode: .banner(.slide), type: .regular, title: toastPara.title)
+        }
         .onAppear(perform: {
             self.viewModel.calcDiskUsage()
         })

@@ -1,4 +1,5 @@
 PODS:
+  - AlertToast (1.3.9)
   - JFHeroBrowser (1.4.3):
     - JRBaseKit (~> 1.0.0)
   - JRBaseKit (1.0.0)
@@ -11,12 +12,14 @@ PODS:
   - WCDBOptimizedSQLCipher (1.4.0)
 
 DEPENDENCIES:
+  - AlertToast
   - JFHeroBrowser (from `./`)
   - Kingfisher (~> 7.0)
   - WCDB.swift
 
 SPEC REPOS:
   trunk:
+    - AlertToast
     - JRBaseKit
     - Kingfisher
     - WCDB.swift
@@ -27,12 +30,13 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
+  AlertToast: e8db15da727beff75500bcf33a78cd617f408fa1
   JFHeroBrowser: 97c58d9ce865f9ff6caaa608438b3be23d18be79
   JRBaseKit: ed75cfce9e340a3316bee0eaac0fa1c400714287
   Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   WCDB.swift: 738cf27df8883c47ef732ea02c44e690da5bb66d
   WCDBOptimizedSQLCipher: 55124a19f70180eb38163c959dd56695b8af8b60
 
-PODFILE CHECKSUM: 76956b56014b95886e6ca19909f902feb6a4fec9
+PODFILE CHECKSUM: 516a8cf505c4bd19b49524e2070562f65592f11f
 
 COCOAPODS: 1.11.3

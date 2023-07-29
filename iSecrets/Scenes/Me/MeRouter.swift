@@ -43,6 +43,7 @@ private extension MeRouter {
             } else if description == MeConstants._changePws {
                 let curViewModel = EnterPwdViewModel(state: .registerSetpOne)
                 EnterPwdView(viewModel: curViewModel)
+                    .ignoresSafeArea()
             } else if description == MeConstants._shareToFriends {
                 
             } else if description == MeConstants._aboutUS {

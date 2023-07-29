@@ -6,4 +6,5 @@ target 'iSecrets' do
   pod 'JFHeroBrowser', :path => './'
   pod 'WCDB.swift'
   pod 'Kingfisher', '~> 7.0'
+  pod 'AlertToast'
 end
