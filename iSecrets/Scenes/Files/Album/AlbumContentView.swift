@@ -88,6 +88,7 @@ struct AlbumContentView: View {
                 } else {
                     Spacer()
                     Text("Please select image by tapping on image.")
+                    Spacer()
                 }
             }
             .toolbar {

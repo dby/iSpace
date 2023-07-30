@@ -5,8 +5,9 @@
 //  Created by dby on 2023/7/13.
 //
 
-import UIKit
+import SwiftUI
 import Foundation
+import CoreImage
 
 /// 生成缩略图
 @inlinable func genThumbnail(for imgData: Data, thumbnailSize: CGSize) -> Data? {
@@ -17,12 +18,21 @@ import Foundation
                           y: (imageSize.height - thumbnailSize.height) / 2,
                           width: thumbnailSize.width,
                           height: thumbnailSize.height)
-        
+    
     if
         let croppedCIImage = CIImage(image: image)?.cropped(to: cropRect),
-        let pngData = CIContext().pngRepresentation(of: croppedCIImage, format: .RGBA8, colorSpace: croppedCIImage.colorSpace ?? CGColorSpaceCreateDeviceRGB(), options: [:])
+        let scaleFilter = CIFilter(name: "CILanczosScaleTransform")
     {
-        return pngData
+        scaleFilter.setValue(croppedCIImage, forKey: kCIInputImageKey)
+        scaleFilter.setValue(0.1, forKey: kCIInputScaleKey)
+        
+        if let scaledImage = scaleFilter.outputImage,
+           let pngData = CIContext().pngRepresentation(of: scaledImage,
+                                                       format: .RGBA8,
+                                                       colorSpace: croppedCIImage.colorSpace ?? CGColorSpaceCreateDeviceRGB(),
+                                                       options: [:]) {
+            return pngData
+        }
     }
     
     return nil
