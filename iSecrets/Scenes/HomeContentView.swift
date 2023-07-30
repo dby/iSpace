@@ -21,7 +21,6 @@ struct HomeContentView: View {
                     Text("文件")
                 })
                 .background(.red)
-                .tabViewStyle(.page)
             
             TabView {
                 Text("aaa")

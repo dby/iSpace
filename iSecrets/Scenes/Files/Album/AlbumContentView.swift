@@ -37,7 +37,7 @@ struct AlbumContentView: View {
         NavigationStack {
             VStack {
                 if viewModel.datas.count > 0 {
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 2) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
                                 if let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
@@ -85,13 +85,11 @@ struct AlbumContentView: View {
                                 }
                             }
                         }
-                        Spacer()
                     }
                 } else {
                     Spacer()
                     Text("Please select image by tapping on image.")
                 }
-                Spacer().background(Color.red)
             }
             .toolbar {
                 PhotosPicker(selection: $selectedImage, matching: .images, photoLibrary: .shared()) {
@@ -158,7 +156,6 @@ struct AlbumContentView: View {
                 }
             }
         }
-        .padding()
     }
 }
 
