@@ -55,14 +55,13 @@ struct AlbumContentView: View {
                                                     print("\(downloaded) / \(total))")
                                                 }
                                                 .placeholder {
-                                                    HStack {
-                                                        Image(systemName: "arrow.2.circlepath.circle")
-                                                            .resizable()
-                                                            .frame(width: 50, height: 50)
-                                                            .padding(10)
-                                                        Text("Loading...").font(.title3)
+                                                    GeometryReader { geo in
+                                                        HStack {
+                                                            ProgressView()
+                                                        }
+                                                        .frame(width: geo.size.width, height: geo.size.height)
+                                                        .background(.gray)
                                                     }
-                                                    .foregroundColor(.gray)
                                                 }
                                                 .aspectRatio(1, contentMode: .fit)
                                                 .frame(height: geo.size.width)
