@@ -110,46 +110,21 @@ struct AlbumContentView: View {
                                 }
                             }
                             
-                            PHPhotoLibrary.shared().performChanges({
-                                PHAssetChangeRequest.deleteAssets(pendingDeleteAssets as NSArray)
-                            }, completionHandler: { success, error in
-                                if success {
-                                    print("照片已成功删除")
-                                } else if let error = error {
-                                    print("删除照片时出错：\(error.localizedDescription)")
-                                }
-                            })
+                            viewModel.deleteWithAssets(assets: pendingDeleteAssets)
                         }
                         
                         var lastIconName = ""
                         for item in newValue {
-                            if let data = try? await item.loadTransferable(type: Data.self) {
-                                if let folderName = secretDirObj.name {
-                                    let iconName: String = "\(data.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
-                                    let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .pic)
-                                    let fullPicThumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb)
-                                    
-                                    guard let fullPicPath = fullPicPath else { continue }
-                                    guard let fullPicThumbPath = fullPicThumbPath else { continue }
-                                    
-                                    if (FileUtils.writeDataToPath(fullPicPath, data: data)) {
-                                        if let thumbData = genThumbnailAspectFill(for: data)  {
-                                            _ = FileUtils.writeDataToPath(fullPicThumbPath, data: thumbData)
-                                        }
-                                        
-                                        lastIconName = iconName
-                                        core.secretDB.addSecretFile(dirLocalID: secretDirObj.localID,
-                                                                    name: iconName,
-                                                                    cipher: "")
-                                    }
-                                    
-                                    viewModel.deleteImage(UIImage(data: data))
-                                }
+                            if let data = try? await item.loadTransferable(type: Data.self),
+                               let iconname = viewModel.addImageToDir(secretDirObj, data: data) {
+                                lastIconName = iconname
                             }
                         }
                         
-                        core.secretDB.updateDirThumb(dirID: secretDirObj.localID,
-                                                     thumb: lastIconName)
+                        if !lastIconName.isEmpty {
+                            core.secretDB.updateDirThumb(dirID: secretDirObj.localID,
+                                                         thumb: lastIconName)
+                        }
                         
                         viewModel.fetchFiles()
                     }

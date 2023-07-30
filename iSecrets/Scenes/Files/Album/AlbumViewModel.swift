@@ -18,6 +18,45 @@ class AlbumViewModel: ObservableObject {
         
         self.fetchFiles()
     }
+}
+
+extension AlbumViewModel {
+    func deleteWithAssets(assets: [PHAsset]) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.deleteAssets(assets as NSArray)
+        }, completionHandler: { success, error in
+            if success {
+                print("照片已成功删除")
+            } else if let error = error {
+                print("删除照片时出错：\(error.localizedDescription)")
+            }
+        })
+    }
+    
+    func addImageToDir(_ dirObj: SecretDirObject, data: Data) -> String? {
+        if let folderName = dirObj.name {
+            let iconName: String = "\(data.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
+            let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .pic)
+            let fullPicThumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb)
+            
+            guard let fullPicPath = fullPicPath else { return nil }
+            guard let fullPicThumbPath = fullPicThumbPath else { return nil }
+            
+            if (FileUtils.writeDataToPath(fullPicPath, data: data)) {
+                if let thumbData = genThumbnailAspectFill(for: data)  {
+                    _ = FileUtils.writeDataToPath(fullPicThumbPath, data: thumbData)
+                }
+                
+                core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
+                                            name: iconName,
+                                            cipher: "")
+                
+                return iconName
+            }
+        }
+        
+        return nil
+    }
     
     func fetchFiles() {
         self.fetchFiles { datas in
@@ -30,47 +69,5 @@ class AlbumViewModel: ObservableObject {
         completion(
             core.secretDB.getAllSecretFiles(self.dirObj.localID)
         )
-    }
-}
-
-extension AlbumViewModel {
-    func deleteImage(_ image: UIImage?) {
-        guard let image = image else { return }
-        
-        if let asset = getAsset(for: image) {
-            PHPhotoLibrary.shared().performChanges({
-                PHAssetChangeRequest.deleteAssets([asset] as NSArray)
-            }, completionHandler: { success, error in
-                if success {
-                    DispatchQueue.main.async {
-                        //images.removeAll(where: { $0 == image })
-                    }
-                } else {
-                    print("Error deleting image: \(error?.localizedDescription ?? "Unknown error")")
-                }
-            })
-        }
-    }
-    
-    private func getAsset(for image: UIImage) -> PHAsset? {
-        var result: PHAsset?
-        let options = PHFetchOptions()
-        options.includeAssetSourceTypes = [.typeUserLibrary, .typeCloudShared, .typeiTunesSynced]
-        let fetchResult = PHAsset.fetchAssets(with: options)
-        fetchResult.enumerateObjects { asset, _, _ in
-            let imageManager = PHImageManager.default()
-            let requestOptions = PHImageRequestOptions()
-            requestOptions.isSynchronous = true
-            requestOptions.deliveryMode = .highQualityFormat
-            requestOptions.resizeMode = .exact
-            requestOptions.normalizedCropRect = CGRect(x: 0, y: 0, width: 1, height: 1)
-            imageManager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: requestOptions) { resultImage, _ in
-                if let resultImage = resultImage, resultImage == image {
-                    result = asset
-                }
-            }
-        }
-        
-        return result
     }
 }
