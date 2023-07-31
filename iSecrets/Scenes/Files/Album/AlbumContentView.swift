@@ -92,12 +92,13 @@ struct AlbumContentView: View {
                 }
             }
             .toolbar {
-                PhotosPicker(selection: $selectedImage, matching: .images, photoLibrary: .shared()) {
+                PhotosPicker(selection: $selectedImage, matching: .any(of: viewModel.appropritePickerFilter()), photoLibrary: .shared()) {
                     Image(systemName: "plus")
                         .tint(.mint)
                 }.onChange(of: selectedImage) { newValue in
                     Task {
                         selectedImage = []
+                        var pairsData: [(PhotosPickerItem, PHAsset)] = []
                         
                         if Settings.isDeleteOrigFile {
                             var pendingDeleteAssets: [PHAsset] = []
@@ -106,6 +107,7 @@ struct AlbumContentView: View {
                                     let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [localIdentifier], options: nil)
                                     if let asset = fetchResult.firstObject {
                                         pendingDeleteAssets.append(asset)
+                                        pairsData.append((item, asset))
                                     }
                                 }
                             }
@@ -114,10 +116,16 @@ struct AlbumContentView: View {
                         }
                         
                         var lastIconName = ""
-                        for item in newValue {
-                            if let data = try? await item.loadTransferable(type: Data.self),
-                               let iconname = viewModel.addImageToDir(secretDirObj, data: data) {
-                                lastIconName = iconname
+                        for item in pairsData {
+                            if let data = try? await item.0.loadTransferable(type: Data.self) {
+                                var iconname: String? = nil
+                                if item.1.mediaType == .video {
+                                    iconname = viewModel.addVideoToDir(secretDirObj, asset: item.1, videoData: data)
+                                } else if item.1.mediaType == .image {
+                                    iconname = viewModel.addImageToDir(secretDirObj, data: data)
+                                }
+                                
+                                lastIconName = (iconname == nil || iconname!.isEmpty) ? lastIconName : iconname!
                             }
                         }
                         
