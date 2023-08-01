@@ -41,7 +41,7 @@ struct AlbumContentView: View {
                         LazyVGrid(columns: columns, spacing: 2) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
                                 if let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
-                                    VStack {
+                                    ZStack {
                                         GeometryReader { geo in
                                             KFImage.url(URL(filePath: fullPicThumbPath))
                                                 .resizable()
@@ -78,6 +78,21 @@ struct AlbumContentView: View {
                                                     }
                                                     myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
                                                 }
+                                        }
+                                        
+                                        if dataitem.mediaType == PHAssetMediaType.video.rawValue {
+                                            VStack {
+                                                Spacer()
+                                                HStack {
+                                                    Spacer()
+                                                    Text(formatSeconds(for: dataitem.duration))
+                                                        .font(Font.system(size: 12))
+                                                        .foregroundColor(Color.white)
+                                                        .background(Color.black.opacity(0.1))
+                                                        .bold()
+                                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 10))
+                                                }
+                                            }
                                         }
                                     }
                                     .aspectRatio(1, contentMode: .fit) //设置宽高比例为 1:1

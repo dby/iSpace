@@ -46,3 +46,15 @@ import CoreImage
     
     return genThumbnail(for: imgData, thumbnailSize: CGSizeMake(targetW, targetW))
 }
+
+@inlinable func formatSeconds(for sec: TimeInterval) -> String {
+    let formatter = DateFormatter()
+    
+    if (sec > 3600) {
+        formatter.dateFormat = "HH:mm:ss"
+    } else {
+        formatter.dateFormat = "mm:ss"
+    }
+    
+    return formatter.string(from: Date(timeIntervalSince1970: sec))
+}
