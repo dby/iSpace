@@ -33,7 +33,7 @@ extension AlbumViewModel {
         })
     }
     
-    func addImageToDir(_ dirObj: SecretDirObject, data: Data) -> String? {
+    func addImageToDir(_ dirObj: SecretDirObject, asset: PHAsset, data: Data) -> String? {
         guard let folderName = dirObj.name else { return nil }
         
         let iconName: String = "\(data.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
@@ -52,7 +52,8 @@ extension AlbumViewModel {
         /// to DB
         core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
                                     name: iconName,
-                                    cipher: "")
+                                    cipher: "",
+                                    asset: asset)
         
         return iconName
     }
@@ -78,7 +79,8 @@ extension AlbumViewModel {
         /// to DB
         core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
                                     name: iconName,
-                                    cipher: "")
+                                    cipher: "",
+                                    asset: asset)
         
         return iconName
     }
