@@ -11,7 +11,7 @@ enum FileExtension: String {
     /// 照片
     case pic = "pic"
     /// 视频
-    case video = "video"
+    case mp4 = "mp4"
     /// 文件
     case file = "file"
     /// 图片缩略图

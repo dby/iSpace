@@ -67,16 +67,21 @@ struct AlbumContentView: View {
                                                 .frame(height: geo.size.width)
                                                 .background(Color.clear)
                                                 .onTapGesture {
-                                                    var list: [HeroBrowserViewModule] = []
+                                                    var list: [HeroBrowserViewModuleBaseProtocol] = []
                                                     for item in viewModel.datas {
-                                                        if
-                                                            let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
-                                                            let img = UIImage(contentsOfFile: fullPicPath)
-                                                        {
-                                                            list.append(HeroBrowserLocalImageViewModule(image: img))
+                                                        if item.mediaType == PHAssetMediaType.video.rawValue {
+                                                            if let fullVideoPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .mp4),
+                                                               let fullThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
+                                                                list.append(HeroBrowserVideoViewModule(thumbailImgUrl: fullThumbPath, fileUrlPath: fullVideoPath))
+                                                            }
+                                                        } else if item.mediaType == PHAssetMediaType.image.rawValue {
+                                                            if let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
+                                                               let img = UIImage(contentsOfFile: fullPicPath) {
+                                                                list.append(HeroBrowserLocalImageViewModule(image: img))
+                                                            }
                                                         }
                                                     }
-                                                    myAppRootVC?.hero.browserPhoto(viewModules: list, initIndex: index)
+                                                    myAppRootVC?.hero.browserMultiSoures(viewModules: list, initIndex: index)
                                                 }
                                         }
                                         

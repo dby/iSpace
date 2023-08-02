@@ -3,4 +3,166 @@
    uuid = "08D270A4-89D9-4FD6-A68D-619FA96E0940"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "720A99C9-95A0-4E65-B3C0-9D4E2CADEBB5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JFHeroBrowser/Classes/View/HeroVideoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "replaceVideoURL(_:seekTime:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "720A99C9-95A0-4E65-B3C0-9D4E2CADEBB5 - 16a671f3b7e1e2c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JFHeroBrowser.HeroVideoView.replaceVideoURL(_: Swift.Optional&lt;Foundation.URL&gt;, seekTime: Swift.Optional&lt;__C.CMTime&gt;) -&gt; ()"
+                  moduleName = "JFHeroBrowser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dby/Documents/dby/codes/iOS/iSecrets/JFHeroBrowser/Classes/View/HeroVideoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "351"
+                  endingLineNumber = "351"
+                  offsetFromSymbolStart = "536">
+               </Location>
+               <Location
+                  uuid = "720A99C9-95A0-4E65-B3C0-9D4E2CADEBB5 - 16a671f3b7e1e2c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JFHeroBrowser.HeroVideoView.replaceVideoURL(_: Swift.Optional&lt;Foundation.URL&gt;, seekTime: Swift.Optional&lt;__C.CMTime&gt;) -&gt; ()"
+                  moduleName = "JFHeroBrowser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dby/Documents/dby/codes/iOS/iSecrets/JFHeroBrowser/Classes/View/HeroVideoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "351"
+                  endingLineNumber = "351"
+                  offsetFromSymbolStart = "492">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "687E36F8-0FA0-4B8D-8889-F6A0692CC34F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JFHeroBrowser/Classes/View/HeroVideoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "replaceVideoURL(_:seekTime:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "687E36F8-0FA0-4B8D-8889-F6A0692CC34F - 16a671f3b7e1ee0e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JFHeroBrowser.HeroVideoView.replaceVideoURL(_: Swift.Optional&lt;Foundation.URL&gt;, seekTime: Swift.Optional&lt;__C.CMTime&gt;) -&gt; ()"
+                  moduleName = "JFHeroBrowser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dby/Documents/dby/codes/iOS/iSecrets/JFHeroBrowser/Classes/View/HeroVideoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "380"
+                  endingLineNumber = "380"
+                  offsetFromSymbolStart = "1713">
+               </Location>
+               <Location
+                  uuid = "687E36F8-0FA0-4B8D-8889-F6A0692CC34F - 16a671f3b7e1ee0e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JFHeroBrowser.HeroVideoView.replaceVideoURL(_: Swift.Optional&lt;Foundation.URL&gt;, seekTime: Swift.Optional&lt;__C.CMTime&gt;) -&gt; ()"
+                  moduleName = "JFHeroBrowser"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dby/Documents/dby/codes/iOS/iSecrets/JFHeroBrowser/Classes/View/HeroVideoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "380"
+                  endingLineNumber = "380"
+                  offsetFromSymbolStart = "1667">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "842C96DB-8BA5-4A76-B4CB-6CE5CFE826D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JFHeroBrowser/Classes/ViewModule/HeroBrowserVideoViewModule.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "asyncLoadThumbailSource(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95807234-0248-4360-92E0-F8C20F1656EA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JFHeroBrowser/Classes/ViewModule/HeroBrowserVideoViewModule.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "asyncLoadThumbailSource(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17DA3E1E-EA1D-4D5E-A85F-CA5C06CF8FF3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JFHeroBrowser/Classes/ViewModule/HeroBrowserVideoViewModule.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "asyncLoadThumbailSource(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A14F646-E97F-4CE0-91ED-FF10F58AE6CE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JFHeroBrowser/Classes/ViewModule/HeroBrowserVideoViewModule.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "asyncLoadThumbailSource(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

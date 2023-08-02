@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import JFHeroBrowser
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -26,6 +27,21 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             imageCache.diskStorage.config.expiration = .days(30)  // 缓存30天
             KingfisherManager.shared.defaultOptions = [ .targetCache(imageCache) ]
             imageCache.cleanExpiredDiskCache()
+        }
+        
+        JFHeroBrowserGlobalConfig.default.networkImageProvider = HeroNetworkImageProvider.shared
+    }
+}
+
+class HeroNetworkImageProvider: NSObject {
+    @objc static let shared = HeroNetworkImageProvider()
+}
+extension HeroNetworkImageProvider: NetworkImageProvider {
+    func downloadImage(with imgUrl: String, complete: Complete<UIImage>?) {
+        if let img = UIImage(contentsOfFile: imgUrl) {
+            complete?(.success(img))
+        } else {
+            complete?(.failed(nil))
         }
     }
 }

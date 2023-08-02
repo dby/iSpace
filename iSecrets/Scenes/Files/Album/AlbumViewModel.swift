@@ -62,7 +62,7 @@ extension AlbumViewModel {
         guard let folderName = dirObj.name else { return nil }
         
         let iconName: String = "\(videoData.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
-        let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .video)
+        let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .mp4)
         let fullPicThumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb)
         
         guard let fullPicPath = fullPicPath else { return nil }
