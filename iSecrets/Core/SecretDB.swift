@@ -150,7 +150,78 @@ class SecretDB: NSObject {
     private var database: Database?
 }
 
-/// SecretDB 增删改查
+/// SecretAccountObject
+extension SecretDB {
+    func getMainSpaceAccount() -> SecretAccountObject? {
+        var accounts: [SecretAccountObject] = []
+        do {
+            if let db = self.database {
+                accounts = try db.getObjects(on: SecretAccountObject.Properties.all,
+                                             fromTable: SecretAccountTableName,
+                                             where: SecretAccountObject.Properties.level == AccountLevel.mainSpace.rawValue)
+            }
+        } catch {
+            
+        }
+        
+        return accounts.count == 0 ? nil : accounts.first
+    }
+    
+    func getFakeSpaceAccount() -> [SecretAccountObject] {
+        var accounts: [SecretAccountObject] = []
+        do {
+            if let db = self.database {
+                accounts = try db.getObjects(on: SecretAccountObject.Properties.all,
+                                             fromTable: SecretAccountTableName,
+                                             where: SecretAccountObject.Properties.level == AccountLevel.fakeSpace.rawValue)
+            }
+        } catch {
+            
+        }
+        
+        return accounts
+    }
+
+    func registerWithUsrName(_ usrName: String, level: AccountLevel) {
+        guard !usrName.isEmpty else { return }
+        do {
+            try self.database?.run(transaction: { handle in
+                let existObjs: [SecretAccountObject] = try handle.getObjects(on: [SecretAccountObject.Properties.name],
+                                                                             fromTable: SecretAccountTableName,
+                                                                             where: SecretAccountObject.Properties.name == usrName)
+                if (existObjs.count > 0) {
+                    assert(true)
+                    // name必须是唯一的
+                    return
+                }
+                
+                if level == .mainSpace {
+                    let mainSpaceAccounts: [SecretAccountObject] = try handle.getObjects(on: SecretAccountObject.Properties.all,
+                                                                                         fromTable: SecretAccountTableName,
+                                                                                         where: SecretAccountObject.Properties.level == AccountLevel.mainSpace.rawValue)
+                    if (mainSpaceAccounts.count > 0) {
+                        assert(true)
+                        // MainSpace 账户只能有一个
+                        return
+                    }
+                }
+                
+                let obj = SecretAccountObject()
+                obj.name = usrName
+                obj.level = level.rawValue
+                obj.createTime = Date.now.timeIntervalSince1970
+                obj.updateTime = Date.now.timeIntervalSince1970
+                obj.isAutoIncrement = true
+                
+                try handle.insertOrIgnore([obj], intoTable: SecretAccountTableName)
+            })
+        } catch {
+            print("Transaction failed with error: \(error)")
+        }
+    }
+}
+
+/// SecretDirObject
 extension SecretDB {
     func runTransaction(_ transaction: @escaping Database.TransactionClosure) {
         do {
@@ -207,28 +278,6 @@ extension SecretDB {
             } catch {
                 print("delete failed. \(error.localizedDescription)")
             }
-        }
-    }
-    
-    func addSecretFile(dirLocalID: Int, name: String, cipher: String, asset: PHAsset) {
-        do {
-            let obj = SecretFileObject()
-            obj.dirID = dirLocalID
-            obj.name = name
-            obj.cipher = cipher
-            obj.createTime = Date.now.timeIntervalSince1970
-            obj.updateTime = Date.now.timeIntervalSince1970
-            obj.mediaType = asset.mediaType.rawValue
-            obj.pixelWidth = asset.pixelWidth
-            obj.pixelHeight = asset.pixelHeight
-            obj.duration = asset.duration
-            obj.itemIdentifier = asset.localIdentifier
-            
-            obj.isAutoIncrement = true
-            
-            try self.database?.insert([obj], intoTable: SecretFileTableName)
-        } catch {
-            print(error.localizedDescription)
         }
     }
     
@@ -305,6 +354,31 @@ extension SecretDB {
         
         return 0
     }
+}
+
+/// SecretFileObject
+extension SecretDB {
+    func addSecretFile(dirLocalID: Int, name: String, cipher: String, asset: PHAsset) {
+        do {
+            let obj = SecretFileObject()
+            obj.dirID = dirLocalID
+            obj.name = name
+            obj.cipher = cipher
+            obj.createTime = Date.now.timeIntervalSince1970
+            obj.updateTime = Date.now.timeIntervalSince1970
+            obj.mediaType = asset.mediaType.rawValue
+            obj.pixelWidth = asset.pixelWidth
+            obj.pixelHeight = asset.pixelHeight
+            obj.duration = asset.duration
+            obj.itemIdentifier = asset.localIdentifier
+            
+            obj.isAutoIncrement = true
+            
+            try self.database?.insert([obj], intoTable: SecretFileTableName)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     
     func getAllSecretFiles(_ atDirID: Int) -> [SecretFileObject] {
         do {
@@ -321,71 +395,13 @@ extension SecretDB {
         return []
     }
     
-    func getMainSpaceAccount() -> SecretAccountObject? {
-        var accounts: [SecretAccountObject] = []
-        do {
-            if let db = self.database {
-                accounts = try db.getObjects(on: SecretAccountObject.Properties.all,
-                                             fromTable: SecretAccountTableName,
-                                             where: SecretAccountObject.Properties.level == AccountLevel.mainSpace.rawValue)
+    func deleteSecretFileRecord(localID: Int) {
+        if let db = self.database {
+            do {
+                try db.delete(fromTable: SecretFileTableName, where: SecretFileObject.Properties.localID == localID)
+            } catch {
+                print("delete file failed. \(error.localizedDescription)")
             }
-        } catch {
-            
-        }
-        
-        return accounts.count == 0 ? nil : accounts.first
-    }
-    
-    func getFakeSpaceAccount() -> [SecretAccountObject] {
-        var accounts: [SecretAccountObject] = []
-        do {
-            if let db = self.database {
-                accounts = try db.getObjects(on: SecretAccountObject.Properties.all,
-                                             fromTable: SecretAccountTableName,
-                                             where: SecretAccountObject.Properties.level == AccountLevel.fakeSpace.rawValue)
-            }
-        } catch {
-            
-        }
-        
-        return accounts
-    }
-    
-    func registerWithUsrName(_ usrName: String, level: AccountLevel) {
-        guard !usrName.isEmpty else { return }
-        do {
-            try self.database?.run(transaction: { handle in
-                let existObjs: [SecretAccountObject] = try handle.getObjects(on: [SecretAccountObject.Properties.name],
-                                                                             fromTable: SecretAccountTableName,
-                                                                             where: SecretAccountObject.Properties.name == usrName)
-                if (existObjs.count > 0) {
-                    assert(true)
-                    // name必须是唯一的
-                    return
-                }
-                
-                if level == .mainSpace {
-                    let mainSpaceAccounts: [SecretAccountObject] = try handle.getObjects(on: SecretAccountObject.Properties.all,
-                                                                                         fromTable: SecretAccountTableName,
-                                                                                         where: SecretAccountObject.Properties.level == AccountLevel.mainSpace.rawValue)
-                    if (mainSpaceAccounts.count > 0) {
-                        assert(true)
-                        // MainSpace 账户只能有一个
-                        return
-                    }
-                }
-                
-                let obj = SecretAccountObject()
-                obj.name = usrName
-                obj.level = level.rawValue
-                obj.createTime = Date.now.timeIntervalSince1970
-                obj.updateTime = Date.now.timeIntervalSince1970
-                obj.isAutoIncrement = true
-                
-                try handle.insertOrIgnore([obj], intoTable: SecretAccountTableName)
-            })
-        } catch {
-            print("Transaction failed with error: \(error)")
         }
     }
 }

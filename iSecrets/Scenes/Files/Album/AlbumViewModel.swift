@@ -120,7 +120,25 @@ extension AlbumViewModel {
         } else if title == AlbumConstants.menuCover {
             core.secretDB.updateDirCustomizeCover(dirID: dirObj.localID, cover: fileObj.name!)
         } else if title == AlbumConstants.menuDelete {
+            guard let folderName = dirObj.name else { return }
+            guard let iconName = fileObj.name else { return }
             
+            var fileExt = FileExtension.pic
+            if fileObj.mediaType == PHAssetMediaType.video.rawValue {
+                fileExt = .mp4
+            }
+            
+            if let dataPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: fileExt) {
+                FileUtils.removeItem(atPath: dataPath)
+            }
+            
+            if let thumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb) {
+                FileUtils.removeItem(atPath: thumbPath)
+            }
+            
+            core.secretDB.deleteSecretFileRecord(localID: fileObj.localID)
+            
+            self.datas.removeAll { $0.localID == fileObj.localID }
         }
     }
     
