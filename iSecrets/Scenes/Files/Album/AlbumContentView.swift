@@ -111,6 +111,7 @@ struct AlbumContentView: View {
                     Spacer()
                 }
             }
+            .toolbar(.hidden, for: .tabBar)
             .toolbar {
                 PhotosPicker(selection: $selectedImage, matching: .any(of: viewModel.appropritePickerFilter()), photoLibrary: .shared()) {
                     Image(systemName: "plus")
