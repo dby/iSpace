@@ -105,10 +105,29 @@ extension AlbumViewModel {
         if title == AlbumConstants.menuShare {
             
         } else if title == AlbumConstants.menuSaveToAlbum {
+            guard let folderName = dirObj.name else { return }
+            guard let iconName = fileObj.name else { return }
             
+            var fileExt = FileExtension.pic
+            if fileObj.mediaType == PHAssetMediaType.video.rawValue {
+                fileExt = .mp4
+            }
+            
+            if let path = FileUtils.getFilePath(folderName, iconName: iconName, ext: fileExt),
+                let image = UIImage(contentsOfFile: path) {
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
         } else if title == AlbumConstants.menuCover {
             core.secretDB.updateDirCustomizeCover(dirID: dirObj.localID, cover: fileObj.name!)
         } else if title == AlbumConstants.menuDelete {
+            
+        }
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            
+        } else {
             
         }
     }
