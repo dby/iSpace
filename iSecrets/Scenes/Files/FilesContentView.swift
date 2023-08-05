@@ -131,7 +131,7 @@ struct FilesContentView: View {
             .navigationTitle("文件夹")
             .navigationBarTitleDisplayMode(.large)
             .onAppear(perform: {
-                viewModel.refreshSecretDirs()
+                //viewModel.refreshSecretDirs()
             })
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {

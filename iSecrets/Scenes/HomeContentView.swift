@@ -17,28 +17,28 @@ struct HomeContentView: View {
             FilesContentView(viewModel: coordinator.filesViewModel)
                 .environmentObject(coordinator)
                 .tabItem({
-                    Image(systemName: "1.square.fill")
-                    Text("文件")
+                    Image(systemName: "folder.circle.fill")
+                    Text("文件夹")
                 })
                 .background(.red)
             
-            TabView {
-                Text("aaa")
-                Text("bbb")
-                Text("ccc")
-            }
-            .tabItem({
-                Image(systemName: "2.square.fill")
-                Text("我的")
-            })
-            .background(.orange)
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
+//            TabView {
+//                Text("aaa")
+//                Text("bbb")
+//                Text("ccc")
+//            }
+//            .tabItem({
+//                Image(systemName: "2.square.fill")
+//                Text("我的")
+//            })
+//            .background(.orange)
+//            .tabViewStyle(.page)
+//            .indexViewStyle(.page(backgroundDisplayMode: .always))
             
             MeContentView(router: meRouter, viewModel: meViewModel)
                 .environmentObject(coordinator)
                 .tabItem({
-                    Image(systemName: "3.square.fill")
+                    Image(systemName: "person.circle.fill")
                     Text("我的")
                 })
                 .tabViewStyle(.page)
