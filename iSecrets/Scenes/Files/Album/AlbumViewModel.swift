@@ -8,6 +8,13 @@
 import Foundation
 import PhotosUI
 
+struct AlbumConstants {
+    static let menuShare: String = "共享"
+    static let menuSaveToAlbum: String = "保存到手机相册"
+    static let menuCover: String = "设置为封面"
+    static let menuDelete: String = "删除"
+}
+
 class AlbumViewModel: ObservableObject {
     @Published var datas: [SecretFileObject] = []
     
@@ -83,6 +90,27 @@ extension AlbumViewModel {
                                     asset: asset)
         
         return iconName
+    }
+    
+    func menuTitles() -> [(String, String)] {        
+        var titles: [(String, String)] = [(AlbumConstants.menuShare, "square.and.arrow.up")]
+        
+        titles.append((AlbumConstants.menuSaveToAlbum, "photo"))
+        titles.append((AlbumConstants.menuCover, "bookmark.square"))
+        
+        return titles
+    }
+    
+    func contextMenuDidClicked(_ title: String, fileObj: SecretFileObject) {
+        if title == AlbumConstants.menuShare {
+            
+        } else if title == AlbumConstants.menuSaveToAlbum {
+            
+        } else if title == AlbumConstants.menuCover {
+            core.secretDB.updateDirCustomizeCover(dirID: dirObj.localID, cover: fileObj.name!)
+        } else if title == AlbumConstants.menuDelete {
+            
+        }
     }
     
     func appropritePickerFilter() -> [PHPickerFilter] {

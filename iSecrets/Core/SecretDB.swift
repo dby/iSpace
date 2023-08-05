@@ -54,6 +54,8 @@ final class SecretDirObject: TableCodable {
     var cipher: String? = nil
     /// 封面
     var thumb: String? = nil
+    /// 用户自定义的封面
+    var customizeCover: String? = nil
     /// 创建时间
     var createTime: TimeInterval = 0
     /// 更新时间
@@ -68,6 +70,7 @@ final class SecretDirObject: TableCodable {
         case fileFormat
         case cipher
         case thumb
+        case customizeCover
         case createTime
         case updateTime
         
@@ -180,6 +183,7 @@ extension SecretDB {
                     obj.fileFormat = fileFormat
                     obj.cipher = cipher
                     obj.thumb = "" //封面暂时填空
+                    obj.customizeCover = "" //自定义封面暂时填空
                     obj.createTime = Date.now.timeIntervalSince1970
                     obj.updateTime = Date.now.timeIntervalSince1970
                     obj.isAutoIncrement = true
@@ -236,6 +240,21 @@ extension SecretDB {
             
             try database?.update(table: SecretDirTableName,
                                  on: [SecretDirObject.Properties.thumb],
+                                 with: obj,
+                                 where: SecretDirObject.Properties.localID == dirID)
+        } catch {
+            
+        }
+    }
+    
+    /// 更新自定义封面
+    func updateDirCustomizeCover(dirID: Int, cover: String) {
+        do {
+            let obj = SecretDirObject()
+            obj.customizeCover = cover
+            
+            try database?.update(table: SecretDirTableName,
+                                 on: [SecretDirObject.Properties.customizeCover],
                                  with: obj,
                                  where: SecretDirObject.Properties.localID == dirID)
         } catch {

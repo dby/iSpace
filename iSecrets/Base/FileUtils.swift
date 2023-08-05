@@ -150,6 +150,17 @@ class FileUtils: NSObject {
         return flag
     }
     
+    static func getFolderCover(_ dirObj: SecretDirObject) -> String? {
+        guard let folderName = dirObj.name else { return nil }
+        
+        let customizeCover = dirObj.customizeCover
+        guard let cover = (customizeCover == nil || customizeCover!.isEmpty) ? dirObj.thumb : customizeCover else  {
+            return nil
+        }
+        
+        return FileUtils.getFilePath(folderName, iconName: cover, ext: .picThumb)
+    }
+    
     static func getFilePath(_ folderName: String, iconName: String, ext: FileExtension) -> String? {
         if let rootDir = PathUtils.rootDir() {
             return "\(rootDir)/\(folderName)/\(iconName).\(ext)"

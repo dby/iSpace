@@ -41,11 +41,8 @@ struct FilesContentView: View {
                     LazyVGrid(columns: twoGridLayout, spacing: 10) {
                         ForEach(viewModel.dirs, id: \.name.self) { item in
                             VStack(spacing: 0) {
-                                if
-                                    item.thumb != nil && item.thumb!.count != 0,
-                                    item.name != nil && item.name!.count != 0,
-                                    let fullPicThumbPath = FileUtils.getFilePath(item.name!, iconName: item.thumb!, ext: .picThumb),
-                                    FileUtils.fileExists(atPath: fullPicThumbPath)
+                                if let fullPicThumbPath = FileUtils.getFolderCover(item),
+                                   FileUtils.fileExists(atPath: fullPicThumbPath)
                                 {
                                     ZStack {
                                         GeometryReader { geo in

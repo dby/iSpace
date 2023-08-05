@@ -83,6 +83,25 @@ struct AlbumContentView: View {
                                                     }
                                                     myAppRootVC?.hero.browserMultiSoures(viewModules: list, initIndex: index)
                                                 }
+                                                .contextMenu {
+                                                    ForEach(viewModel.menuTitles(), id: \.0.self) { pair in
+                                                        Button {
+                                                            viewModel.contextMenuDidClicked(pair.0, fileObj: dataitem)
+                                                        } label: {
+                                                            Text(pair.0)
+                                                            Image(systemName: pair.1)
+                                                        }
+                                                    }
+                                                    
+                                                    Divider()
+                                                    
+                                                    Button {
+                                                        viewModel.contextMenuDidClicked(AlbumConstants.menuDelete, fileObj: dataitem)
+                                                    } label: {
+                                                        Text(AlbumConstants.menuDelete)
+                                                        Image(systemName: "minus.circle")
+                                                    }
+                                                }
                                         }
                                         
                                         if dataitem.mediaType == PHAssetMediaType.video.rawValue {
