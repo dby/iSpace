@@ -16,14 +16,19 @@ struct MeConstants {
     static let _shareToFriends: String = "分享给好友"
     static let _aboutUS: String = "关于我们"
     static let _feedback: String = "意见反馈"
+    static let _fiveStarPraise: String = "五星好评"
+    static let _enableCapture = "启用入侵抓拍"
+    static let _deleteOrigFileWhenImport = "导入中自动删除原文件"
+
+    /// UserDefault Key
     static let _isDeleteOrigFileKey: String = "DeleteOrigFiles"
 }
 
 struct MeContentView: View {
     private var titles: [[String]] = [
-        ["导入中自动删除原文件", "启用入侵抓拍"],
-        ["入侵记录", "伪装空间", "修改密码"],
-        ["分享给好友", "关于我们", "五星好评", "意见反馈"]
+        [MeConstants._deleteOrigFileWhenImport, MeConstants._enableCapture],
+        [MeConstants._intrusionCapture, MeConstants._fakeSpace, MeConstants._changePws],
+        [MeConstants._shareToFriends, MeConstants._aboutUS, MeConstants._fiveStarPraise, MeConstants._feedback]
     ]
     
     @State private var isDeleteOrigFile: Bool = Settings.isDeleteOrigFile {
@@ -61,7 +66,7 @@ struct MeContentView: View {
                         HStack {
                             Text(item)
                             Spacer()
-                            if (item == "导入中自动删除原文件") {
+                            if (item == MeConstants._deleteOrigFileWhenImport) {
                                 Toggle(isOn: $isDeleteOrigFile) { }
                                 .frame(width:100, height: 20)
                                 .background(Color.clear)

@@ -65,12 +65,12 @@ class FilesViewModel: ObservableObject {
     }
     
     func menuTitles(_ dirObj: SecretDirObject) -> [(String, String)] {
-        var titles: [(String, String)] = [("添加", "plus")]
+        var titles: [(String, String)] = [(FilesConstants.menuAdd, "plus")]
         
-        titles.append(dirObj.cipher == "" ? ("锁定文件夹", "lock") : ("取消锁定", "lock.open"))
+        titles.append(dirObj.cipher == "" ? (FilesConstants.menuLock, "lock") : (FilesConstants.menuUnLock, "lock.open"))
         if (!isFixedDir(dirObj.name)) {
-            titles.append(("重新命名文件夹", "pencil"))
-            titles.append(("删除文件夹", "trash"))
+            titles.append((FilesConstants.menuRenameDir, "pencil"))
+            titles.append((FilesConstants.menuDeleteDir, "trash"))
         }
         
         return titles
