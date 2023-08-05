@@ -29,19 +29,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             imageCache.cleanExpiredDiskCache()
         }
         
-        JFHeroBrowserGlobalConfig.default.networkImageProvider = HeroNetworkImageProvider.shared
+        JFHeroBrowserGlobalConfig.default.networkImageProvider = HeroLocalImageProvider.shared
     }
 }
 
-class HeroNetworkImageProvider: NSObject {
-    @objc static let shared = HeroNetworkImageProvider()
+class HeroLocalImageProvider: NSObject {
+    @objc static let shared = HeroLocalImageProvider()
 }
-extension HeroNetworkImageProvider: NetworkImageProvider {
+
+extension HeroLocalImageProvider: NetworkImageProvider {
     func downloadImage(with imgUrl: String, complete: Complete<UIImage>?) {
-        if let img = UIImage(contentsOfFile: imgUrl) {
-            complete?(.success(img))
-        } else {
-            complete?(.failed(nil))
+        DispatchQueue.global().async {
+            if let img = UIImage(contentsOfFile: imgUrl) {
+                complete?(.success(img))
+            } else {
+                complete?(.failed(nil))
+            }
         }
     }
 }

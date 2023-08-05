@@ -70,4 +70,11 @@ open class HeroBrowserNetworkImageViewModule: HeroBrowserViewModule {
         self.imageProvider = provider
         super.init(type: .networkImage)
     }
+    
+    public init(thumbailImgUrl: String?, originImgUrl: String, provider: NetworkImageProvider? = JFHeroBrowserGlobalConfig.default.networkImageProvider, type: HeroBrowserType = .localImage) {
+        self.thumbailImgUrl = thumbailImgUrl
+        self.originImgUrl = originImgUrl
+        self.imageProvider = provider
+        super.init(type: type)
+    }
 }

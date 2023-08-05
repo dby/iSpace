@@ -76,8 +76,8 @@ struct AlbumContentView: View {
                                                             }
                                                         } else if item.mediaType == PHAssetMediaType.image.rawValue {
                                                             if let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
-                                                               let img = UIImage(contentsOfFile: fullPicPath) {
-                                                                list.append(HeroBrowserLocalImageViewModule(image: img))
+                                                               let fullThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
+                                                                list.append(HeroBrowserNetworkImageViewModule(thumbailImgUrl: fullPicPath, originImgUrl: fullPicPath))
                                                             }
                                                         }
                                                     }
