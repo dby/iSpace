@@ -281,6 +281,21 @@ extension SecretDB {
         }
     }
     
+    /// 更新 DIR 名称
+    func updateDirName(dirID: Int, dirName: String) {
+        do {
+            let obj = SecretDirObject()
+            obj.name = dirName
+            
+            try database?.update(table: SecretDirTableName,
+                                 on: [SecretDirObject.Properties.name],
+                                 with: obj,
+                                 where: SecretDirObject.Properties.localID == dirID)
+        } catch {
+            
+        }
+    }
+    
     /// 更新 DIR 缩略图
     func updateDirThumb(dirID: Int, thumb: String) {
         do {

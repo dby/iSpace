@@ -116,7 +116,8 @@ struct FilesContentView: View {
                                 ForEach(viewModel.menuTitles(item), id: \.0.self) { pair in
                                     Button {
                                         if (pair.0 == FilesConstants.menuRenameDir) {
-                                            //self.showingAlert = true
+                                            self.clickedSecretDir = item
+                                            self.alertParas = AlertParas(showing: true, title: "请输入新的文件名", info: "请输入新的文件名")
                                         } else {
                                             viewModel.contextMenuDidClicked(pair.0, dirObj: item)
                                         }
@@ -160,6 +161,11 @@ struct FilesContentView: View {
                                     self.pushKey.toggle()
                                 } else {
                                     homeCoordinator.toast("密码输入错误")
+                                }
+                            } else if self.alertParas.title == "请输入新的文件名" {
+                                if let dir = self.clickedSecretDir {
+                                    core.secretDB.updateDirName(dirID: dir.localID, dirName: name)
+                                    viewModel.refreshSecretDirs()
                                 }
                             }
                             

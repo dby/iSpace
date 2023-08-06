@@ -100,53 +100,5 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B68A8A49-9AF0-4F98-9A3D-4E7A6A9CD105"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iSecrets/Core/SecretDB.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "registerWithUsrName(_:level:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B68A8A49-9AF0-4F98-9A3D-4E7A6A9CD105 - 6b0bd732cc217223"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (WCDBSwift.Handle) throws -&gt; () in iSecrets.SecretDB.registerWithUsrName(_: Swift.String, level: iSecrets.AccountLevel) -&gt; ()"
-                  moduleName = "iSecrets"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dby/Documents/dby/codes/iOS/iSecrets/iSecrets/Core/SecretDB.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "192"
-                  endingLineNumber = "192"
-                  offsetFromSymbolStart = "904">
-               </Location>
-               <Location
-                  uuid = "B68A8A49-9AF0-4F98-9A3D-4E7A6A9CD105 - 6b0bd732cc217223"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (WCDBSwift.Handle) throws -&gt; () in iSecrets.SecretDB.registerWithUsrName(_: Swift.String, level: iSecrets.AccountLevel) -&gt; ()"
-                  moduleName = "iSecrets"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dby/Documents/dby/codes/iOS/iSecrets/iSecrets/Core/SecretDB.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "192"
-                  endingLineNumber = "192"
-                  offsetFromSymbolStart = "965">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
