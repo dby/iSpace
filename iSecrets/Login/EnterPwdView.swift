@@ -128,6 +128,14 @@ struct EnterPwdView: View {
                                     inputStep = 0
                                     
                                     viewModel.state = .registerSetpOne
+                                    
+                                    withAnimation(Animation.linear(duration: 0.1).repeatCount(3, autoreverses: true)) {
+                                        if (self.offset.width == 0 || self.offset.width == 2) {
+                                            self.offset = CGSize(width: -2, height: 0)
+                                        } else {
+                                            self.offset = CGSize(width: 2, height: 0)
+                                        }
+                                    }
                                 } else if viewModel.state == .loginSucceed {
                                     self.presentationMode.wrappedValue.dismiss()
                                 } else if viewModel.state == .loginFailed {
