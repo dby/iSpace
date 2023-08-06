@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 import Kingfisher
+import Combine
 
 struct FilesContentView: View {
 
@@ -136,11 +137,20 @@ struct FilesContentView: View {
                         showingAlert = true
                     }.alert("新建文件夹", isPresented: $showingAlert) {
                         TextField("请为此文件夹输入名称", text: $name)
+                            .onReceive(Just(name)) { newValue in
+                                let filtered = newValue.filter { $0.isNumber }
+                                if filtered.count > 6 {
+                                    name = String(filtered.prefix(6))
+                                } else {
+                                    name = filtered
+                                }
+                            }
                         Button("Cancel") {
                             
                         }
                         Button("OK") {
-                            viewModel.createNewDirWithName(name)                            
+                            viewModel.createNewDirWithName(name)
+                            viewModel.refreshSecretDirs()
                             name = ""
                         }
                     }

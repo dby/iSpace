@@ -31,6 +31,7 @@ struct AlbumContentView: View {
     
     @ObservedObject var viewModel: AlbumViewModel
     @State private var selectedImage: [PhotosPickerItem] = []
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
     
     // MARK: Views
     var body: some View {
@@ -175,6 +176,7 @@ struct AlbumContentView: View {
                         }
                         
                         viewModel.fetchFiles()
+                        homeCoordinator.refreshDirsIfNeed()
                     }
                 }
             }
