@@ -20,8 +20,6 @@ struct FilesContentView: View {
     
     let headerWid = UIScreen.main.bounds.size.width - 40
 
-    @State private var showingAlert = false
-    @State private var showingRenameDirAlert = false
     @State private var name = ""
     @State private var presetnKey = true
     @State private var pushKey = false
@@ -30,9 +28,11 @@ struct FilesContentView: View {
     @State private var selectedItems: [PhotosPickerItem] = []
     @State private var selectedPhotosData: [Data] = []
     
+    @State private var alertParas: AlertParas = AlertParas()
+    
     @ObservedObject var viewModel: FilesViewModel
     @EnvironmentObject var homeCoordinator: HomeCoordinator
-
+    
     // MARK: Views
     var body: some View {
         NavigationStack {
@@ -62,7 +62,7 @@ struct FilesContentView: View {
                                                 .aspectRatio(1, contentMode: .fit)
                                                 .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                                                 .cornerRadius(5)
-                                                //.blur(radius: 5)
+                                                .blur(radius: item.cipher == "" ? 0 : 3)
                                         }
                                         VStack {
                                             Spacer()
@@ -104,14 +104,19 @@ struct FilesContentView: View {
                             }
                             .frame(width: headerWid/2, height: headerWid*0.5 + 40)
                             .onTapGesture {
-                                self.pushKey.toggle()
                                 self.clickedSecretDir = item
                                 self.viewModel.detailViewModel = item.viewmodel
+                                if item.cipher == "" {
+                                    //未额外加密
+                                    self.pushKey.toggle()
+                                } else {
+                                    self.alertParas = AlertParas(showing: true, title: "请输入密码", info: "请输入密码")
+                                }
                             }.contextMenu {
                                 ForEach(viewModel.menuTitles(item), id: \.0.self) { pair in
                                     Button {
                                         if (pair.0 == FilesConstants.menuRenameDir) {
-                                            self.showingAlert = true
+                                            //self.showingAlert = true
                                         } else {
                                             viewModel.contextMenuDidClicked(pair.0, dirObj: item)
                                         }
@@ -128,15 +133,12 @@ struct FilesContentView: View {
             }
             .navigationTitle("文件夹")
             .navigationBarTitleDisplayMode(.large)
-            .onAppear(perform: {
-                //viewModel.refreshSecretDirs()
-            })
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {
                     Button("添加文件夹") {
-                        showingAlert = true
-                    }.alert("新建文件夹", isPresented: $showingAlert) {
-                        TextField("请为此文件夹输入名称", text: $name)
+                        alertParas = AlertParas(showing: true, title: "新建文件夹", info: "请为此文件夹输入名称")
+                    }.alert(alertParas.title, isPresented: $alertParas.showing) {
+                        TextField(alertParas.info, text: $name)
                             .onReceive(Just(name)) { newValue in
                                 let filtered = newValue.filter { $0.isNumber }
                                 if filtered.count > 6 {
@@ -146,11 +148,21 @@ struct FilesContentView: View {
                                 }
                             }
                         Button("Cancel") {
-                            
+                            name = ""
+                            alertParas = AlertParas()
                         }
                         Button("OK") {
-                            viewModel.createNewDirWithName(name)
-                            viewModel.refreshSecretDirs()
+                            if self.alertParas.title == "新建文件夹" {
+                                viewModel.createNewDirWithName(name)
+                                viewModel.refreshSecretDirs()
+                            } else if self.alertParas.title == "请输入密码" {
+                                if (name == core.account.1) {
+                                    self.pushKey.toggle()
+                                } else {
+                                    homeCoordinator.toast("密码输入错误")
+                                }
+                            }
+                            
                             name = ""
                         }
                     }
