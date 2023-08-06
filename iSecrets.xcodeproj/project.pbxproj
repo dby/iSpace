@@ -11,6 +11,7 @@
 		430A0C6E2A5AA7E800AE6518 /* FilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6D2A5AA7E800AE6518 /* FilesViewModel.swift */; };
 		430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */; };
 		430A0C732A604F0400AE6518 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C722A604F0400AE6518 /* Utils.swift */; };
+		431B95212A7F73A100194591 /* InfoPlist.string.strings in Resources */ = {isa = PBXBuildFile; fileRef = 431B95232A7F73A100194591 /* InfoPlist.string.strings */; };
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
 		43304AE12A505D560031C434 /* SecretDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304AE02A505D560031C434 /* SecretDB.swift */; };
 		4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */; };
@@ -49,6 +50,8 @@
 		430A0C6D2A5AA7E800AE6518 /* FilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewModel.swift; sourceTree = "<group>"; };
 		430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 		430A0C722A604F0400AE6518 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		431B95222A7F73A100194591 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.string.strings; sourceTree = "<group>"; };
+		431B95242A7F73FF00194591 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.string.strings"; sourceTree = "<group>"; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		43304AE02A505D560031C434 /* SecretDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDB.swift; sourceTree = "<group>"; };
 		433420292A35C7AF00C4CA84 /* iSecrets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSecrets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +146,7 @@
 				43A3BC692A66DB760054E280 /* Login */,
 				4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */,
 				43D2AAF02A3A09E100841737 /* AppDelegate.swift */,
+				431B95232A7F73A100194591 /* InfoPlist.string.strings */,
 				433420302A35C7B000C4CA84 /* Assets.xcassets */,
 				433420322A35C7B000C4CA84 /* Preview Content */,
 			);
@@ -297,6 +301,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 433420202A35C7AF00C4CA84;
 			productRefGroup = 4334202A2A35C7AF00C4CA84 /* Products */;
@@ -314,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				433420342A35C7B000C4CA84 /* Preview Assets.xcassets in Resources */,
+				431B95212A7F73A100194591 /* InfoPlist.string.strings in Resources */,
 				433420312A35C7B000C4CA84 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,11 +409,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		431B95232A7F73A100194591 /* InfoPlist.string.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				431B95222A7F73A100194591 /* en */,
+				431B95242A7F73FF00194591 /* zh-Hans */,
+			);
+			name = InfoPlist.string.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		433420352A35C7B000C4CA84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -468,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -530,6 +550,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = iSpace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "iSpace需要访问您的相机，以便您可以拍摄照片并将其用于应用程序中。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "iSpace需要访问您的相册，以便您可以选择要在应用程序中使用的照片。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -565,6 +586,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = iSpace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "iSpace需要访问您的相机，以便您可以拍摄照片并将其用于应用程序中。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "iSpace需要访问您的相册，以便您可以选择要在应用程序中使用的照片。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
