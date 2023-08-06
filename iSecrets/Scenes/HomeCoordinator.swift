@@ -22,18 +22,17 @@ class HomeCoordinator: ObservableObject {
             self.enterPwdViewModel = EnterPwdViewModel(state: .login)
         }
     }
-    
-    func toast(showing: Bool, title: String = "") {
-        toastPara = ToastParas(showing: showing, title: title)
-    }
 }
 
+/// Open API
 extension HomeCoordinator {
-    
-    func openLoginView() {
+    /// REFRESH DIR
+    func refreshDirsIfNeed() {
+        self.filesViewModel.refreshSecretDirs()
     }
     
-    func openRegisterPwdView() {
-        
+    /// TOAST
+    func toast(_ title: String = "") {
+        toastPara = ToastParas(showing: true, title: title)
     }
 }

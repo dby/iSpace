@@ -124,7 +124,8 @@ struct EnterPwdView: View {
                                     core.account = (.mainSpace, pwdStr)
                                     
                                     self.presentationMode.wrappedValue.dismiss()
-                                    homeCoordinator.toast(showing: true, title: "注册成功")
+                                    homeCoordinator.toast("注册成功")
+                                    homeCoordinator.refreshDirsIfNeed()
                                 } else if viewModel.state == .registerFailed {
                                     pwdStr = ""
                                     inputStep = 0
@@ -140,7 +141,8 @@ struct EnterPwdView: View {
                                     }
                                 } else if viewModel.state == .loginSucceed {
                                     self.presentationMode.wrappedValue.dismiss()
-                                    homeCoordinator.toast(showing: true, title: "登录成功")
+                                    homeCoordinator.toast("登录成功")
+                                    homeCoordinator.refreshDirsIfNeed()
                                 } else if viewModel.state == .loginFailed {
                                     pwdStr = ""
                                     inputStep = 0

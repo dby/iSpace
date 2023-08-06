@@ -55,7 +55,7 @@ struct GuiseContentView: View {
                             newPwd = ""
                         } else if (newPwd == core.secretDB.getMainSpaceAccount()?.name) {
                             // 新密码 == 主空间密码
-                            homeCoordinator.toast(showing: true, title: "伪装空间密码不能与主空间密码一致")
+                            homeCoordinator.toast( "伪装空间密码不能与主空间密码一致")
                             newPwd = ""
                         } else {
                             // 创建伪装空间
