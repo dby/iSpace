@@ -31,6 +31,7 @@ struct EnterPwdView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel: EnterPwdViewModel
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
     
     var body: some View {
         VStack {
@@ -123,6 +124,7 @@ struct EnterPwdView: View {
                                     core.account = (.mainSpace, pwdStr)
                                     
                                     self.presentationMode.wrappedValue.dismiss()
+                                    homeCoordinator.toast(showing: true, title: "注册成功")
                                 } else if viewModel.state == .registerFailed {
                                     pwdStr = ""
                                     inputStep = 0
@@ -138,6 +140,7 @@ struct EnterPwdView: View {
                                     }
                                 } else if viewModel.state == .loginSucceed {
                                     self.presentationMode.wrappedValue.dismiss()
+                                    homeCoordinator.toast(showing: true, title: "登录成功")
                                 } else if viewModel.state == .loginFailed {
                                     pwdStr = ""
                                     inputStep = 0

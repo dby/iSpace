@@ -54,13 +54,14 @@ struct MeContentView: View {
     var body: some View {
         RoutingView(router: meRouter, content: {
             List {
-                VStack {
+                Section {
                     ProgressView(viewModel.diskUsageText, value: viewModel.diskUsage, total: FILESIZE_1G)
-                        .font(Font.system(size: 15))
+                        .font(Font.system(size: 14))
                         .foregroundColor(Color.gray)
                         .progressViewStyle(.linear)
+                } header: {
+                    Text("存储空间")
                 }
-                .padding()
                 
                 Section {
                     ForEach(titles[0], id: \.self) { item in
