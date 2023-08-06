@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct HomeContentView: View {
     @ObservedObject var coordinator: HomeCoordinator
@@ -42,6 +43,9 @@ struct HomeContentView: View {
                     Text("我的")
                 })
                 .tabViewStyle(.page)
+        }
+        .toast(isPresenting: $coordinator.toastPara.showing) {
+            AlertToast(displayMode: .banner(.slide), type: .regular, title: coordinator.toastPara.title)
         }
     }
 }

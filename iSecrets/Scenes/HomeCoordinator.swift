@@ -11,6 +11,7 @@ class HomeCoordinator: ObservableObject {
     
     @Published var filesViewModel: FilesViewModel!
     @Published var enterPwdViewModel: EnterPwdViewModel?
+    @Published var toastPara: ToastParas = ToastParas()
     
     init() {
         self.filesViewModel = FilesViewModel()
@@ -20,6 +21,10 @@ class HomeCoordinator: ObservableObject {
         } else {
             self.enterPwdViewModel = EnterPwdViewModel(state: .login)
         }
+    }
+    
+    func toast(showing: Bool, title: String = "") {
+        toastPara = ToastParas(showing: showing, title: title)
     }
 }
 

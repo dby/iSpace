@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct GuiseContentView: View {
-    @State private var isOn: Bool = false
+    @State private var isOn: Bool = Settings.isOpenFakeSpace
     @State private var isShowingAlert: Bool = false
     @State private var newPwd: String = ""
+    
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
     
     var body: some View {
         VStack {
@@ -53,7 +55,7 @@ struct GuiseContentView: View {
                             newPwd = ""
                         } else if (newPwd == core.secretDB.getMainSpaceAccount()?.name) {
                             // 新密码 == 主空间密码
-                            print("pwd error.")
+                            homeCoordinator.toast(showing: true, title: "伪装空间密码不能与主空间密码一致")
                             newPwd = ""
                         } else {
                             // 创建伪装空间
