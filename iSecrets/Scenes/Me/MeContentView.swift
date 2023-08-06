@@ -21,7 +21,8 @@ struct MeConstants {
     static let _deleteOrigFileWhenImport = "导入中自动删除原文件"
 
     /// UserDefault Key
-    static let _isDeleteOrigFileKey: String = "DeleteOrigFiles"
+    static let _isDeleteOrigFileKey: String = "DeleteOrigFilesKey"
+    static let _isOpenFakeSpaceKey: String = "isOpenFakeSpaceKey"
 }
 
 struct MeContentView: View {

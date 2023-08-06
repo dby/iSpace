@@ -186,7 +186,7 @@ extension SecretDB {
         guard !usrName.isEmpty else { return }
         do {
             try self.database?.run(transaction: { handle in
-                let existObjs: [SecretAccountObject] = try handle.getObjects(on: [SecretAccountObject.Properties.name],
+                let existObjs: [SecretAccountObject] = try handle.getObjects(on: SecretAccountObject.Properties.all,
                                                                              fromTable: SecretAccountTableName,
                                                                              where: SecretAccountObject.Properties.name == usrName)
                 if (existObjs.count > 0) {

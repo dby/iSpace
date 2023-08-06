@@ -17,5 +17,15 @@ class Settings: NSObject {
             UserDefaults.standard.set(newValue, forKey: MeConstants._isDeleteOrigFileKey)
         }
     }
+    
+    static var isOpenFakeSpace: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: MeConstants._isOpenFakeSpaceKey)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: MeConstants._isOpenFakeSpaceKey)
+        }
+    }
 }
 

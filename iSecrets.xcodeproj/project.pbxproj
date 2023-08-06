@@ -12,6 +12,7 @@
 		430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */; };
 		430A0C732A604F0400AE6518 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C722A604F0400AE6518 /* Utils.swift */; };
 		431B95212A7F73A100194591 /* InfoPlist.string.strings in Resources */ = {isa = PBXBuildFile; fileRef = 431B95232A7F73A100194591 /* InfoPlist.string.strings */; };
+		431B95262A7F83A200194591 /* GuiseContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431B95252A7F83A200194591 /* GuiseContentView.swift */; };
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
 		43304AE12A505D560031C434 /* SecretDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304AE02A505D560031C434 /* SecretDB.swift */; };
 		4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */; };
@@ -52,6 +53,7 @@
 		430A0C722A604F0400AE6518 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		431B95222A7F73A100194591 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.string.strings; sourceTree = "<group>"; };
 		431B95242A7F73FF00194591 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.string.strings"; sourceTree = "<group>"; };
+		431B95252A7F83A200194591 /* GuiseContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiseContentView.swift; sourceTree = "<group>"; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		43304AE02A505D560031C434 /* SecretDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDB.swift; sourceTree = "<group>"; };
 		433420292A35C7AF00C4CA84 /* iSecrets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSecrets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +237,7 @@
 				43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */,
 				43A3BC752A682A950054E280 /* MeRouter.swift */,
 				435E16C52A754F330092AC43 /* AboutUsView.swift */,
+				431B95252A7F83A200194591 /* GuiseContentView.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */,
 				43A3BC702A6829370054E280 /* Router.swift in Sources */,
 				43B864102A3771DA00494852 /* PathUtils.swift in Sources */,
+				431B95262A7F83A200194591 /* GuiseContentView.swift in Sources */,
 				43A3BC762A682A950054E280 /* MeRouter.swift in Sources */,
 				43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */,
 				43A3BC6B2A66DC460054E280 /* EnterPwdViewModel.swift in Sources */,

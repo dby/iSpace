@@ -39,7 +39,8 @@ private extension MeRouter {
                 IntrusionRecordView()
                     .ignoresSafeArea()
             } else if description == MeConstants._fakeSpace {
-                
+                GuiseContentView()
+                    //.ignoresSafeArea()
             } else if description == MeConstants._changePws {
                 let curViewModel = EnterPwdViewModel(state: .registerSetpOne)
                 EnterPwdView(viewModel: curViewModel)
