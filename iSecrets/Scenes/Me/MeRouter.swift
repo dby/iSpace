@@ -44,7 +44,7 @@ private extension MeRouter {
                     .toolbar(.hidden, for: .tabBar)
                     //.ignoresSafeArea()
             } else if description == MeConstants._changePws {
-                let curViewModel = EnterPwdViewModel(state: .registerSetpOne)
+                let curViewModel = EnterPwdViewModel(state: .chgPwdStepOne)
                 EnterPwdView(viewModel: curViewModel)
                     .toolbar(.hidden, for: .tabBar)
                     .ignoresSafeArea()

@@ -20,6 +20,11 @@ enum AccountEventState: Int {
     case registerSetpTwo
     case registerSucceed
     case registerFailed
+    /// change pwd flow
+    case chgPwdStepOne
+    case chgPwdStepTwo
+    case chgPwdSucceed
+    case chgPwdFailed
     /// login flow
     case login
     case loginSucceed
@@ -57,6 +62,18 @@ class EnterPwdViewModel: ObservableObject {
                 self.createDefaultDirIfNeed()
             } else {
                 self.state = .registerFailed
+            }
+        case .chgPwdStepOne:
+            self.inputingPwd = pwd
+            self.state = .chgPwdStepTwo
+        case .chgPwdStepTwo:
+            if (inputingPwd == pwd) {
+                core.secretDB.chtPwd(pwd, oldPwd: core.account.1)
+                core.account = (.mainSpace, pwd)
+                
+                self.state = .chgPwdSucceed
+            } else {
+                self.state = .chgPwdFailed
             }
         case .login:
             if (core.mainSpaceAccount == pwd) {

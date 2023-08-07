@@ -112,25 +112,25 @@ struct EnterPwdView: View {
                             if pwdStr.count >= 6 {
                                 viewModel.tryLoginOrRegister(pwdStr)
                                 
-                                if viewModel.state == .registerSetpOne {
+                                if (viewModel.state == .registerSetpOne || viewModel.state == .chgPwdStepOne) {
                                     hint = "请设置密码"
                                     pwdStr = ""
                                     inputStep = 0
-                                } else if viewModel.state == .registerSetpTwo {
+                                } else if (viewModel.state == .registerSetpTwo || viewModel.state == .chgPwdStepTwo) {
                                     hint = "请确定密码"
                                     pwdStr = ""
                                     inputStep = 0
-                                } else if viewModel.state == .registerSucceed {
+                                } else if (viewModel.state == .registerSucceed || viewModel.state == .chgPwdSucceed) {
                                     core.account = (.mainSpace, pwdStr)
                                     
                                     self.presentationMode.wrappedValue.dismiss()
-                                    homeCoordinator.toast("注册成功")
+                                    homeCoordinator.toast(viewModel.state == .registerSucceed ? "注册成功" : "修改密码成功")
                                     homeCoordinator.refreshDirsIfNeed()
-                                } else if viewModel.state == .registerFailed {
+                                } else if (viewModel.state == .registerFailed || viewModel.state == .chgPwdFailed) {
                                     pwdStr = ""
                                     inputStep = 0
                                     
-                                    viewModel.state = .registerSetpOne
+                                    viewModel.state = (viewModel.state == .registerFailed ? .registerSetpOne : .chgPwdStepOne)
                                     
                                     withAnimation(Animation.linear(duration: 0.1).repeatCount(3, autoreverses: true)) {
                                         if (self.offset.width == 0 || self.offset.width == 2) {

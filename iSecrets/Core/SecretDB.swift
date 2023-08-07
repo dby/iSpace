@@ -219,6 +219,22 @@ extension SecretDB {
             print("Transaction failed with error: \(error)")
         }
     }
+    
+    func chtPwd(_ pwd: String, oldPwd: String) {
+        do {
+            let obj = SecretAccountObject()
+            obj.name = pwd
+            
+            if let db = self.database {
+                try db.update(table: SecretAccountTableName,
+                              on: [SecretAccountObject.Properties.name],
+                              with: obj,
+                              where: SecretAccountObject.Properties.name == oldPwd)
+            }
+        } catch {
+            
+        }
+    }
 }
 
 /// SecretDirObject
