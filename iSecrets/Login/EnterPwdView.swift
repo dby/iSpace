@@ -120,9 +120,7 @@ struct EnterPwdView: View {
                                     hint = "请确定密码"
                                     pwdStr = ""
                                     inputStep = 0
-                                } else if (viewModel.state == .registerSucceed || viewModel.state == .chgPwdSucceed) {
-                                    core.account = (.mainSpace, pwdStr)
-                                    
+                                } else if (viewModel.state == .registerSucceed || viewModel.state == .chgPwdSucceed) {                                    
                                     self.presentationMode.wrappedValue.dismiss()
                                     homeCoordinator.toast(viewModel.state == .registerSucceed ? "注册成功" : "修改密码成功")
                                     homeCoordinator.refreshDirsIfNeed()

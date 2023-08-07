@@ -13,8 +13,9 @@ class PathUtils: NSObject {
     static func rootDir() -> String? {
         guard core.account.0 != .notLogin else { return nil }
         guard core.account.0 != .notCreate else { return nil }
+        guard let name = core.account.1?.name else { return nil }
         
-        return "\(basePath())/\(core.account.1.sha256)"
+        return "\(basePath())/\(name)"
     }
 }
 

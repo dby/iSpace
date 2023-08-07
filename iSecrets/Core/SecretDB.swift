@@ -17,6 +17,8 @@ final class SecretAccountObject: TableCodable {
     var localID: Int = 0
     /// 账户名称
     var name: String = ""
+    /// 账号密码 equalsTo 账户名称
+    var pwd: String = ""
     /// 账户级别
     var level: Int = 0
     /// 创建时间
@@ -28,6 +30,7 @@ final class SecretAccountObject: TableCodable {
         typealias Root = SecretAccountObject
         case localID
         case name
+        case pwd
         case level
         case createTime
         case updateTime
@@ -46,6 +49,8 @@ final class SecretDirObject: TableCodable {
     var limitCondition: String? = nil
     /// 文件夹名
     var name: String? = nil
+    /// 密码，初次创建时 equalsTo 文件名
+    var pwd: String? = nil
     /// 工作路径（相对路径）
     var workingDir: String? = nil
     /// 文件格式，pdf、word、or文件夹
@@ -66,6 +71,7 @@ final class SecretDirObject: TableCodable {
         case localID
         case limitCondition
         case name
+        case pwd
         case workingDir
         case fileFormat
         case cipher
@@ -161,7 +167,7 @@ extension SecretDB {
                                              where: SecretAccountObject.Properties.level == AccountLevel.mainSpace.rawValue)
             }
         } catch {
-            
+            print("Error[\(error.localizedDescription)]")
         }
         
         return accounts.count == 0 ? nil : accounts.first
@@ -176,10 +182,20 @@ extension SecretDB {
                                              where: SecretAccountObject.Properties.level == AccountLevel.fakeSpace.rawValue)
             }
         } catch {
-            
+            print("Error[\(error.localizedDescription)]")
         }
         
         return accounts
+    }
+    
+    func getFakeSpaceAccountWithPwd(_ pwd: String) -> SecretAccountObject? {
+        for item in getFakeSpaceAccount() {
+            if (item.pwd == pwd) {
+                return item
+            }
+        }
+        
+        return nil
     }
 
     func registerWithUsrName(_ usrName: String, level: AccountLevel) {
@@ -208,6 +224,7 @@ extension SecretDB {
                 
                 let obj = SecretAccountObject()
                 obj.name = usrName
+                obj.pwd = usrName
                 obj.level = level.rawValue
                 obj.createTime = Date.now.timeIntervalSince1970
                 obj.updateTime = Date.now.timeIntervalSince1970
@@ -220,19 +237,33 @@ extension SecretDB {
         }
     }
     
-    func chtPwd(_ pwd: String, oldPwd: String) {
+    func isExistPwd(_ pwd: String) -> Bool {
+        var existObjs: [SecretAccountObject] = []
         do {
-            let obj = SecretAccountObject()
-            obj.name = pwd
-            
-            if let db = self.database {
-                try db.update(table: SecretAccountTableName,
-                              on: [SecretAccountObject.Properties.name],
-                              with: obj,
-                              where: SecretAccountObject.Properties.name == oldPwd)
-            }
+            guard let db = self.database else { return false }
+            existObjs = try db.getObjects(on: SecretAccountObject.Properties.all,
+                                          fromTable: SecretAccountTableName,
+                                          where: SecretAccountObject.Properties.pwd == pwd)
         } catch {
             
+        }
+        
+        return existObjs.count > 1
+    }
+    
+    func chtPwd(_ pwd: String, oldPwd: String) {
+        do {
+            guard let db = self.database else { return }
+            
+            let obj = SecretAccountObject()
+            obj.pwd = pwd
+            
+            try db.update(table: SecretAccountTableName,
+                          on: [SecretAccountObject.Properties.pwd],
+                          with: obj,
+                          where: SecretAccountObject.Properties.pwd == oldPwd)
+        } catch {
+            print("Error[\(error.localizedDescription)]")
         }
     }
 }
@@ -266,6 +297,7 @@ extension SecretDB {
                     let obj = SecretDirObject()
                     obj.limitCondition = limitionCondition.rawValue
                     obj.name = name
+                    obj.pwd = name
                     obj.workingDir = workingDir
                     obj.fileFormat = fileFormat
                     obj.cipher = cipher

@@ -157,7 +157,7 @@ struct FilesContentView: View {
                                 viewModel.createNewDirWithName(name)
                                 viewModel.refreshSecretDirs()
                             } else if self.alertParas.title == "请输入密码" {
-                                if (name == core.account.1) {
+                                if (name == core.account.1?.pwd) {
                                     self.pushKey.toggle()
                                 } else {
                                     homeCoordinator.toast("密码输入错误")

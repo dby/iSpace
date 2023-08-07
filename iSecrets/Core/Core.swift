@@ -33,7 +33,8 @@ class CoreObject: NSObject {
     
     //MARK: -
     var secretDB: SecretDB!
-    var account: (AccountState, String) = (.idle, "")
+    /// AccountState, name, pwd
+    var account: (AccountState, SecretAccountObject?) = (.idle, nil)
     private var _mainSpaceAccount: String = ""
     private var _fakeSpaceAccount: [String] = []
     
@@ -78,9 +79,9 @@ extension CoreObject {
         }
         
         if self.fakeSpaceAccount.isEmpty && self.mainSpaceAccount.isEmpty {
-            self.account = (.notCreate, "")
+            self.account = (.notCreate, nil)
         } else {
-            self.account = (.notLogin, "")
+            self.account = (.notLogin, nil)
         }
         
         if self.secretDB.getAllSecretDirs().count == 0 {

@@ -102,7 +102,7 @@ struct MeContentView: View {
                                 
                             }
                             Button("OK") {
-                                if core.account.1 == oldPwd {
+                                if core.account.1?.pwd == oldPwd {
                                     meRouter.presentFullScreen(.detail(MeConstants._changePws))
                                 } else {
                                     self.toastPara.title = "密码错误"

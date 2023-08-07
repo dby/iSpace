@@ -55,8 +55,8 @@ class EnterPwdViewModel: ObservableObject {
             self.state = .registerSetpTwo
         case .registerSetpTwo:
             if (inputingPwd == pwd) {
-                core.account = (.mainSpace, pwd)
                 core.secretDB.registerWithUsrName(pwd, level: .mainSpace)
+                core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
                 
                 self.state = .registerSucceed
                 self.createDefaultDirIfNeed()
@@ -68,8 +68,9 @@ class EnterPwdViewModel: ObservableObject {
             self.state = .chgPwdStepTwo
         case .chgPwdStepTwo:
             if (inputingPwd == pwd) {
-                core.secretDB.chtPwd(pwd, oldPwd: core.account.1)
-                core.account = (.mainSpace, pwd)
+                guard let oldPwd = core.account.1?.pwd else { return }
+                core.secretDB.chtPwd(pwd, oldPwd: oldPwd)
+                core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
                 
                 self.state = .chgPwdSucceed
             } else {
@@ -77,10 +78,10 @@ class EnterPwdViewModel: ObservableObject {
             }
         case .login:
             if (core.mainSpaceAccount == pwd) {
-                core.account = (.mainSpace, pwd)
+                core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
                 self.state = .loginSucceed
             } else if (core.fakeSpaceAccount.contains(pwd)) {
-                core.account = (.fakeSpace, pwd)
+                core.account = (.fakeSpace, core.secretDB.getFakeSpaceAccountWithPwd(pwd))
                 self.state = .loginSucceed
             } else {
                 //登录失败

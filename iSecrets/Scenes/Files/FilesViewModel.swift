@@ -82,7 +82,7 @@ class FilesViewModel: ObservableObject {
             break
         case FilesConstants.menuLock:
             core.secretDB.updateDirCipher(dirID: dirObj.localID,
-                                          cipher: core.account.1)
+                                          cipher: core.account.1?.pwd ?? "")
             refreshSecretDirs()
         case FilesConstants.menuUnLock:
             core.secretDB.updateDirCipher(dirID: dirObj.localID,
