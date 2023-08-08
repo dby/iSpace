@@ -11,6 +11,7 @@ struct GuiseContentView: View {
     @State private var isOn: Bool = Settings.isOpenFakeSpace
     @State private var isShowingAlert: Bool = false
     @State private var newPwd: String = ""
+    @State private var bJumpToEnterPwdView: Bool = false
     
     @EnvironmentObject var homeCoordinator: HomeCoordinator
     
@@ -42,8 +43,12 @@ struct GuiseContentView: View {
                             
                         }
                         Button("OK") {
-                            core.secretDB.registerWithUsrName(newPwd, level: .fakeSpace)
-                            Settings.isOpenFakeSpace = !isOn
+                            if newPwd == core.secretDB.getMainSpaceAccount()?.pwd {
+                                bJumpToEnterPwdView = true
+                            } else {
+                                homeCoordinator.toast("密码输入错误")
+                                isOn = false
+                            }
                             
                             newPwd = ""
                         }
@@ -53,18 +58,24 @@ struct GuiseContentView: View {
                             print("toggle isOpenFakeSpace to \(!isOn)")
                             Settings.isOpenFakeSpace = !isOn
                             newPwd = ""
-                        } else if (newPwd == core.secretDB.getMainSpaceAccount()?.name) {
+                        } else if (newPwd == core.secretDB.getMainSpaceAccount()?.pwd) {
                             // 新密码 == 主空间密码
                             homeCoordinator.toast( "伪装空间密码不能与主空间密码一致")
                             newPwd = ""
                         } else {
                             // 创建伪装空间
-                            self.isShowingAlert = true
+                            isShowingAlert = true
                         }
                     }
                 }
             }
+            .onAppear(perform: {
+                isOn = Settings.isOpenFakeSpace
+            })
             .navigationTitle("伪装空间")
+            .fullScreenCover(isPresented: $bJumpToEnterPwdView, content: {
+                EnterPwdView(viewModel: EnterPwdViewModel(state: .registerSetpOne, modifiedMainSpace: false))
+            })
         }.background(Color(uiColor: UIColor.systemGroupedBackground))
     }
 }

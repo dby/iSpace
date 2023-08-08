@@ -34,15 +34,21 @@ enum AccountEventState: Int {
 class EnterPwdViewModel: ObservableObject {
     @Published var state: AccountEventState = .idle
     
-    init(state: AccountEventState) {
+    init(state: AccountEventState, modifiedMainSpace: Bool = true) {
         self.state = state
+        self.bModifiedMainSpace = modifiedMainSpace
         Task {
             await camera.start()
         }
     }
-    
-    var inputingPwd: String = ""
-    let camera = Camera()
+
+    private let camera = Camera()
+    /// 错误提示信息
+    var prompt: String = ""
+    /// 注册/修改密码时，第一步时输入的密码
+    private var inputingPwd: String = ""
+    /// 是否设置主空间
+    private var bModifiedMainSpace: Bool = false
     
     /// 尝试登录
     func tryLoginOrRegister(_ pwd: String) {
@@ -55,12 +61,23 @@ class EnterPwdViewModel: ObservableObject {
             self.state = .registerSetpTwo
         case .registerSetpTwo:
             if (inputingPwd == pwd) {
-                core.secretDB.registerWithUsrName(pwd, level: .mainSpace)
-                core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
-                
-                self.state = .registerSucceed
-                self.createDefaultDirIfNeed()
+                if core.secretDB.isExistPwd(pwd) {
+                    //pwd必须要保证唯一，因为需要弹窗提示
+                    self.prompt = "该密码已经设置过"
+                    self.state = .registerFailed
+                } else {
+                    if (bModifiedMainSpace) {
+                        core.secretDB.registerWithUsrName(pwd, level: .mainSpace)
+                        core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
+                    } else {
+                        core.secretDB.registerWithUsrName(pwd, level: .fakeSpace)
+                        Settings.isOpenFakeSpace = true
+                    }
+                    self.state = .registerSucceed
+                    self.createDefaultDirIfNeed()
+                }
             } else {
+                self.prompt = "两次输入不一致，请重新输入"
                 self.state = .registerFailed
             }
         case .chgPwdStepOne:
@@ -68,12 +85,19 @@ class EnterPwdViewModel: ObservableObject {
             self.state = .chgPwdStepTwo
         case .chgPwdStepTwo:
             if (inputingPwd == pwd) {
-                guard let oldPwd = core.account.1?.pwd else { return }
-                core.secretDB.chtPwd(pwd, oldPwd: oldPwd)
-                core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
-                
-                self.state = .chgPwdSucceed
+                if core.secretDB.isExistPwd(pwd) {
+                    //pwd必须要保证唯一，因为需要弹窗提示
+                    self.prompt = "该密码已经设置过"
+                    self.state = .chgPwdFailed
+                } else {
+                    guard let oldPwd = core.account.1?.pwd else { return }
+                    core.secretDB.chtPwd(pwd, oldPwd: oldPwd)
+                    core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
+                    
+                    self.state = .chgPwdSucceed
+                }
             } else {
+                self.prompt = "两次输入不一致，请重新输入"
                 self.state = .chgPwdFailed
             }
         case .login:
@@ -86,6 +110,7 @@ class EnterPwdViewModel: ObservableObject {
             } else {
                 //登录失败
                 camera.takePhoto()
+                self.prompt = "密码不对，请重新输入"
                 self.state = .loginFailed
             }
             break

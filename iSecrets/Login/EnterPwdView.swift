@@ -129,6 +129,7 @@ struct EnterPwdView: View {
                                     inputStep = 0
                                     
                                     viewModel.state = (viewModel.state == .registerFailed ? .registerSetpOne : .chgPwdStepOne)
+                                    hint = viewModel.prompt
                                     
                                     withAnimation(Animation.linear(duration: 0.1).repeatCount(3, autoreverses: true)) {
                                         if (self.offset.width == 0 || self.offset.width == 2) {
