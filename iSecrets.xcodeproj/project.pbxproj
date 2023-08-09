@@ -149,6 +149,8 @@
 			children = (
 				43B8640C2A376C7900494852 /* Base */,
 				43B864072A376B1700494852 /* Core */,
+				43B864112A37724300494852 /* Extension */,
+				435D97F62A83EC2000A13B20 /* Model */,
 				430A0C6A2A5AA4A400AE6518 /* Scenes */,
 				43A3BC692A66DB760054E280 /* Login */,
 				4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */,
@@ -177,6 +179,16 @@
 				430A0C6F2A5AFD3600AE6518 /* Album */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		435D97F62A83EC2000A13B20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				431B95272A7FE68400194591 /* AlertParas.swift */,
+				43B8640D2A376C8900494852 /* Model.swift */,
+				435E16C72A75595F0092AC43 /* ToastParas.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		43A3BC692A66DB760054E280 /* Login */ = {
@@ -213,15 +225,11 @@
 		43B8640C2A376C7900494852 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				43B864112A37724300494852 /* Extension */,
 				43A3BC6C2A6828D20054E280 /* Router */,
 				43304ACE2A4DD6580031C434 /* FileUtils.swift */,
 				43B8640F2A3771DA00494852 /* PathUtils.swift */,
-				43B8640D2A376C8900494852 /* Model.swift */,
 				430A0C722A604F0400AE6518 /* Utils.swift */,
 				43A3BC552A639C0B0054E280 /* Camera.swift */,
-				435E16C72A75595F0092AC43 /* ToastParas.swift */,
-				431B95272A7FE68400194591 /* AlertParas.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
