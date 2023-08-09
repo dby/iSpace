@@ -25,7 +25,7 @@ struct EnterPwdView: View {
     
     @State private var inputStep: Int = 0
     @State private var pwdStr: String = ""
-    @State private var hint: String = "请设置锁屏密码"
+    @State private var hint: String = "Please set the lock screen password".localized()
     @State private var offset = CGSize.zero
     
     @Environment(\.presentationMode) var presentationMode
@@ -113,16 +113,16 @@ struct EnterPwdView: View {
                                 viewModel.tryLoginOrRegister(pwdStr)
                                 
                                 if (viewModel.state == .registerSetpOne || viewModel.state == .chgPwdStepOne) {
-                                    hint = "请设置密码"
+                                    hint = "Please set a password".localized()
                                     pwdStr = ""
                                     inputStep = 0
                                 } else if (viewModel.state == .registerSetpTwo || viewModel.state == .chgPwdStepTwo) {
-                                    hint = "请确定密码"
+                                    hint = "Please make sure the password".localized()
                                     pwdStr = ""
                                     inputStep = 0
                                 } else if (viewModel.state == .registerSucceed || viewModel.state == .chgPwdSucceed) {                                    
                                     self.presentationMode.wrappedValue.dismiss()
-                                    homeCoordinator.toast(viewModel.state == .registerSucceed ? "注册成功" : "修改密码成功")
+                                    homeCoordinator.toast(viewModel.state == .registerSucceed ? "Registration Success".localized() : "Password has been updated".localized())
                                     homeCoordinator.refreshDirsIfNeed()
                                 } else if (viewModel.state == .registerFailed || viewModel.state == .chgPwdFailed) {
                                     pwdStr = ""
@@ -140,7 +140,7 @@ struct EnterPwdView: View {
                                     }
                                 } else if viewModel.state == .loginSucceed {
                                     self.presentationMode.wrappedValue.dismiss()
-                                    homeCoordinator.toast("登录成功")
+                                    homeCoordinator.toast("Login Successful".localized())
                                     homeCoordinator.refreshDirsIfNeed()
                                 } else if viewModel.state == .loginFailed {
                                     pwdStr = ""
@@ -163,9 +163,9 @@ struct EnterPwdView: View {
             .padding(EdgeInsets(top: 50, leading: 30, bottom: 0, trailing: 30))
         }.onAppear(perform: {
             if core.account.0 == .notLogin {
-                hint = "请输入锁屏密码"
+                hint = "Please enter the lock screen password".localized()
             } else if core.account.0 == .notCreate {
-                hint = "请设置锁屏密码"
+                hint = "Please set a password".localized()
             }
         })
     }

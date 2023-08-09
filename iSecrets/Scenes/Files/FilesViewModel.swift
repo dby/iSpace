@@ -12,11 +12,11 @@ struct FilesConstants {
     static let fixDirPhotos: String = "Photos"
     static let fixDirFiles: String = "Files"
     
-    static let menuAdd: String = "添加"
-    static let menuLock: String = "锁定文件夹"
-    static let menuUnLock: String = "取消锁定"
-    static let menuRenameDir: String = "重新命名文件夹"
-    static let menuDeleteDir: String = "删除文件夹"
+    static let menuAdd: String = "Add".localized()
+    static let menuLock: String = "Lock folder".localized()
+    static let menuUnLock: String = "Cancel the lock".localized()
+    static let menuRenameDir: String = "Re -name folder".localized()
+    static let menuDeleteDir: String = "Delete the folder".localized()
 }
 
 extension SecretDirObject {

@@ -110,7 +110,9 @@ struct FilesContentView: View {
                                     //未额外加密
                                     self.pushKey.toggle()
                                 } else {
-                                    self.alertParas = AlertParas(showing: true, title: "请输入密码", info: "请输入密码")
+                                    self.alertParas = AlertParas(showing: true,
+                                                                 title: "Enter password error".localized(),
+                                                                 info: "Enter password error".localized())
                                 }
                             }.contextMenu {
                                 ForEach(viewModel.menuTitles(item), id: \.0.self) { pair in
@@ -132,12 +134,12 @@ struct FilesContentView: View {
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 }
             }
-            .navigationTitle("文件夹")
+            .navigationTitle("Folder".localized())
             .navigationBarTitleDisplayMode(.large)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {
-                    Button("添加文件夹") {
-                        alertParas = AlertParas(showing: true, title: "新建文件夹", info: "请为此文件夹输入名称")
+                    Button("New Folder".localized()) {
+                        alertParas = AlertParas(showing: true, title: "New Folder".localized(), info: "Please enter a new filename".localized())
                     }.alert(alertParas.title, isPresented: $alertParas.showing) {
                         TextField(alertParas.info, text: $name)
                             .onReceive(Just(name)) { newValue in
@@ -148,21 +150,21 @@ struct FilesContentView: View {
                                     name = filtered
                                 }
                             }
-                        Button("Cancel") {
+                        Button("Cancel".localized()) {
                             name = ""
                             alertParas = AlertParas()
                         }
-                        Button("OK") {
-                            if self.alertParas.title == "新建文件夹" {
+                        Button("OK".localized()) {
+                            if self.alertParas.title == "New Folder".localized() {
                                 viewModel.createNewDirWithName(name)
                                 viewModel.refreshSecretDirs()
-                            } else if self.alertParas.title == "请输入密码" {
+                            } else if self.alertParas.title == "Please Enter Password".localized() {
                                 if (name == core.account.1?.pwd) {
                                     self.pushKey.toggle()
                                 } else {
-                                    homeCoordinator.toast("密码输入错误")
+                                    homeCoordinator.toast("Wrong Password".localized())
                                 }
-                            } else if self.alertParas.title == "请输入新的文件名" {
+                            } else if self.alertParas.title == "Please enter a new filename".localized() {
                                 if let dir = self.clickedSecretDir {
                                     core.secretDB.updateDirName(dirID: dir.localID, dirName: name)
                                     viewModel.refreshSecretDirs()

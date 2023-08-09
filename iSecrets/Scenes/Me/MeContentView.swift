@@ -10,15 +10,15 @@ import AlertToast
 
 struct MeConstants {
     /// 抓拍记录
-    static let _intrusionCapture: String = "入侵记录"
-    static let _fakeSpace: String = "伪装空间"
-    static let _changePws: String = "修改密码"
-    static let _shareToFriends: String = "分享给好友"
-    static let _aboutUS: String = "关于我们"
-    static let _feedback: String = "意见反馈"
-    static let _fiveStarPraise: String = "五星好评"
-    static let _enableCapture = "启用入侵抓拍"
-    static let _deleteOrigFileWhenImport = "导入中自动删除原文件"
+    static let _intrusionCapture: String = "Intrusion Record".localized()
+    static let _fakeSpace: String = "Fake Space".localized()
+    static let _changePws: String = "Change Password".localized()
+    static let _shareToFriends: String = "Share with friends".localized()
+    static let _aboutUS: String = "About Us".localized()
+    static let _feedback: String = "Feedback".localized()
+    static let _fiveStarPraise: String = "Five -star praise".localized()
+    static let _enableCapture = "Enable invasion shot".localized()
+    static let _deleteOrigFileWhenImport = "Automatically delete the original file during import".localized()
 
     /// UserDefault Key
     static let _isDeleteOrigFileKey: String = "DeleteOrigFilesKey"
@@ -60,7 +60,7 @@ struct MeContentView: View {
                         .foregroundColor(Color.gray)
                         .progressViewStyle(.linear)
                 } header: {
-                    Text("存储空间")
+                    Text("Storage".localized())
                 }
                 
                 Section {
@@ -85,7 +85,7 @@ struct MeContentView: View {
                         }
                     }
                 } header: {
-                    Text("我的设置")
+                    Text("My settings".localized())
                 }
                 
                 Section {
@@ -96,16 +96,16 @@ struct MeContentView: View {
                             Spacer()
                         }
                         .background(Color(uiColor: UIColor.systemBackground))
-                        .alert("请输入原密码", isPresented: $isShowingAlert) {
-                            TextField("请输入原密码", text: $oldPwd)
-                            Button("Cancel") {
+                        .alert("Please enter the original password".localized(), isPresented: $isShowingAlert) {
+                            TextField("Please enter the original password".localized(), text: $oldPwd)
+                            Button("Cancel".localized()) {
                                 
                             }
-                            Button("OK") {
+                            Button("OK".localized()) {
                                 if core.account.1?.pwd == oldPwd {
                                     meRouter.presentFullScreen(.detail(MeConstants._changePws))
                                 } else {
-                                    self.toastPara.title = "密码错误"
+                                    self.toastPara.title = "Wrong Password".localized()
                                     self.toastPara.showing = true
                                 }
                                 
@@ -113,7 +113,7 @@ struct MeContentView: View {
                             }
                         }
                         .onTapGesture {
-                            if item == "修改密码" {
+                            if item == "Change Password".localized() {
                                 self.isShowingAlert = true
                             } else {
                                 meRouter.presentDetail(description: item)
@@ -121,7 +121,7 @@ struct MeContentView: View {
                         }
                     }
                 } header: {
-                    Text("常用功能")
+                    Text("Common Functions".localized())
                 }.headerProminence(.standard)
                 
                 Section {
@@ -135,7 +135,7 @@ struct MeContentView: View {
                         }
                     }
                 } header: {
-                    Text("其他设置")
+                    Text("Other Settings".localized())
                 }
             }
         })

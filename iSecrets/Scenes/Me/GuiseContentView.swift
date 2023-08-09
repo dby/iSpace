@@ -19,7 +19,7 @@ struct GuiseContentView: View {
         VStack {
             Spacer()
             
-            Text("输入伪装密码可以进入伪装空间，别人无法查看主空间的隐私空间")
+            Text("Enter the camouflage password to enter the camouflage space, and others cannot view the privacy space of the main space".localized())
                 .font(Font.system(size: 18))
                 .lineSpacing(10)
                 .frame(height:100)
@@ -28,14 +28,14 @@ struct GuiseContentView: View {
             
             List {
                 HStack {
-                    Text("立即开启伪装空间")
+                    Text("Open the camouflage space immediately".localized())
                     Spacer()
                 
                     Toggle(isOn: $isOn) {}
                     .frame(height: 40)
                     .background(Color.clear)
-                    .alert("请输入主空间密码", isPresented: $isShowingAlert) {
-                        TextField("请输入主空间密码", text: $newPwd)
+                    .alert("Please enter the main space password".localized(), isPresented: $isShowingAlert) {
+                        TextField("Please enter the main space password".localized(), text: $newPwd)
                         .onChange(of: newPwd) { newValue in
                             newPwd = String(newPwd.prefix(6))
                         }
@@ -46,7 +46,7 @@ struct GuiseContentView: View {
                             if newPwd == core.secretDB.getMainSpaceAccount()?.pwd {
                                 bJumpToEnterPwdView = true
                             } else {
-                                homeCoordinator.toast("密码输入错误")
+                                homeCoordinator.toast("Enter password error".localized())
                                 isOn = false
                             }
                             
@@ -60,7 +60,7 @@ struct GuiseContentView: View {
                             newPwd = ""
                         } else if (newPwd == core.secretDB.getMainSpaceAccount()?.pwd) {
                             // 新密码 == 主空间密码
-                            homeCoordinator.toast( "伪装空间密码不能与主空间密码一致")
+                            homeCoordinator.toast("The camouflage password cannot be consistent with the main space password".localized())
                             newPwd = ""
                         } else {
                             // 创建伪装空间
@@ -72,7 +72,7 @@ struct GuiseContentView: View {
             .onAppear(perform: {
                 isOn = Settings.isOpenFakeSpace
             })
-            .navigationTitle("伪装空间")
+            .navigationTitle("Fake Space".localized())
             .fullScreenCover(isPresented: $bJumpToEnterPwdView, content: {
                 EnterPwdView(viewModel: EnterPwdViewModel(state: .registerSetpOne, modifiedMainSpace: false))
             })

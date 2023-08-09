@@ -9,10 +9,10 @@ import Foundation
 import PhotosUI
 
 struct AlbumConstants {
-    static let menuShare: String = "共享"
-    static let menuSaveToAlbum: String = "保存到手机相册"
-    static let menuCover: String = "设置为封面"
-    static let menuDelete: String = "删除"
+    static let menuShare: String = "Shared".localized()
+    static let menuSaveToAlbum: String = "Save to mobile phone album".localized()
+    static let menuCover: String = "Set to cover".localized()
+    static let menuDelete: String = "Delete".localized()
 }
 
 class AlbumViewModel: ObservableObject {

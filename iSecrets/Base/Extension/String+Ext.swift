@@ -25,4 +25,12 @@ extension String {
             String(format: "%02hhx", $0)
         }.joined()
     }
+    
+    public func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
+        #if DEBUG
+        return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
+        #else
+        return NSLocalizedString(self, tableName: tableName, value: "\(self)", comment: "")
+        #endif
+    }
 }

@@ -19,7 +19,7 @@ struct HomeContentView: View {
                 .environmentObject(coordinator)
                 .tabItem({
                     Image(systemName: "folder.circle.fill")
-                    Text("文件夹")
+                    Text("Folder".localized())
                 })
                 .background(.red)
             
@@ -40,7 +40,7 @@ struct HomeContentView: View {
                 .environmentObject(coordinator)
                 .tabItem({
                     Image(systemName: "person.circle.fill")
-                    Text("我的")
+                    Text("Me".localized())
                 })
                 .tabViewStyle(.page)
         }
