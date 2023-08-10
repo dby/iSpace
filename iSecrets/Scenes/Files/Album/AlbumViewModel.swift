@@ -115,7 +115,7 @@ extension AlbumViewModel {
             
             if let path = FileUtils.getFilePath(folderName, iconName: iconName, ext: fileExt),
                 let image = UIImage(contentsOfFile: path) {
-                UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+                UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
             }
         } else if title == AlbumConstants.menuCover {
             core.secretDB.updateDirCustomizeCover(dirID: dirObj.localID, cover: fileObj.name!)

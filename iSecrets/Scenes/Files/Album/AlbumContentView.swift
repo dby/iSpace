@@ -88,6 +88,10 @@ struct AlbumContentView: View {
                                                     ForEach(viewModel.menuTitles(), id: \.0.self) { pair in
                                                         Button {
                                                             viewModel.contextMenuDidClicked(pair.0, fileObj: dataitem)
+                                                            if (pair.0 == AlbumConstants.menuCover || pair.0 == AlbumConstants.menuSaveToAlbum) {
+                                                                homeCoordinator.refreshDirsIfNeed()
+                                                                homeCoordinator.toast("successfully set".localized())
+                                                            }
                                                         } label: {
                                                             Text(pair.0)
                                                             Image(systemName: pair.1)
