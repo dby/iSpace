@@ -40,7 +40,6 @@ struct MeContentView: View {
     @State private var isIntrusionCapture: Bool = false
     @State private var isShowingAlert: Bool = false
     @State private var oldPwd: String = ""
-    @State private var toastPara: ToastParas = ToastParas()
     
     @StateObject private var meRouter: MeRouter
     @ObservedObject var viewModel: MeViewModel
@@ -105,8 +104,7 @@ struct MeContentView: View {
                                 if core.account.1?.pwd == oldPwd {
                                     meRouter.presentFullScreen(.detail(MeConstants._changePws))
                                 } else {
-                                    self.toastPara.title = "Wrong Password".localized()
-                                    self.toastPara.showing = true
+                                    homeCoordinator.toast("Wrong Password".localized())
                                 }
                                 
                                 oldPwd = ""
@@ -139,9 +137,6 @@ struct MeContentView: View {
                 }
             }
         })
-        .toast(isPresenting: $toastPara.showing) {
-            AlertToast(displayMode: .banner(.slide), type: .regular, title: toastPara.title)
-        }
         .onAppear(perform: {
             self.viewModel.calcDiskUsage()
         })
