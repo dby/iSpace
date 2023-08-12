@@ -43,7 +43,7 @@ class CoreObject: NSObject {
     var mainSpaceAccount: String {
         get {
             if _mainSpaceAccount.isEmpty {
-                _mainSpaceAccount = core.secretDB.getMainSpaceAccount()?.name ?? ""
+                _mainSpaceAccount = core.secretDB.getMainSpaceAccount()?.pwd ?? ""
             }
             
             return _mainSpaceAccount
@@ -56,7 +56,7 @@ class CoreObject: NSObject {
             if _fakeSpaceAccount.isEmpty {
                 var tmps: [String] = []
                 for item in core.secretDB.getFakeSpaceAccount() {
-                    tmps.append(item.name)
+                    tmps.append(item.pwd)
                 }
                 
                 _fakeSpaceAccount = tmps

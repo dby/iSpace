@@ -248,7 +248,7 @@ extension SecretDB {
             
         }
         
-        return existObjs.count > 1
+        return existObjs.count > 0
     }
     
     func chtPwd(_ pwd: String, oldPwd: String) {

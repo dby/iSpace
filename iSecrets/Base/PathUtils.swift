@@ -23,6 +23,7 @@ class PathUtils: NSObject {
 /// - Returns: path to Documents/com.secret.Secrets/
 @inlinable func basePath() -> String {
     let dir = dirPath(of: .applicationSupportDirectory).appending("/com.secret.Secrets")
+    print("dir:\(dir)")
     generateDirectory(dir)
     return dir
 }
