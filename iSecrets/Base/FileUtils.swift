@@ -153,12 +153,33 @@ class FileUtils: NSObject {
     static func getFolderCover(_ dirObj: SecretDirObject) -> String? {
         guard let folderName = dirObj.name else { return nil }
         
-        let customizeCover = dirObj.customizeCover
-        guard let cover = (customizeCover == nil || customizeCover!.isEmpty) ? dirObj.thumb : customizeCover else  {
-            return nil
+        //STEP1，优选选择自定义的Cover
+        if
+            let customizeCover = dirObj.customizeCover,
+            let coverPath = FileUtils.getFilePath(folderName, iconName: customizeCover, ext: .picThumb),
+            FileUtils.fileExists(atPath: coverPath)
+        {
+            return coverPath
         }
         
-        return FileUtils.getFilePath(folderName, iconName: cover, ext: .picThumb)
+        //STEP2，再次选择存储的Thumb
+        if
+            let thumb = dirObj.thumb,
+            let thumbPath = FileUtils.getFilePath(folderName, iconName: thumb, ext: .picThumb),
+            FileUtils.fileExists(atPath: thumbPath)
+        {
+            return thumbPath
+        }
+        
+        //STEP3，从数据库读取第一个
+        if
+            let firstObjName = core.secretDB.getOneSecretFile(dirObj.localID)?.name,
+            let path = FileUtils.getFilePath(folderName, iconName: firstObjName, ext: .picThumb)
+        {
+            return path
+        }
+        
+        return nil
     }
     
     static func getFilePath(_ folderName: String, iconName: String, ext: FileExtension) -> String? {

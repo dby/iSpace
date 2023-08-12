@@ -444,18 +444,34 @@ extension SecretDB {
     }
     
     func getAllSecretFiles(_ atDirID: Int) -> [SecretFileObject] {
-        do {
-            if let db = self.database {
-                let allObjs: [SecretFileObject] = try db.getObjects(on: SecretFileObject.Properties.all,
-                                                                    fromTable: SecretFileTableName,
-                                                                    where: SecretFileObject.Properties.dirID == atDirID)
-                return allObjs
-            }
-        } catch {
-            
-        }
+        guard let db = self.database else { return [] }
         
+        do {
+            let allObjs: [SecretFileObject] = try db.getObjects(on: SecretFileObject.Properties.all,
+                                                                fromTable: SecretFileTableName,
+                                                                where: SecretFileObject.Properties.dirID == atDirID,
+                                                                orderBy: [SecretFileObject.Properties.createTime])
+            return allObjs
+        } catch {
+            print("\(error.localizedDescription)")
+        }
         return []
+    }
+    
+    func getOneSecretFile(_ atDirID: Int) -> SecretFileObject? {
+        guard let db = self.database else { return nil }
+        
+        do {
+            let oneObj: SecretFileObject? = try db.getObject(on: SecretFileObject.Properties.all,
+                                                             fromTable: SecretFileTableName,
+                                                             where: SecretFileObject.Properties.dirID == atDirID,
+                                                             orderBy: [SecretFileObject.Properties.createTime.order(.descending)],
+                                                             offset: 0)
+            return oneObj
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+        return nil
     }
     
     func deleteSecretFileRecord(localID: Int) {
