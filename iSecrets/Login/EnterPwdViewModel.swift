@@ -63,7 +63,7 @@ class EnterPwdViewModel: ObservableObject {
             if (inputingPwd == pwd) {
                 if core.secretDB.isExistPwd(pwd) {
                     //pwd必须要保证唯一，因为需要弹窗提示
-                    self.prompt = "该密码已经设置过"
+                    self.prompt = "The password has already been set".localized()
                     self.state = .registerFailed
                 } else {
                     if (bModifiedMainSpace) {
@@ -77,7 +77,7 @@ class EnterPwdViewModel: ObservableObject {
                     self.createDefaultDirIfNeed()
                 }
             } else {
-                self.prompt = "两次输入不一致，请重新输入"
+                self.prompt = "The two entries are inconsistent, please re-enter".localized()
                 self.state = .registerFailed
             }
         case .chgPwdStepOne:
@@ -87,7 +87,7 @@ class EnterPwdViewModel: ObservableObject {
             if (inputingPwd == pwd) {
                 if core.secretDB.isExistPwd(pwd) {
                     //pwd必须要保证唯一，因为需要弹窗提示
-                    self.prompt = "该密码已经设置过"
+                    self.prompt = "The password has already been set".localized()
                     self.state = .chgPwdFailed
                 } else {
                     guard let oldPwd = core.account.1?.pwd else { return }
@@ -97,7 +97,7 @@ class EnterPwdViewModel: ObservableObject {
                     self.state = .chgPwdSucceed
                 }
             } else {
-                self.prompt = "两次输入不一致，请重新输入"
+                self.prompt = "The two entries are inconsistent, please re-enter".localized()
                 self.state = .chgPwdFailed
             }
         case .login:
@@ -110,7 +110,7 @@ class EnterPwdViewModel: ObservableObject {
             } else {
                 //登录失败
                 camera.takePhoto()
-                self.prompt = "密码不对，请重新输入"
+                self.prompt = "The password is incorrect, please re-enter".localized()
                 self.state = .loginFailed
             }
             break
