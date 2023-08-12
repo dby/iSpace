@@ -111,15 +111,17 @@ struct FilesContentView: View {
                                     self.pushKey.toggle()
                                 } else {
                                     self.alertParas = AlertParas(showing: true,
-                                                                 title: "Enter password error".localized(),
-                                                                 info: "Enter password error".localized())
+                                                                 title: "Please Enter Password".localized(),
+                                                                 info: "Please Enter Password".localized())
                                 }
                             }.contextMenu {
                                 ForEach(viewModel.menuTitles(item), id: \.0.self) { pair in
                                     Button {
                                         if (pair.0 == FilesConstants.menuRenameDir) {
                                             self.clickedSecretDir = item
-                                            self.alertParas = AlertParas(showing: true, title: "请输入新的文件名", info: "请输入新的文件名")
+                                            self.alertParas = AlertParas(showing: true,
+                                                                         title: "Please enter a new filename".localized(),
+                                                                         info: "Please enter a new filename".localized())
                                         } else {
                                             viewModel.contextMenuDidClicked(pair.0, dirObj: item)
                                         }
