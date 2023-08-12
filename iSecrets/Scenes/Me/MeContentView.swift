@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AlertToast
+import Combine
 
 struct MeConstants {
     /// 抓拍记录
@@ -97,6 +98,13 @@ struct MeContentView: View {
                         .background(Color(uiColor: UIColor.systemBackground))
                         .alert("Please enter the original password".localized(), isPresented: $isShowingAlert) {
                             TextField("Please enter the original password".localized(), text: $oldPwd)
+                                .keyboardType(.numberPad)
+                                .onReceive(Just(oldPwd)) { newValue in
+                                    if newValue.count > 6 {
+                                        self.oldPwd = String(newValue.prefix(6))
+                                        print("OLDPWD: [\(self.oldPwd)]")
+                                    }
+                                }
                             Button("Cancel".localized()) {
                                 
                             }

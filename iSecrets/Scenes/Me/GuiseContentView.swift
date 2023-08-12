@@ -36,9 +36,10 @@ struct GuiseContentView: View {
                     .background(Color.clear)
                     .alert("Please enter the main space password".localized(), isPresented: $isShowingAlert) {
                         TextField("Please enter the main space password".localized(), text: $newPwd)
-                        .onChange(of: newPwd) { newValue in
-                            newPwd = String(newPwd.prefix(6))
-                        }
+                            .keyboardType(.numberPad)
+                            .onChange(of: newPwd) { newValue in
+                                newPwd = String(newPwd.prefix(6))
+                            }
                         Button("Cancel") {
                             
                         }

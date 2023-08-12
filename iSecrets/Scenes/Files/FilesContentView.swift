@@ -142,6 +142,7 @@ struct FilesContentView: View {
                         alertParas = AlertParas(showing: true, title: "New Folder".localized(), info: "Please enter a new filename".localized())
                     }.alert(alertParas.title, isPresented: $alertParas.showing) {
                         TextField(alertParas.info, text: $name)
+                            .keyboardType(.numberPad)
                             .onReceive(Just(name)) { newValue in
                                 let filtered = newValue.filter { $0.isNumber }
                                 if filtered.count > 6 {
