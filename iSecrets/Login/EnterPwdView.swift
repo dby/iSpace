@@ -38,11 +38,17 @@ struct EnterPwdView: View {
             Text("iSpace")
                 .font(.system(size: 50))
                 .bold()
+                .overlayMask(
+                    LinearGradient(colors: [Color(hexFromString: "#5c5151"), Color(hexFromString: "#1f1818")],
+                                   startPoint: .leading,
+                                   endPoint: .trailing)
+                )
             
             Spacer().frame(height: 35)
             
             Text(hint)
-                .foregroundColor(Color.black)
+                .font(Font.system(size: 18))
+                .foregroundColor(Color(uiColor: iColor.primary))
             
             Spacer().frame(height:30)
             
@@ -68,6 +74,7 @@ struct EnterPwdView: View {
                         .frame(height: 80)
                         .overlay(
                             Text("\(item)")
+                                .foregroundColor(Color(uiColor: iColor.primary))
                                 .font(.title)
                         ).onTapGesture {
                             self.inputStep = self.inputStep + 1

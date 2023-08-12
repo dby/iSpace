@@ -57,7 +57,8 @@ struct MeContentView: View {
                 Section {
                     ProgressView(viewModel.diskUsageText, value: viewModel.diskUsage, total: FILESIZE_1G)
                         .font(Font.system(size: 14))
-                        .foregroundColor(Color.gray)
+                        .bold()
+                        .foregroundColor(Color(uiColor: iColor.primary))
                         .progressViewStyle(.linear)
                 } header: {
                     Text("Storage".localized())
@@ -67,6 +68,7 @@ struct MeContentView: View {
                     ForEach(titles[0], id: \.self) { item in
                         HStack {
                             Text(item)
+                                .foregroundColor(Color(uiColor: iColor.primary))
                             Spacer()
                             if (item == MeConstants._deleteOrigFileWhenImport) {
                                 Toggle(isOn: $isDeleteOrigFile) { }
@@ -92,6 +94,7 @@ struct MeContentView: View {
                     ForEach(titles[1], id: \.self) { item in
                         HStack {
                             Text(item)
+                                .foregroundColor(Color(uiColor: iColor.primary))
                                 .frame(height:30)
                             Spacer()
                         }
@@ -134,6 +137,7 @@ struct MeContentView: View {
                     ForEach(titles[2], id: \.self) { item in
                         HStack {
                             Text(item)
+                                .foregroundColor(Color(uiColor: iColor.primary))
                             Spacer()
                         }
                         .onTapGesture {

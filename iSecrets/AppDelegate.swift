@@ -16,6 +16,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         core.startUp()
         setUpKingfisher()
         
+        initNavigationColor()
+        
         return true
     }
     
@@ -30,6 +32,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         JFHeroBrowserGlobalConfig.default.networkImageProvider = HeroLocalImageProvider.shared
+    }
+    
+    private func initNavigationColor() {
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: iColor.primary]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: iColor.primary]
     }
 }
 

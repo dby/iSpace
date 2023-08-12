@@ -41,6 +41,10 @@
 		43B864132A37728400494852 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B864122A37728400494852 /* String+Ext.swift */; };
 		43D2AAF12A3A09E100841737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D2AAF02A3A09E100841737 /* AppDelegate.swift */; };
 		43D2AAF32A3A0B6400841737 /* EnterPwdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D2AAF22A3A0B6400841737 /* EnterPwdView.swift */; };
+		43E364382A87C5A7006B01DE /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E364372A87C5A7006B01DE /* View+Ext.swift */; };
+		43E3643A2A87C62E006B01DE /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E364392A87C62E006B01DE /* Color+Ext.swift */; };
+		43E3643C2A87C929006B01DE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3643B2A87C929006B01DE /* Constant.swift */; };
+		43E3643E2A87CA5E006B01DE /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3643D2A87CA5E006B01DE /* UIColor+Ext.swift */; };
 		43E777D22A5310E8003C1D17 /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E777D12A5310E8003C1D17 /* Data+Ext.swift */; };
 		43E777D72A546E54003C1D17 /* SecretFileObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E777D62A546E54003C1D17 /* SecretFileObject+Ext.swift */; };
 		43E777DA2A586B1C003C1D17 /* MeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E777D92A586B1C003C1D17 /* MeContentView.swift */; };
@@ -87,6 +91,10 @@
 		43B864122A37728400494852 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		43D2AAF02A3A09E100841737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D2AAF22A3A0B6400841737 /* EnterPwdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPwdView.swift; sourceTree = "<group>"; };
+		43E364372A87C5A7006B01DE /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		43E364392A87C62E006B01DE /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		43E3643B2A87C929006B01DE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		43E3643D2A87CA5E006B01DE /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		43E777D12A5310E8003C1D17 /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
 		43E777D62A546E54003C1D17 /* SecretFileObject+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecretFileObject+Ext.swift"; sourceTree = "<group>"; };
 		43E777D92A586B1C003C1D17 /* MeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeContentView.swift; sourceTree = "<group>"; };
@@ -185,8 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				431B95272A7FE68400194591 /* AlertParas.swift */,
-				43B8640D2A376C8900494852 /* Model.swift */,
 				435E16C72A75595F0092AC43 /* ToastParas.swift */,
+				43B8640D2A376C8900494852 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,6 +238,7 @@
 				43B8640F2A3771DA00494852 /* PathUtils.swift */,
 				430A0C722A604F0400AE6518 /* Utils.swift */,
 				43A3BC552A639C0B0054E280 /* Camera.swift */,
+				43E3643B2A87C929006B01DE /* Constant.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -240,6 +249,9 @@
 				43B864122A37728400494852 /* String+Ext.swift */,
 				43E777D12A5310E8003C1D17 /* Data+Ext.swift */,
 				43E777D62A546E54003C1D17 /* SecretFileObject+Ext.swift */,
+				43E364372A87C5A7006B01DE /* View+Ext.swift */,
+				43E364392A87C62E006B01DE /* Color+Ext.swift */,
+				43E3643D2A87CA5E006B01DE /* UIColor+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -392,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E364382A87C5A7006B01DE /* View+Ext.swift in Sources */,
 				43B864132A37728400494852 /* String+Ext.swift in Sources */,
 				430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */,
 				43A3BC702A6829370054E280 /* Router.swift in Sources */,
@@ -401,7 +414,9 @@
 				43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */,
 				43A3BC6B2A66DC460054E280 /* EnterPwdViewModel.swift in Sources */,
 				43B8640E2A376C8900494852 /* Model.swift in Sources */,
+				43E3643E2A87CA5E006B01DE /* UIColor+Ext.swift in Sources */,
 				43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */,
+				43E3643C2A87C929006B01DE /* Constant.swift in Sources */,
 				43D2AAF12A3A09E100841737 /* AppDelegate.swift in Sources */,
 				43E777D72A546E54003C1D17 /* SecretFileObject+Ext.swift in Sources */,
 				43E777DA2A586B1C003C1D17 /* MeContentView.swift in Sources */,
@@ -420,6 +435,7 @@
 				43A3BC722A6829610054E280 /* ViewSpec.swift in Sources */,
 				435E16C62A754F330092AC43 /* AboutUsView.swift in Sources */,
 				435E16C82A75595F0092AC43 /* ToastParas.swift in Sources */,
+				43E3643A2A87C62E006B01DE /* Color+Ext.swift in Sources */,
 				43304AE12A505D560031C434 /* SecretDB.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,
 				430A0C732A604F0400AE6518 /* Utils.swift in Sources */,

@@ -88,12 +88,14 @@ struct FilesContentView: View {
                                     Text(item.name ?? "")
                                         .font(Font.system(size: 12))
                                         .bold()
+                                        .foregroundColor(Color(uiColor: iColor.secondary))
                                         .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
                                         .cornerRadius(5)
                                     Spacer()
                                 }
                                 HStack {
                                     Text("\(item.fileCnt)")
+                                        .foregroundColor(Color(uiColor: iColor.secondary))
                                         .font(Font.system(size: 10))
                                         .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
                                         .cornerRadius(5)
@@ -137,6 +139,8 @@ struct FilesContentView: View {
                 }
             }
             .navigationTitle("Folder".localized())
+            
+            .foregroundColor(Color.red)
             .navigationBarTitleDisplayMode(.large)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {
