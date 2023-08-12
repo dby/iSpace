@@ -179,8 +179,11 @@ struct AlbumContentView: View {
                                                          thumb: lastIconName)
                         }
                         
-                        viewModel.fetchFiles()
-                        homeCoordinator.refreshDirsIfNeed()
+                        //延时刷新UI
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            viewModel.fetchFiles()
+                            homeCoordinator.refreshDirsIfNeed()
+                        }
                     }
                 }
             }
