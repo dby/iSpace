@@ -12,8 +12,9 @@ struct AboutUsView: View {
         NavigationView {
             ScrollView {
                 Text("AboutUSDesc".localized())
-                .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
-                .multilineTextAlignment(.leading)
+                    .foregroundColor(Color(uiColor: iColor.secondary))
+                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
+                    .multilineTextAlignment(.leading)
             }
         }
         .navigationTitle("About Us".localized())

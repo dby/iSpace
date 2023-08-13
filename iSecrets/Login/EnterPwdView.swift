@@ -76,7 +76,7 @@ struct EnterPwdView: View {
                         .frame(height: 80)
                         .overlay(
                             Text("\(item)")
-                                .foregroundColor(Color(uiColor: iColor.primary))
+                                .foregroundColor(Color(uiColor: iColor.secondary))
                                 .font(.title)
                         ).onTapGesture {
                             self.inputStep = self.inputStep + 1
