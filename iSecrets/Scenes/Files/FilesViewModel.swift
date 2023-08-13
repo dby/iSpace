@@ -65,9 +65,12 @@ class FilesViewModel: ObservableObject {
     }
     
     func menuTitles(_ dirObj: SecretDirObject) -> [(String, String)] {
-        var titles: [(String, String)] = [(FilesConstants.menuAdd, "plus")]
+        var titles: [(String, String)] = []
+        if (core.secretDB.getSecretFileCnt(dirObj.localID) != 0) {
+            titles.append((FilesConstants.menuAdd, "plus"))
+            titles.append(dirObj.cipher == "" ? (FilesConstants.menuLock, "lock") : (FilesConstants.menuUnLock, "lock.open"))
+        }
         
-        titles.append(dirObj.cipher == "" ? (FilesConstants.menuLock, "lock") : (FilesConstants.menuUnLock, "lock.open"))
         if (!isFixedDir(dirObj.name)) {
             titles.append((FilesConstants.menuRenameDir, "pencil"))
             titles.append((FilesConstants.menuDeleteDir, "trash"))

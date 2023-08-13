@@ -66,9 +66,9 @@ struct FilesContentView: View {
                                                     print("\(downloaded) / \(total))")
                                                 }
                                                 .frame(height: geo.size.width - 10)
+                                                .cornerRadius(2)
                                                 .aspectRatio(1, contentMode: .fit)
                                                 .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
-                                                .cornerRadius(5)
                                                 .blur(radius: item.cipher == "" ? 0 : 3)
                                         }
                                         VStack {
@@ -83,11 +83,13 @@ struct FilesContentView: View {
                                     }
                                 } else {
                                     GeometryReader { geo in
-                                        Text("")
-                                            .frame(width: geo.size.width - 10, height: geo.size.width - 10)
-                                            .background(Color(uiColor: iColor.tertiary))
-                                            .cornerRadius(5)
-                                            .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+                                        ZStack {
+                                            Image("album")
+                                        }
+                                        .frame(width: geo.size.width - 10, height: geo.size.width - 10)
+                                        .background(Color(uiColor: iColor.last))
+                                        .cornerRadius(2)
+                                        .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                                     }
                                 }
                                 

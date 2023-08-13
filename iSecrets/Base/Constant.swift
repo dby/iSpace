@@ -32,4 +32,12 @@ public struct iColor {
             return UIColor(hex: "#FFFFFF40")!
         }
     }
+    
+    public static var last: UIColor = UIColor { trait in
+        if trait.userInterfaceStyle == .light {
+            return UIColor(hex: "#00000010")!
+        } else {
+            return UIColor(hex: "#FFFFFF10")!
+        }
+    }
 }
