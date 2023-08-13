@@ -56,10 +56,12 @@ struct EnterPwdView: View {
                 ForEach(0 ..< 6) { index in
                     if index >= inputStep {
                         Image("pwd_uninput")
+                            .foregroundColor(Color(uiColor: iColor.secondary))
                             .offset(x: offset.width, y: 0)
                             .animation(.easeIn, value: 0.5)
                     } else {
                         Image("pwd_inputed")
+                            .foregroundColor(Color(uiColor: iColor.secondary))
                             .offset(x: offset.width, y: 0)
                             .animation(.easeIn, value: 0.5)
                     }
@@ -99,7 +101,6 @@ struct EnterPwdView: View {
                                 pwdStr.append("8")
                             case "9":
                                 pwdStr.append("9")
-                                break
                             case "DEL":
                                 if pwdStr.count >= 1 {
                                     pwdStr.removeLast()
@@ -108,7 +109,6 @@ struct EnterPwdView: View {
                                     pwdStr = ""
                                     self.inputStep = 0
                                 }
-                                break
                             case "OK":
                                 self.inputStep = self.inputStep - 1
                                 print("pwd: \(pwdStr)")

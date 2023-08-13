@@ -133,6 +133,7 @@ struct AlbumContentView: View {
                 } else {
                     Spacer()
                     Text("Please select image by tapping on image.")
+                        .foregroundColor(Color(uiColor: iColor.primary))
                     Spacer()
                 }
             }

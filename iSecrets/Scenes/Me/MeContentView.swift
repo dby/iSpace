@@ -98,7 +98,7 @@ struct MeContentView: View {
                                 .frame(height:30)
                             Spacer()
                         }
-                        .background(Color(uiColor: UIColor.systemBackground))
+                        .background(Color(uiColor: UIColor.clear))
                         .alert("Please enter the original password".localized(), isPresented: $isShowingAlert) {
                             TextField("Please enter the original password".localized(), text: $oldPwd)
                                 .keyboardType(.numberPad)

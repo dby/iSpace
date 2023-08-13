@@ -85,7 +85,7 @@ struct FilesContentView: View {
                                     GeometryReader { geo in
                                         Text("")
                                             .frame(width: geo.size.width - 10, height: geo.size.width - 10)
-                                            .background(Color(uiColor: UIColor.lightGray))
+                                            .background(Color(uiColor: iColor.tertiary))
                                             .cornerRadius(5)
                                             .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                                     }
