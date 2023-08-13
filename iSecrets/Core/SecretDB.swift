@@ -45,6 +45,8 @@ final class SecretAccountObject: TableCodable {
 
 final class SecretDirObject: TableCodable {
     var localID: Int = 0
+    /// 对应账户ID
+    var accountID: Int = 0
     /// 是否限制存储文件类型
     var limitCondition: String? = nil
     /// 文件夹名
@@ -69,6 +71,7 @@ final class SecretDirObject: TableCodable {
     enum CodingKeys: String, CodingTableKey {
         typealias Root = SecretDirObject
         case localID
+        case accountID
         case limitCondition
         case name
         case pwd
@@ -281,20 +284,29 @@ extension SecretDB {
     /// 添加文件夹📂记录
     /// - Parameters:
     ///   - limitionCondition: 文件夹时，可设置上传文件的格式
-    ///   - name: 文件名称
+    ///   - name: 文件夹名称
     ///   - workingDir: 工作目录
     ///   - fileFormat: 文件格式
     ///   - cipher: 可设置文件密码
     /// - Returns: True/False
-    func addOrUpdateSecretDirRecord(limitionCondition: LimitCondition, name: String, workingDir: String, fileFormat: String, cipher: String) -> Bool {
+    func addOrUpdateSecretDirRecord(accountID: Int,
+                                    limitionCondition: LimitCondition,
+                                    name: String,
+                                    workingDir: String,
+                                    fileFormat: String,
+                                    cipher: String) -> Bool {
         var flag = false
         do {
             try self.database?.run(transaction: { handle in
                 let existObjs: [SecretDirObject] = try handle.getObjects(on: [SecretDirObject.Properties.workingDir],
                                                                          fromTable: SecretDirTableName,
-                                                                         where: SecretDirObject.Properties.workingDir == workingDir && SecretDirObject.Properties.name == name)
+                                                                         where:
+                                                                            SecretDirObject.Properties.workingDir == workingDir &&
+                                                                            SecretDirObject.Properties.name == name &&
+                                                                            SecretDirObject.Properties.accountID == accountID)
                 if existObjs.isEmpty {
                     let obj = SecretDirObject()
+                    obj.accountID = accountID
                     obj.limitCondition = limitionCondition.rawValue
                     obj.name = name
                     obj.pwd = name
@@ -389,13 +401,13 @@ extension SecretDB {
 
     }
     
-    func getAllSecretDirs() -> [SecretDirObject] {
+    func getAllSecretDirs(_ accountid: Int) -> [SecretDirObject] {
+        guard let db = self.database else { return [] }
         do {
-            if let db = self.database {
-                let allObjects: [SecretDirObject] = try db.getObjects(on: SecretDirObject.Properties.all,
-                                                                      fromTable: SecretDirTableName)
-                return allObjects
-            }
+            let allObjects: [SecretDirObject] = try db.getObjects(on: SecretDirObject.Properties.all,
+                                                                  fromTable: SecretDirTableName,
+                                                                  where: SecretDirObject.Properties.accountID == accountid)
+            return allObjects
         } catch {
             
         }

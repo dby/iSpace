@@ -101,7 +101,9 @@ class FilesViewModel: ObservableObject {
     }
     
     func createNewDirWithName(_ name: String) {
-        if (core.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .all,
+        guard let accoutid = core.account.1?.localID else { return }
+        if (core.secretDB.addOrUpdateSecretDirRecord(accountID: accoutid,
+                                                     limitionCondition: .all,
                                                      name: name,
                                                      workingDir: name.md5,
                                                      fileFormat: "",

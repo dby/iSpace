@@ -121,10 +121,35 @@ class EnterPwdViewModel: ObservableObject {
     }
     
     func createDefaultDirIfNeed() {
+        // Create default dirs
         if let rootPath = PathUtils.rootDir() {
             _ = FileUtils.createFolder("\(rootPath)/Videos")
             _ = FileUtils.createFolder("\(rootPath)/Photos")
             _ = FileUtils.createFolder("\(rootPath)/Files")
+        }
+        
+        // Update default dir record.
+        guard let accountID = core.account.1?.localID else { return }
+        if core.secretDB.getAllSecretDirs(accountID).count == 0 {
+            //初次登录时，没有文件夹，此时应该添加兜底的目录
+            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountID,
+                                                         limitionCondition: .video,
+                                                         name: "Videos",
+                                                         workingDir: "Videos".md5,
+                                                         fileFormat: "video",
+                                                         cipher: "")
+            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountID,
+                                                         limitionCondition: .photo,
+                                                         name: "Photos",
+                                                         workingDir: "Photos".md5,
+                                                         fileFormat: "photo",
+                                                         cipher: "")
+            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountID,
+                                                         limitionCondition: .file,
+                                                         name: "Files",
+                                                         workingDir: "Files".md5,
+                                                         fileFormat: "file",
+                                                         cipher: "")
         }
     }
 }

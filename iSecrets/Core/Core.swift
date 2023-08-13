@@ -83,25 +83,6 @@ extension CoreObject {
         } else {
             self.account = (.notLogin, nil)
         }
-        
-        if self.secretDB.getAllSecretDirs().count == 0 {
-            //初次登录时，没有文件夹，此时应该添加兜底的目录
-            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .video,
-                                                         name: "Videos",
-                                                         workingDir: "Videos".md5,
-                                                         fileFormat: "video",
-                                                         cipher: "")
-            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .photo,
-                                                         name: "Photos",
-                                                         workingDir: "Photos".md5,
-                                                         fileFormat: "photo",
-                                                         cipher: "")
-            _ = self.secretDB.addOrUpdateSecretDirRecord(limitionCondition: .file,
-                                                         name: "Files",
-                                                         workingDir: "Files".md5,
-                                                         fileFormat: "file",
-                                                         cipher: "")
-        }
     }
     
     func exitMannual() {
@@ -113,7 +94,8 @@ extension CoreObject {
 extension CoreObject {
     /// 获得当前所有的文件夹
     func getAllSecretDirs() -> [SecretDirObject] {
-        return self.secretDB.getAllSecretDirs()
+        guard let accountID = self.account.1?.localID else { return [] }
+        return self.secretDB.getAllSecretDirs(accountID)
     }
 }
 
