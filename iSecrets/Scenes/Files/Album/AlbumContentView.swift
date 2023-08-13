@@ -139,7 +139,7 @@ struct AlbumContentView: View {
             .toolbar {
                 PhotosPicker(selection: $selectedImage, matching: .any(of: viewModel.appropritePickerFilter()), photoLibrary: .shared()) {
                     Image(systemName: "plus")
-                        .tint(.mint)
+//                        .tint(.mint)
                 }.onChange(of: selectedImage) { newValue in
                     Task {
                         selectedImage = []

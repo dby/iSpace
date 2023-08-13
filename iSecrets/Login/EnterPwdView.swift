@@ -39,7 +39,7 @@ struct EnterPwdView: View {
                 .font(.system(size: 50))
                 .bold()
                 .overlayMask(
-                    LinearGradient(colors: [Color(hexFromString: "#5c5151"), Color(hexFromString: "#1f1818")],
+                    LinearGradient(colors: [Color(uiColor: iColor.tertiary), Color(uiColor: iColor.primary)],
                                    startPoint: .leading,
                                    endPoint: .trailing)
                 )

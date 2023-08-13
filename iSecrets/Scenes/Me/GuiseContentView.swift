@@ -41,7 +41,7 @@ struct GuiseContentView: View {
                                 newPwd = String(newPwd.prefix(6))
                             }
                         Button("Cancel") {
-                            
+                            isOn = false
                         }
                         Button("OK") {
                             if newPwd == core.secretDB.getMainSpaceAccount()?.pwd {

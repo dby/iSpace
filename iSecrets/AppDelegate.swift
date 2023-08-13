@@ -26,7 +26,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let url = NSURL(fileURLWithPath: imageCacheDirectory) as URL
         if let imageCache = try? ImageCache(name: "iSpace", cacheDirectoryURL: url) {
             imageCache.diskStorage.config.sizeLimit = 1_073_741_824  // 1GB
-            imageCache.diskStorage.config.expiration = .days(30)  // 缓存30天
+            imageCache.diskStorage.config.expiration = .days(10)  // 缓存10天
             KingfisherManager.shared.defaultOptions = [ .targetCache(imageCache) ]
             imageCache.cleanExpiredDiskCache()
         }
