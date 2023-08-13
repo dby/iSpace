@@ -20,6 +20,7 @@ struct GuiseContentView: View {
             Spacer()
             
             Text("Enter the camouflage password to enter the camouflage space, and others cannot view the privacy space of the main space".localized())
+                .foregroundColor(Color(uiColor: iColor.primary))
                 .font(Font.system(size: 18))
                 .lineSpacing(10)
                 .frame(height:100)
@@ -29,6 +30,7 @@ struct GuiseContentView: View {
             List {
                 HStack {
                     Text("Open the camouflage space immediately".localized())
+                        .foregroundColor(Color(uiColor: iColor.secondary))
                     Spacer()
                 
                     Toggle(isOn: $isOn) {}
@@ -36,6 +38,7 @@ struct GuiseContentView: View {
                     .background(Color.clear)
                     .alert("Please enter the main space password".localized(), isPresented: $isShowingAlert) {
                         TextField("Please enter the main space password".localized(), text: $newPwd)
+                            .foregroundColor(Color(uiColor: iColor.secondary))
                             .keyboardType(.numberPad)
                             .onChange(of: newPwd) { newValue in
                                 newPwd = String(newPwd.prefix(6))

@@ -66,15 +66,18 @@ class EnterPwdViewModel: ObservableObject {
                     self.prompt = "The password has already been set".localized()
                     self.state = .registerFailed
                 } else {
+                    var accountid = -1
                     if (bModifiedMainSpace) {
                         core.secretDB.registerWithUsrName(pwd, level: .mainSpace)
                         core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
+                        accountid = core.account.1?.localID ?? -1
                     } else {
                         core.secretDB.registerWithUsrName(pwd, level: .fakeSpace)
                         Settings.isOpenFakeSpace = true
+                        accountid = core.secretDB.getFakeSpaceAccountWithPwd(pwd)?.localID ?? -1
                     }
                     self.state = .registerSucceed
-                    self.createDefaultDirIfNeed()
+                    self.createDefaultDirIfNeed(accountid)
                 }
             } else {
                 self.prompt = "The two entries are inconsistent, please re-enter".localized()
@@ -120,7 +123,7 @@ class EnterPwdViewModel: ObservableObject {
         }
     }
     
-    func createDefaultDirIfNeed() {
+    func createDefaultDirIfNeed(_ accountid: Int) {
         // Create default dirs
         if let rootPath = PathUtils.rootDir() {
             _ = FileUtils.createFolder("\(rootPath)/Videos")
@@ -128,23 +131,24 @@ class EnterPwdViewModel: ObservableObject {
             _ = FileUtils.createFolder("\(rootPath)/Files")
         }
         
+        if accountid == -1 { return }
+        
         // Update default dir record.
-        guard let accountID = core.account.1?.localID else { return }
-        if core.secretDB.getAllSecretDirs(accountID).count == 0 {
+        if core.secretDB.getAllSecretDirs(accountid).count == 0 {
             //初次登录时，没有文件夹，此时应该添加兜底的目录
-            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountID,
+            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .video,
                                                          name: "Videos",
                                                          workingDir: "Videos".md5,
                                                          fileFormat: "video",
                                                          cipher: "")
-            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountID,
+            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .photo,
                                                          name: "Photos",
                                                          workingDir: "Photos".md5,
                                                          fileFormat: "photo",
                                                          cipher: "")
-            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountID,
+            _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .file,
                                                          name: "Files",
                                                          workingDir: "Files".md5,
