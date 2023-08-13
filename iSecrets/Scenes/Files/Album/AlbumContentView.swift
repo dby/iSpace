@@ -21,25 +21,26 @@ struct AlbumContentView: View {
     // MARK: Stored Properties
     var secretDirObj: SecretDirObject
     var columns = [
-        GridItem(.flexible(), spacing: 2),
-        GridItem(.flexible(), spacing: 2),
-        GridItem(.flexible(), spacing: 2)
-//        GridItem(.flexible(), spacing: 2),
-//        GridItem(.flexible(), spacing: 2),
-//        GridItem(.flexible(), spacing: 2)
+        GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)
+    ]
+    var sixColumns = [
+        GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2),
+        GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)
     ]
     
-    @ObservedObject var viewModel: AlbumViewModel
     @State private var selectedImage: [PhotosPickerItem] = []
-    @EnvironmentObject var homeCoordinator: HomeCoordinator
     
+    @ObservedObject var viewModel: AlbumViewModel
+    @EnvironmentObject var homeCoordinator: HomeCoordinator
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
     // MARK: Views
     var body: some View {
         NavigationStack {
             VStack {
                 if viewModel.datas.count > 0 {
                     ScrollView(showsIndicators: false) {
-                        LazyVGrid(columns: columns, spacing: 2) {
+                        LazyVGrid(columns: (horizontalSizeClass == .compact ? columns : sixColumns), spacing: 2) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
                                 if let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
                                     ZStack {
@@ -78,7 +79,7 @@ struct AlbumContentView: View {
                                                         } else if item.mediaType == PHAssetMediaType.image.rawValue {
                                                             if let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
                                                                let fullThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
-                                                                list.append(HeroBrowserNetworkImageViewModule(thumbailImgUrl: fullPicPath, originImgUrl: fullPicPath))
+                                                                list.append(HeroBrowserNetworkImageViewModule(thumbailImgUrl: fullThumbPath, originImgUrl: fullPicPath))
                                                             }
                                                         }
                                                     }

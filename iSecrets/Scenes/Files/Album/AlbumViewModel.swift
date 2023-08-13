@@ -53,8 +53,10 @@ extension AlbumViewModel {
         /// Write Image Data
         _ = FileUtils.writeDataToPath(fullPicPath, data: data)
         /// Write Image Thumb Data
-        if let thumbData = genThumbnailAspectFill(for: data)  {
-            _ = FileUtils.writeDataToPath(fullPicThumbPath, data: thumbData)
+        getThumbnailImage(for: asset) { img in
+            if let imgPngData = img?.pngData() {
+                _ = FileUtils.writeDataToPath(fullPicThumbPath, data: imgPngData)
+            }
         }
         /// to DB
         core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
@@ -168,15 +170,18 @@ extension AlbumViewModel {
         let options = PHImageRequestOptions()
         options.isSynchronous = false
         options.deliveryMode = .fastFormat
-        options.resizeMode = .exact
+        options.resizeMode = .fast
         options.normalizedCropRect = CGRect(x: 0, y: 0, width: 1, height: 1)
-        options.isNetworkAccessAllowed = true
+        options.isNetworkAccessAllowed = false
         
         let imageManager = PHImageManager.default()
         let width = CGFloat(asset.pixelWidth)
         let height = CGFloat(asset.pixelHeight)
-                
-        imageManager.requestImage(for: asset, targetSize: CGSize(width: width, height: height), contentMode: .aspectFill, options: options) { (image, info) in
+        
+        imageManager.requestImage(for: asset,
+                                  targetSize: CGSize(width: width, height: height),
+                                  contentMode: .aspectFit,
+                                  options: options) { (image, info) in
             completion(image)
         }
     }

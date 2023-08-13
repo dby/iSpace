@@ -17,6 +17,12 @@ struct FilesContentView: View {
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0),
     ]
+    let fourGridLayout = [
+        GridItem(.flexible(), spacing: 0),
+        GridItem(.flexible(), spacing: 0),
+        GridItem(.flexible(), spacing: 0),
+        GridItem(.flexible(), spacing: 0)
+    ]
     
     let headerWid = UIScreen.main.bounds.size.width - 40
 
@@ -32,6 +38,7 @@ struct FilesContentView: View {
     
     @ObservedObject var viewModel: FilesViewModel
     @EnvironmentObject var homeCoordinator: HomeCoordinator
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     // MARK: Views
     var body: some View {
@@ -39,7 +46,7 @@ struct FilesContentView: View {
             ScrollView {
                 VStack {
                     Spacer()
-                    LazyVGrid(columns: twoGridLayout, spacing: 10) {
+                    LazyVGrid(columns: horizontalSizeClass == .compact ? twoGridLayout : fourGridLayout, spacing: 10) {
                         ForEach(viewModel.dirs, id: \.name.self) { item in
                             VStack(spacing: 0) {
                                 if let fullPicThumbPath = FileUtils.getFolderCover(item),
@@ -104,7 +111,8 @@ struct FilesContentView: View {
                                 
                                 Spacer()
                             }
-                            .frame(width: headerWid/2, height: headerWid*0.5 + 40)
+                            .frame(width: horizontalSizeClass == .compact ? headerWid/2 : headerWid/4,
+                                   height: horizontalSizeClass == .compact ? headerWid/2 + 40 : headerWid/4 + 40)
                             .onTapGesture {
                                 self.clickedSecretDir = item
                                 self.viewModel.detailViewModel = item.viewmodel
