@@ -152,6 +152,8 @@ struct MeContentView: View {
                     Text("Other Settings".localized())
                 }
             }
+            .navigationTitle("Me".localized())
+            .navigationBarTitleDisplayMode(.inline)
         })
         .onAppear(perform: {
             self.viewModel.calcDiskUsage()
