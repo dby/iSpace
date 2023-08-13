@@ -141,7 +141,11 @@ struct MeContentView: View {
                             Spacer()
                         }
                         .onTapGesture {
-                            meRouter.presentDetail(description: item)
+                            if item == MeConstants._shareToFriends {
+                                viewModel.shareAppToFriends()
+                            } else {
+                                meRouter.presentDetail(description: item)
+                            }
                         }
                     }
                 } header: {
@@ -155,8 +159,8 @@ struct MeContentView: View {
     }
 }
 
-struct MeContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MeContentView(router: MeRouter(isPresented: .constant(.main)), viewModel: MeViewModel())
-    }
-}
+//struct MeContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MeContentView(router: MeRouter(isPresented: .constant(.main)), viewModel: MeViewModel())
+//    }
+//}

@@ -27,6 +27,16 @@ extension MeViewModel {
         }
     }
     
+    func shareAppToFriends() {
+        let appURL = URL(string: "https://www.example.com/app") // 替换为您的应用程序的App Store链接
+        let activityViewController = UIActivityViewController(activityItems: [appURL!],
+                                                              applicationActivities: nil)
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            window.rootViewController?.present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
     private func goodFormatSizeStr(_ usage: Double) -> String {
         if usage >= FILESIZE_1G {
             // 大于1G
