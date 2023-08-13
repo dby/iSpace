@@ -15,9 +15,9 @@ private let SecretAccountTableName = "SecretAccountTable"
 
 final class SecretAccountObject: TableCodable {
     var localID: Int = 0
-    /// 账户名称
+    /// 账户名称，一单设置，则终将不会发生变化，必须保持唯一
     var name: String = ""
-    /// 账号密码 equalsTo 账户名称
+    /// 账号密码 equalsTo 账户名称，必须保持唯一
     var pwd: String = ""
     /// 账户级别
     var level: Int = 0
@@ -51,8 +51,6 @@ final class SecretDirObject: TableCodable {
     var limitCondition: String? = nil
     /// 文件夹名
     var name: String? = nil
-    /// 密码，初次创建时 equalsTo 文件名
-    var pwd: String? = nil
     /// 工作路径（相对路径）
     var workingDir: String? = nil
     /// 文件格式，pdf、word、or文件夹
@@ -74,7 +72,6 @@ final class SecretDirObject: TableCodable {
         case accountID
         case limitCondition
         case name
-        case pwd
         case workingDir
         case fileFormat
         case cipher
@@ -201,13 +198,13 @@ extension SecretDB {
         return nil
     }
 
-    func registerWithUsrName(_ usrName: String, level: AccountLevel) {
-        guard !usrName.isEmpty else { return }
+    func registerWithPwd(_ pwd: String, level: AccountLevel) {
+        guard !pwd.isEmpty else { return }
         do {
             try self.database?.run(transaction: { handle in
                 let existObjs: [SecretAccountObject] = try handle.getObjects(on: SecretAccountObject.Properties.all,
                                                                              fromTable: SecretAccountTableName,
-                                                                             where: SecretAccountObject.Properties.name == usrName)
+                                                                             where: SecretAccountObject.Properties.pwd == pwd)
                 if (existObjs.count > 0) {
                     assert(true)
                     // name必须是唯一的
@@ -226,8 +223,8 @@ extension SecretDB {
                 }
                 
                 let obj = SecretAccountObject()
-                obj.name = usrName
-                obj.pwd = usrName
+                obj.name = self.randomGenNameWithPwd(pwd)
+                obj.pwd = pwd
                 obj.level = level.rawValue
                 obj.createTime = Date.now.timeIntervalSince1970
                 obj.updateTime = Date.now.timeIntervalSince1970
@@ -269,6 +266,11 @@ extension SecretDB {
             print("Error[\(error.localizedDescription)]")
         }
     }
+    
+    private func randomGenNameWithPwd(_ pwd: String) -> String {
+        let str = String(format: "\(pwd)_%f", Date.now.timeIntervalSince1970)
+        return str.md5
+    }
 }
 
 /// SecretDirObject
@@ -309,7 +311,6 @@ extension SecretDB {
                     obj.accountID = accountID
                     obj.limitCondition = limitionCondition.rawValue
                     obj.name = name
-                    obj.pwd = name
                     obj.workingDir = workingDir
                     obj.fileFormat = fileFormat
                     obj.cipher = cipher

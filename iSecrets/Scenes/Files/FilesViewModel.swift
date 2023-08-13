@@ -108,8 +108,8 @@ class FilesViewModel: ObservableObject {
                                                      workingDir: name.md5,
                                                      fileFormat: "",
                                                      cipher: "")) {
-            if let rootDir = PathUtils.rootDir() {
-                _ = FileUtils.createFolder("\(rootDir)/\(name)")
+            if let folderFullPath = FileUtils.getDirPath(name) {
+                _ = FileUtils.createFolder(folderFullPath)
             }
         }
     }

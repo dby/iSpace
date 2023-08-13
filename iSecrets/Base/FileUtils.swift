@@ -182,9 +182,17 @@ class FileUtils: NSObject {
         return nil
     }
     
+    static func getDirPath(_ folderName: String) -> String? {
+        if let rootDir = PathUtils.rootDir() {
+            return "\(rootDir)/\(folderName.md5)"
+        }
+        
+        return nil
+    }
+    
     static func getFilePath(_ folderName: String, iconName: String, ext: FileExtension) -> String? {
         if let rootDir = PathUtils.rootDir() {
-            return "\(rootDir)/\(folderName)/\(iconName).\(ext)"
+            return "\(rootDir)/\(folderName.md5)/\(iconName).\(ext)"
         }
         
         return nil

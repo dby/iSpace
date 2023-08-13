@@ -198,7 +198,7 @@ struct FilesContentView: View {
             .navigationDestination(isPresented: $pushKey, destination: {
                 albumView(viewModel.detailViewModel)
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle(self.clickedSecretDir?.pwd ?? "")
+                    .navigationTitle(self.clickedSecretDir?.name ?? "")
             })
         }
     }

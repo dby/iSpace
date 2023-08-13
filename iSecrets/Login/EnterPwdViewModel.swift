@@ -68,11 +68,11 @@ class EnterPwdViewModel: ObservableObject {
                 } else {
                     var accountid = -1
                     if (bModifiedMainSpace) {
-                        core.secretDB.registerWithUsrName(pwd, level: .mainSpace)
+                        core.secretDB.registerWithPwd(pwd, level: .mainSpace)
                         core.account = (.mainSpace, core.secretDB.getMainSpaceAccount())
                         accountid = core.account.1?.localID ?? -1
                     } else {
-                        core.secretDB.registerWithUsrName(pwd, level: .fakeSpace)
+                        core.secretDB.registerWithPwd(pwd, level: .fakeSpace)
                         Settings.isOpenFakeSpace = true
                         accountid = core.secretDB.getFakeSpaceAccountWithPwd(pwd)?.localID ?? -1
                     }
@@ -125,10 +125,14 @@ class EnterPwdViewModel: ObservableObject {
     
     func createDefaultDirIfNeed(_ accountid: Int) {
         // Create default dirs
-        if let rootPath = PathUtils.rootDir() {
-            _ = FileUtils.createFolder("\(rootPath)/Videos")
-            _ = FileUtils.createFolder("\(rootPath)/Photos")
-            _ = FileUtils.createFolder("\(rootPath)/Files")
+        if let path = FileUtils.getDirPath("Videos") {
+            _ = FileUtils.createFolder(path)
+        }
+        if let path = FileUtils.getDirPath("Photos") {
+            _ = FileUtils.createFolder(path)
+        }
+        if let path = FileUtils.getDirPath("Files") {
+            _ = FileUtils.createFolder(path)
         }
         
         if accountid == -1 { return }
