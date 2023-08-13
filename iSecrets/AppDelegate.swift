@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import JFHeroBrowser
+import Photos
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -17,6 +18,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         setUpKingfisher()
         
         initNavigationColor()
+        requestPermissions()
         
         return true
     }
@@ -38,6 +40,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: iColor.primary]
         navBarAppearance.titleTextAttributes = [.foregroundColor: iColor.primary]
+    }
+    
+    private func requestPermissions() {
+        PHPhotoLibrary.requestAuthorization { status in
+            print("status[\(status)]")
+        }
     }
 }
 

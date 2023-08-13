@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.string.strings
+  iSecrets
+
+  Created by dby on 2023/8/6.
+  
+*/
+
+"CFBundleDisplayName"="iSpace";
+"NSPhotoLibraryUsageDescription"="Access to your photo library is required to save and share photos from the app.";
+"NSCameraUsageDescription"="Access to your camera is required to capture photos and videos within the app.";

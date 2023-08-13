@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.string.strings
+  iSecrets
+
+  Created by dby on 2023/8/6.
+  
+*/
+
+"CFBundleDisplayName" = "iSpace";
+"NSPhotoLibraryUsageDescription"="需要访问您的照片库才能保存和共享应用程序中的照片";
+"NSCameraUsageDescription"="需要访问您的相机才能在应用程序中捕获照片和视频";

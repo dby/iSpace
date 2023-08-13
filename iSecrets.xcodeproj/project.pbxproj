@@ -11,7 +11,7 @@
 		430A0C6E2A5AA7E800AE6518 /* FilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C6D2A5AA7E800AE6518 /* FilesViewModel.swift */; };
 		430A0C712A5AFD5600AE6518 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */; };
 		430A0C732A604F0400AE6518 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430A0C722A604F0400AE6518 /* Utils.swift */; };
-		431B95212A7F73A100194591 /* InfoPlist.string.strings in Resources */ = {isa = PBXBuildFile; fileRef = 431B95232A7F73A100194591 /* InfoPlist.string.strings */; };
+		431B95212A7F73A100194591 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 431B95232A7F73A100194591 /* InfoPlist.strings */; };
 		431B95262A7F83A200194591 /* GuiseContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431B95252A7F83A200194591 /* GuiseContentView.swift */; };
 		431B95282A7FE68400194591 /* AlertParas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431B95272A7FE68400194591 /* AlertParas.swift */; };
 		43304ACF2A4DD6580031C434 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43304ACE2A4DD6580031C434 /* FileUtils.swift */; };
@@ -57,8 +57,8 @@
 		430A0C6D2A5AA7E800AE6518 /* FilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewModel.swift; sourceTree = "<group>"; };
 		430A0C702A5AFD5600AE6518 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 		430A0C722A604F0400AE6518 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		431B95222A7F73A100194591 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.string.strings; sourceTree = "<group>"; };
-		431B95242A7F73FF00194591 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.string.strings"; sourceTree = "<group>"; };
+		431B95222A7F73A100194591 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		431B95242A7F73FF00194591 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		431B95252A7F83A200194591 /* GuiseContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuiseContentView.swift; sourceTree = "<group>"; };
 		431B95272A7FE68400194591 /* AlertParas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertParas.swift; sourceTree = "<group>"; };
 		43304ACE2A4DD6580031C434 /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 				4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */,
 				43D2AAF02A3A09E100841737 /* AppDelegate.swift */,
 				435D97F42A83D85E00A13B20 /* Localizable.strings */,
-				431B95232A7F73A100194591 /* InfoPlist.string.strings */,
+				431B95232A7F73A100194591 /* InfoPlist.strings */,
 				433420302A35C7B000C4CA84 /* Assets.xcassets */,
 				433420322A35C7B000C4CA84 /* Preview Content */,
 			);
@@ -350,7 +350,7 @@
 			files = (
 				433420342A35C7B000C4CA84 /* Preview Assets.xcassets in Resources */,
 				435D97F22A83D85E00A13B20 /* Localizable.strings in Resources */,
-				431B95212A7F73A100194591 /* InfoPlist.string.strings in Resources */,
+				431B95212A7F73A100194591 /* InfoPlist.strings in Resources */,
 				433420312A35C7B000C4CA84 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,13 +447,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		431B95232A7F73A100194591 /* InfoPlist.string.strings */ = {
+		431B95232A7F73A100194591 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				431B95222A7F73A100194591 /* en */,
 				431B95242A7F73FF00194591 /* zh-Hans */,
 			);
-			name = InfoPlist.string.strings;
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		435D97F42A83D85E00A13B20 /* Localizable.strings */ = {
