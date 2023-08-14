@@ -57,9 +57,13 @@ extension HeroLocalImageProvider: NetworkImageProvider {
     func downloadImage(with imgUrl: String, complete: Complete<UIImage>?) {
         DispatchQueue.global().async {
             if let img = UIImage(contentsOfFile: imgUrl) {
-                complete?(.success(img))
+                DispatchQueue.main.async {
+                    complete?(.success(img))
+                }
             } else {
-                complete?(.failed(nil))
+                DispatchQueue.main.async {
+                    complete?(.failed(nil))
+                }
             }
         }
     }
