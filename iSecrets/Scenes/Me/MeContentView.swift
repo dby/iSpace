@@ -28,9 +28,9 @@ struct MeConstants {
 
 struct MeContentView: View {
     private var titles: [[String]] = [
-        [MeConstants._deleteOrigFileWhenImport, MeConstants._enableCapture],
-        [MeConstants._intrusionCapture, MeConstants._fakeSpace, MeConstants._changePws],
-        [MeConstants._shareToFriends, MeConstants._aboutUS, MeConstants._fiveStarPraise, MeConstants._feedback]
+        [MeConstants._deleteOrigFileWhenImport/*, MeConstants._enableCapture*/],
+        [/*MeConstants._intrusionCapture,*/ MeConstants._fakeSpace, MeConstants._changePws],
+        [/*MeConstants._shareToFriends,*/ MeConstants._aboutUS/*, MeConstants._fiveStarPraise, MeConstants._feedback*/]
     ]
     
     @State private var isDeleteOrigFile: Bool = Settings.isDeleteOrigFile {

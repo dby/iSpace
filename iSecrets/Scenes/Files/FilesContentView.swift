@@ -149,8 +149,6 @@ struct FilesContentView: View {
                 }
             }
             .navigationTitle("Folder".localized())
-            
-            .foregroundColor(Color.red)
             .navigationBarTitleDisplayMode(.large)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .secondaryAction) {
