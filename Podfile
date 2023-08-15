@@ -7,4 +7,5 @@ target 'iSecrets' do
   pod 'WCDB.swift'
   pod 'Kingfisher', '~> 7.0'
   pod 'AlertToast'
+  pod 'FirebaseAnalytics'
 end

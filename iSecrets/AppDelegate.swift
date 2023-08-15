@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 import JFHeroBrowser
 import Photos
+import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -19,6 +20,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         initNavigationColor()
         requestPermissions()
+        
+        FirebaseApp.configure()
         
         return true
     }
