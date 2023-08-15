@@ -10,6 +10,7 @@ import Kingfisher
 import JFHeroBrowser
 import Photos
 import FirebaseCore
+import GoogleMobileAds
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -21,7 +22,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         initNavigationColor()
         requestPermissions()
         
-        FirebaseApp.configure()
+        initGoogleMobileAds()
+        
+        gGADMobileAdHelper.preloadGADRewardVieoAd()
         
         return true
     }
@@ -49,6 +52,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         PHPhotoLibrary.requestAuthorization { status in
             print("status[\(status)]")
         }
+    }
+    
+    private func initGoogleMobileAds() {
+        FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
 }
 

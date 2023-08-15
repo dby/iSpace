@@ -58,3 +58,22 @@ import CoreImage
     
     return formatter.string(from: Date(timeIntervalSince1970: sec))
 }
+
+
+class Utils: NSObject {
+    /**
+     生成随机字符串,
+     - parameter length: 生成的字符串的长度
+     - returns: 随机生成的字符串
+     */
+    class func randomStrOfLen(_ length: Int) -> String {
+        var ranStr = ""
+        let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        for _ in 0..<length {
+            let index = Int(arc4random_uniform(UInt32(characters.count)))
+            ranStr.append(characters[index])
+        }
+        
+        return ranStr
+    }
+}

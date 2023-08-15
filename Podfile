@@ -8,4 +8,5 @@ target 'iSecrets' do
   pod 'Kingfisher', '~> 7.0'
   pod 'AlertToast'
   pod 'FirebaseAnalytics'
+  pod 'Google-Mobile-Ads-SDK'
 end

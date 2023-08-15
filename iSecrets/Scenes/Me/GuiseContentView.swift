@@ -34,43 +34,45 @@ struct GuiseContentView: View {
                     Spacer()
                 
                     Toggle(isOn: $isOn) {}
-                    .frame(height: 40)
-                    .background(Color.clear)
-                    .alert("Please enter the main space password".localized(), isPresented: $isShowingAlert) {
-                        TextField("Please enter the main space password".localized(), text: $newPwd)
-                            .foregroundColor(Color(uiColor: iColor.secondary))
-                            .keyboardType(.numberPad)
-                            .onChange(of: newPwd) { newValue in
-                                newPwd = String(newPwd.prefix(6))
-                            }
-                        Button("Cancel") {
-                            isOn = false
-                        }
-                        Button("OK") {
-                            if newPwd == core.secretDB.getMainSpaceAccount()?.pwd {
-                                bJumpToEnterPwdView = true
-                            } else {
-                                homeCoordinator.toast("Enter password error".localized())
+                        .frame(height: 40)
+                        .background(Color.clear)
+                        .alert("Please enter the main space password".localized(), isPresented: $isShowingAlert) {
+                            TextField("Please enter the main space password".localized(), text: $newPwd)
+                                .foregroundColor(Color(uiColor: iColor.secondary))
+                                .keyboardType(.numberPad)
+                                .onChange(of: newPwd) { newValue in
+                                    newPwd = String(newPwd.prefix(6))
+                                }
+                            Button("Cancel") {
                                 isOn = false
                             }
-                            
-                            newPwd = ""
+                            Button("OK") {
+                                if newPwd == core.secretDB.getMainSpaceAccount()?.pwd {
+                                    bJumpToEnterPwdView = true
+                                } else {
+                                    homeCoordinator.toast("Enter password error".localized())
+                                    isOn = false
+                                }
+                                
+                                newPwd = ""
+                            }
                         }
-                    }
-                    .onTapGesture {
-                        if (core.secretDB.getFakeSpaceAccount().count > 0) {
-                            print("toggle isOpenFakeSpace to \(!isOn)")
-                            Settings.isOpenFakeSpace = !isOn
-                            newPwd = ""
-                        } else if (newPwd == core.secretDB.getMainSpaceAccount()?.pwd) {
-                            // 新密码 == 主空间密码
-                            homeCoordinator.toast("The camouflage password cannot be consistent with the main space password".localized())
-                            newPwd = ""
-                        } else {
-                            // 创建伪装空间
-                            isShowingAlert = true
+                        .onTapGesture {
+                            gGADMobileAdHelper.showGoogleMobileAdsIfNeed(tag: Utils.randomStrOfLen(5)) {
+                                if (core.secretDB.getFakeSpaceAccount().count > 0) {
+                                    print("toggle isOpenFakeSpace to \(!isOn)")
+                                    Settings.isOpenFakeSpace = !isOn
+                                    newPwd = ""
+                                } else if (newPwd == core.secretDB.getMainSpaceAccount()?.pwd) {
+                                    // 新密码 == 主空间密码
+                                    homeCoordinator.toast("The camouflage password cannot be consistent with the main space password".localized())
+                                    newPwd = ""
+                                } else {
+                                    // 创建伪装空间
+                                    isShowingAlert = true
+                                }
+                            }
                         }
-                    }
                 }
             }
             .onAppear(perform: {

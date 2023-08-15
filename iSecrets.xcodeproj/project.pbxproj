@@ -28,6 +28,7 @@
 		435E16C82A75595F0092AC43 /* ToastParas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E16C72A75595F0092AC43 /* ToastParas.swift */; };
 		435E16CA2A7634D40092AC43 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E16C92A7634D40092AC43 /* Settings.swift */; };
 		4373EE602A8BC4DF0095497F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4373EE5F2A8BC4DF0095497F /* GoogleService-Info.plist */; };
+		4373EE622A8BC6E60095497F /* GADMobileAdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373EE612A8BC6E60095497F /* GADMobileAdHelper.swift */; };
 		43A3BC562A639C0B0054E280 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC552A639C0B0054E280 /* Camera.swift */; };
 		43A3BC582A642F8A0054E280 /* IntrusionRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */; };
 		43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC592A6439080054E280 /* MeViewModel.swift */; };
@@ -78,6 +79,8 @@
 		435E16C72A75595F0092AC43 /* ToastParas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastParas.swift; sourceTree = "<group>"; };
 		435E16C92A7634D40092AC43 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4373EE5F2A8BC4DF0095497F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4373EE612A8BC6E60095497F /* GADMobileAdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADMobileAdHelper.swift; sourceTree = "<group>"; };
+		4373EE632A8BCD830095497F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		43A3BC552A639C0B0054E280 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrusionRecordView.swift; sourceTree = "<group>"; };
 		43A3BC592A6439080054E280 /* MeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 				43A3BC692A66DB760054E280 /* Login */,
 				4334202C2A35C7AF00C4CA84 /* iSecretsApp.swift */,
 				43D2AAF02A3A09E100841737 /* AppDelegate.swift */,
+				4373EE632A8BCD830095497F /* Info.plist */,
 				435D97F42A83D85E00A13B20 /* Localizable.strings */,
 				431B95232A7F73A100194591 /* InfoPlist.strings */,
 				4373EE5F2A8BC4DF0095497F /* GoogleService-Info.plist */,
@@ -242,6 +246,7 @@
 				430A0C722A604F0400AE6518 /* Utils.swift */,
 				43A3BC552A639C0B0054E280 /* Camera.swift */,
 				43E3643B2A87C929006B01DE /* Constant.swift */,
+				4373EE612A8BC6E60095497F /* GADMobileAdHelper.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				430A0C6C2A5AA55E00AE6518 /* HomeCoordinator.swift in Sources */,
 				43A3BC582A642F8A0054E280 /* IntrusionRecordView.swift in Sources */,
 				43A3BC6E2A6829070054E280 /* RoutingView.swift in Sources */,
+				4373EE622A8BC6E60095497F /* GADMobileAdHelper.swift in Sources */,
 				433420412A361C8C00C4CA84 /* Core.swift in Sources */,
 				43E777D22A5310E8003C1D17 /* Data+Ext.swift in Sources */,
 				435E16CA2A7634D40092AC43 /* Settings.swift in Sources */,
@@ -600,6 +606,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iSecrets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iSpace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "iSpace需要访问您的相机，以便您可以拍摄照片并将其用于应用程序中。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "iSpace需要访问您的相册，以便您可以选择要在应用程序中使用的照片。";
@@ -636,6 +643,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iSecrets/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iSecrets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = iSpace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "iSpace需要访问您的相机，以便您可以拍摄照片并将其用于应用程序中。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "iSpace需要访问您的相册，以便您可以选择要在应用程序中使用的照片。";
