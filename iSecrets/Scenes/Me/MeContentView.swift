@@ -94,7 +94,9 @@ struct MeContentView: View {
                     ForEach(titles[1], id: \.self) { item in
                         HStack {
                             Text(item)
-                                .foregroundColor(Color(uiColor: iColor.primary))
+                                .foregroundColor(
+                                    (item == MeConstants._fakeSpace && core.account.0 == .fakeSpace) ? Color(uiColor: iColor.tertiary) : Color(uiColor: iColor.primary)
+                                )
                                 .frame(height:30)
                             Spacer()
                         }
@@ -125,6 +127,9 @@ struct MeContentView: View {
                             if item == "Change Password".localized() {
                                 self.isShowingAlert = true
                             } else {
+                                if item == MeConstants._fakeSpace && core.account.0 == .fakeSpace {
+                                    return
+                                }
                                 meRouter.presentDetail(description: item)
                             }
                         }
