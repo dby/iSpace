@@ -29,6 +29,8 @@
 		435E16CA2A7634D40092AC43 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E16C92A7634D40092AC43 /* Settings.swift */; };
 		4373EE602A8BC4DF0095497F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4373EE5F2A8BC4DF0095497F /* GoogleService-Info.plist */; };
 		4373EE622A8BC6E60095497F /* GADMobileAdHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373EE612A8BC6E60095497F /* GADMobileAdHelper.swift */; };
+		4373EE652A8D15400095497F /* Window+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373EE642A8D15400095497F /* Window+Ext.swift */; };
+		4373EE672A8D1B850095497F /* SecurityBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373EE662A8D1B850095497F /* SecurityBlurEffectView.swift */; };
 		43A3BC562A639C0B0054E280 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC552A639C0B0054E280 /* Camera.swift */; };
 		43A3BC582A642F8A0054E280 /* IntrusionRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */; };
 		43A3BC5A2A6439080054E280 /* MeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A3BC592A6439080054E280 /* MeViewModel.swift */; };
@@ -81,6 +83,8 @@
 		4373EE5F2A8BC4DF0095497F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4373EE612A8BC6E60095497F /* GADMobileAdHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADMobileAdHelper.swift; sourceTree = "<group>"; };
 		4373EE632A8BCD830095497F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4373EE642A8D15400095497F /* Window+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Window+Ext.swift"; sourceTree = "<group>"; };
+		4373EE662A8D1B850095497F /* SecurityBlurEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityBlurEffectView.swift; sourceTree = "<group>"; };
 		43A3BC552A639C0B0054E280 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		43A3BC572A642F8A0054E280 /* IntrusionRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrusionRecordView.swift; sourceTree = "<group>"; };
 		43A3BC592A6439080054E280 /* MeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewModel.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				43A3BC552A639C0B0054E280 /* Camera.swift */,
 				43E3643B2A87C929006B01DE /* Constant.swift */,
 				4373EE612A8BC6E60095497F /* GADMobileAdHelper.swift */,
+				4373EE662A8D1B850095497F /* SecurityBlurEffectView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				43E364372A87C5A7006B01DE /* View+Ext.swift */,
 				43E364392A87C62E006B01DE /* Color+Ext.swift */,
 				43E3643D2A87CA5E006B01DE /* UIColor+Ext.swift */,
+				4373EE642A8D15400095497F /* Window+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -441,12 +447,14 @@
 				43E777D22A5310E8003C1D17 /* Data+Ext.swift in Sources */,
 				435E16CA2A7634D40092AC43 /* Settings.swift in Sources */,
 				43A3BC562A639C0B0054E280 /* Camera.swift in Sources */,
+				4373EE672A8D1B850095497F /* SecurityBlurEffectView.swift in Sources */,
 				430A0C6E2A5AA7E800AE6518 /* FilesViewModel.swift in Sources */,
 				43A3BC722A6829610054E280 /* ViewSpec.swift in Sources */,
 				435E16C62A754F330092AC43 /* AboutUsView.swift in Sources */,
 				435E16C82A75595F0092AC43 /* ToastParas.swift in Sources */,
 				43E3643A2A87C62E006B01DE /* Color+Ext.swift in Sources */,
 				43304AE12A505D560031C434 /* SecretDB.swift in Sources */,
+				4373EE652A8D15400095497F /* Window+Ext.swift in Sources */,
 				4334202D2A35C7AF00C4CA84 /* iSecretsApp.swift in Sources */,
 				430A0C732A604F0400AE6518 /* Utils.swift in Sources */,
 				43D2AAF32A3A0B6400841737 /* EnterPwdView.swift in Sources */,

@@ -109,19 +109,26 @@
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
-		<key>WCDB.swift.xcscheme</key>
+		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
-		<key>WCDBOptimizedSQLCipher.xcscheme</key>
+		<key>WCDB.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>17</integer>
+		</dict>
+		<key>WCDBOptimizedSQLCipher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>

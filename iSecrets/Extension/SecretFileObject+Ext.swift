@@ -11,6 +11,8 @@ struct AssociatedKeys {
     static var secretFileDataKey: String = "secretFileDataKeyName"
     static var secretDirDataKey: String = "SecretDirObjectDataKeyName"
     static var secretDirFilesCntKey: String = "SecretDirFilesCntKey"
+    
+    static var windowBlurEffectViewKey: String = "windowBlurEffectViewKey"
 }
 
 extension SecretFileObject {

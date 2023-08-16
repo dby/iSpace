@@ -9,4 +9,5 @@ target 'iSecrets' do
   pod 'AlertToast'
   pod 'FirebaseAnalytics'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'SnapKit', '~> 5.0.0'
 end

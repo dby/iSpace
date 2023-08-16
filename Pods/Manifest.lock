@@ -82,6 +82,7 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.2.0)
+  - SnapKit (5.0.1)
   - WCDB.swift (2.0.1):
     - WCDB.swift/no-arc (= 2.0.1)
     - WCDBOptimizedSQLCipher (~> 1.4.0)
@@ -95,6 +96,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - JFHeroBrowser (from `./`)
   - Kingfisher (~> 7.0)
+  - SnapKit (~> 5.0.0)
   - WCDB.swift
 
 SPEC REPOS:
@@ -112,6 +114,7 @@ SPEC REPOS:
     - Kingfisher
     - nanopb
     - PromisesObjC
+    - SnapKit
     - WCDB.swift
     - WCDBOptimizedSQLCipher
 
@@ -134,9 +137,10 @@ SPEC CHECKSUMS:
   Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   WCDB.swift: 738cf27df8883c47ef732ea02c44e690da5bb66d
   WCDBOptimizedSQLCipher: 55124a19f70180eb38163c959dd56695b8af8b60
 
-PODFILE CHECKSUM: abd7820488d38bba267fe40fe332624beb935624
+PODFILE CHECKSUM: d1e774aa50ab0a4f88b50fba9f7f6c9bc77c6181
 
 COCOAPODS: 1.11.3
