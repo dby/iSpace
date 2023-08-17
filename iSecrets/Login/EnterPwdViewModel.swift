@@ -37,12 +37,12 @@ class EnterPwdViewModel: ObservableObject {
     init(state: AccountEventState, modifiedMainSpace: Bool = true) {
         self.state = state
         self.bModifiedMainSpace = modifiedMainSpace
-        Task {
-            await camera.start()
-        }
+//        Task {
+//            await camera.start()
+//        }
     }
 
-    private let camera = Camera()
+//    private let camera = Camera()
     /// 错误提示信息
     var prompt: String = ""
     /// 注册/修改密码时，第一步时输入的密码
@@ -112,7 +112,7 @@ class EnterPwdViewModel: ObservableObject {
                 self.state = .loginSucceed
             } else {
                 //登录失败
-                camera.takePhoto()
+                //camera.takePhoto()
                 self.prompt = "The password is incorrect, please re-enter".localized()
                 self.state = .loginFailed
             }
