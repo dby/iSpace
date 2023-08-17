@@ -192,7 +192,7 @@ struct FilesContentView: View {
                 }
             })
             .fullScreenCover(isPresented: $presetnKey, content: {
-                EnterPwdView(viewModel: homeCoordinator.enterPwdViewModel!)
+                EnterPwdView(viewModel: homeCoordinator.makeEnterPwdViewModel())
                     .navigationBarTitleDisplayMode(.inline)
             })
             .navigationDestination(isPresented: $pushKey, destination: {

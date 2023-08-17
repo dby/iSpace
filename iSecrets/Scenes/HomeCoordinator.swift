@@ -10,17 +10,12 @@ import SwiftUI
 class HomeCoordinator: ObservableObject {
     
     @Published var filesViewModel: FilesViewModel!
-    @Published var enterPwdViewModel: EnterPwdViewModel?
     @Published var toastPara: ToastParas = ToastParas()
+    
+    private var enterPwdViewModel: EnterPwdViewModel?
     
     init() {
         self.filesViewModel = FilesViewModel()
-        
-        if core.account.0 == .notCreate {
-            self.enterPwdViewModel = EnterPwdViewModel(state: .registerSetpOne)
-        } else {
-            self.enterPwdViewModel = EnterPwdViewModel(state: .login)
-        }
     }
 }
 
@@ -34,5 +29,14 @@ extension HomeCoordinator {
     /// TOAST
     func toast(_ title: String = "") {
         toastPara = ToastParas(showing: true, title: title)
+    }
+    
+    ///
+    func makeEnterPwdViewModel() -> EnterPwdViewModel {
+        if core.account.0 == .notCreate {
+            return EnterPwdViewModel(state: .registerSetpOne)
+        } else {
+            return EnterPwdViewModel(state: .login)
+        }
     }
 }
