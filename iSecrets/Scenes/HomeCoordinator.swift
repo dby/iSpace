@@ -8,10 +8,9 @@
 import SwiftUI
 
 class HomeCoordinator: ObservableObject {
-    
-    @Published var filesViewModel: FilesViewModel!
     @Published var toastPara: ToastParas = ToastParas()
-    
+
+    var filesViewModel: FilesViewModel!
     private var enterPwdViewModel: EnterPwdViewModel?
     
     init() {
