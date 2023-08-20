@@ -44,8 +44,8 @@ extension AlbumViewModel {
         guard let folderName = dirObj.name else { return nil }
         
         let iconName: String = "\(data.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
-        let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .pic)
-        let fullPicThumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb)
+        let fullPicPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .pic)
+        let fullPicThumbPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .picThumb)
         
         guard let fullPicPath = fullPicPath else { return nil }
         guard let fullPicThumbPath = fullPicThumbPath else { return nil }
@@ -71,8 +71,8 @@ extension AlbumViewModel {
         guard let folderName = dirObj.name else { return nil }
         
         let iconName: String = "\(videoData.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
-        let fullPicPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .mp4)
-        let fullPicThumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb)
+        let fullPicPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .mp4)
+        let fullPicThumbPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .picThumb)
         
         guard let fullPicPath = fullPicPath else { return nil }
         guard let fullPicThumbPath = fullPicThumbPath else { return nil }
@@ -140,7 +140,7 @@ extension AlbumViewModel {
                 fileExt = .mp4
             }
             
-            if let path = FileUtils.getFilePath(folderName, iconName: iconName, ext: fileExt),
+            if let path = FileUtils.getMediaPath(folderName, iconName: iconName, ext: fileExt),
                 let image = UIImage(contentsOfFile: path) {
                 UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
             }
@@ -155,11 +155,11 @@ extension AlbumViewModel {
                 fileExt = .mp4
             }
             
-            if let dataPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: fileExt) {
+            if let dataPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: fileExt) {
                 FileUtils.removeItem(atPath: dataPath)
             }
             
-            if let thumbPath = FileUtils.getFilePath(folderName, iconName: iconName, ext: .picThumb) {
+            if let thumbPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .picThumb) {
                 FileUtils.removeItem(atPath: thumbPath)
             }
             

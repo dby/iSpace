@@ -160,7 +160,7 @@ class FileUtils: NSObject {
         //STEP1，优选选择自定义的Cover
         if
             let customizeCover = dirObj.customizeCover,
-            let coverPath = FileUtils.getFilePath(folderName, iconName: customizeCover, ext: .picThumb),
+            let coverPath = FileUtils.getMediaPath(folderName, iconName: customizeCover, ext: .picThumb),
             FileUtils.fileExists(atPath: coverPath)
         {
             return coverPath
@@ -169,7 +169,7 @@ class FileUtils: NSObject {
         //STEP2，再次选择存储的Thumb
         if
             let thumb = dirObj.thumb,
-            let thumbPath = FileUtils.getFilePath(folderName, iconName: thumb, ext: .picThumb),
+            let thumbPath = FileUtils.getMediaPath(folderName, iconName: thumb, ext: .picThumb),
             FileUtils.fileExists(atPath: thumbPath)
         {
             return thumbPath
@@ -178,7 +178,7 @@ class FileUtils: NSObject {
         //STEP3，从数据库读取第一个
         if
             let firstObjName = core.secretDB.getOneSecretFile(dirObj.localID)?.name,
-            let path = FileUtils.getFilePath(folderName, iconName: firstObjName, ext: .picThumb)
+            let path = FileUtils.getMediaPath(folderName, iconName: firstObjName, ext: .picThumb)
         {
             return path
         }
@@ -194,7 +194,7 @@ class FileUtils: NSObject {
         return nil
     }
     
-    static func getFilePath(_ folderName: String, iconName: String, ext: FileExtension) -> String? {
+    static func getMediaPath(_ folderName: String, iconName: String, ext: FileExtension) -> String? {
         if let rootDir = PathUtils.rootDir() {
             return "\(rootDir)/\(folderName.md5)/\(iconName).\(ext)"
         }

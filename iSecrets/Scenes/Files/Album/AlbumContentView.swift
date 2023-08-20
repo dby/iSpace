@@ -46,7 +46,7 @@ struct AlbumContentView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: (horizontalSizeClass == .compact ? columns : sixColumns), spacing: 2) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
-                                if let fullPicThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
+                                if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
                                     ZStack {
                                         GeometryReader { geo in
                                             KFImage.url(URL(filePath: fullPicThumbPath))
@@ -76,13 +76,13 @@ struct AlbumContentView: View {
                                                     var list: [HeroBrowserViewModuleBaseProtocol] = []
                                                     for item in viewModel.datas {
                                                         if item.mediaType == PHAssetMediaType.video.rawValue {
-                                                            if let fullVideoPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .mp4),
-                                                               let fullThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
+                                                            if let fullVideoPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .mp4),
+                                                               let fullThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
                                                                 list.append(HeroBrowserVideoViewModule(thumbailImgUrl: fullThumbPath, fileUrlPath: fullVideoPath))
                                                             }
                                                         } else if item.mediaType == PHAssetMediaType.image.rawValue {
-                                                            if let fullPicPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .pic),
-                                                               let fullThumbPath = FileUtils.getFilePath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
+                                                            if let fullPicPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .pic),
+                                                               let fullThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
                                                                 list.append(HeroBrowserNetworkImageViewModule(thumbailImgUrl: fullThumbPath, originImgUrl: fullPicPath))
                                                             }
                                                         }
