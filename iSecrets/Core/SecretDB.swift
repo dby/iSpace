@@ -434,11 +434,12 @@ extension SecretDB {
 
 /// SecretFileObject
 extension SecretDB {
-    func addSecretFile(dirLocalID: Int, name: String, cipher: String, asset: PHAsset) {
+    func addSecretMedia(dirLocalID: Int, name: String, cipher: String, asset: PHAsset) {
         do {
             let obj = SecretFileObject()
             obj.dirID = dirLocalID
             obj.name = name
+            obj.fileFormat = ""
             obj.cipher = cipher
             obj.createTime = Date.now.timeIntervalSince1970
             obj.updateTime = Date.now.timeIntervalSince1970
@@ -454,6 +455,29 @@ extension SecretDB {
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func addSecretFile(dirLocalID: Int, name: String, cipher: String) {
+        do {
+            let obj = SecretFileObject()
+            obj.dirID = dirLocalID
+            obj.name = name
+            obj.fileFormat = "File"
+            obj.cipher = cipher
+            obj.createTime = Date.now.timeIntervalSince1970
+            obj.updateTime = Date.now.timeIntervalSince1970
+            obj.mediaType = 0
+            obj.pixelWidth = 0
+            obj.pixelHeight = 0
+            obj.duration = 0
+            obj.itemIdentifier = ""
+            obj.isAutoIncrement = true
+            
+            try self.database?.insert([obj], intoTable: SecretFileTableName)
+        } catch {
+            print(error.localizedDescription)
+        }
+
     }
     
     func getAllSecretFiles(_ atDirID: Int) -> [SecretFileObject] {

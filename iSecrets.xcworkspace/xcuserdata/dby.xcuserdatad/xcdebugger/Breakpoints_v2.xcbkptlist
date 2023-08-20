@@ -103,16 +103,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B04C43B6-7651-495C-A8FA-048CB9FA1D07"
+            uuid = "54343064-4A2F-4B66-AF36-A8282B7D0317"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iSecrets/Login/EnterPwdViewModel.swift"
+            filePath = "iSecrets/Base/FileUtils.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "tryLoginOrRegister(_:)"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "copyItem(atPath:toPath:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

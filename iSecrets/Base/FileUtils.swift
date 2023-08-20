@@ -62,7 +62,11 @@ class FileUtils: NSObject {
     ///   - atPath: 绝对路径
     ///   - toPath: 绝对路径
     static func copyItem(atPath: String, toPath: String) {
-        try? FileManager.default.copyItem(atPath: atPath, toPath: toPath)
+        do {
+            try FileManager.default.copyItem(atPath: atPath, toPath: toPath)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     /// 移动文件

@@ -9,6 +9,7 @@ import SwiftUI
 import JFHeroBrowser
 import PhotosUI
 import Kingfisher
+import UniformTypeIdentifiers
 
 let keyWindow = UIApplication.shared.connectedScenes
                         .map({ $0 as? UIWindowScene })
@@ -33,7 +34,10 @@ struct AlbumContentView: View {
     @ObservedObject var viewModel: AlbumViewModel
     @EnvironmentObject var homeCoordinator: HomeCoordinator
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-
+    
+    @State private var exporting = false
+    @State private var document = TextDocument(text: "")
+    
     // MARK: Views
     var body: some View {
         NavigationStack {
@@ -139,52 +143,66 @@ struct AlbumContentView: View {
             }
             .toolbar(.hidden, for: .tabBar)
             .toolbar {
-                PhotosPicker(selection: $selectedImage, matching: .any(of: viewModel.appropritePickerFilter()), photoLibrary: .shared()) {
+                if secretDirObj.fileFormat == "file" {
                     Image(systemName: "plus")
-//                        .tint(.mint)
-                }.onChange(of: selectedImage) { newValue in
-                    Task {
-                        selectedImage = []
-                        var pairsData: [(PhotosPickerItem, PHAsset)] = []
-                        var pendingDeleteAssets: [PHAsset] = []
-                        
-                        for item in newValue {
-                            if let localIdentifier = item.itemIdentifier {
-                                let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [localIdentifier], options: nil)
-                                if let asset = fetchResult.firstObject {
-                                    pendingDeleteAssets.append(asset)
-                                    pairsData.append((item, asset))
-                                }
+                        .fileImporter(isPresented: $exporting, allowedContentTypes: [UTType.item]) { result in
+                            if case .success(let url) = result {
+                                print("File exported successfully: \(url)")
+                                viewModel.addFileToDir(secretDirObj, fileUrl: url)
+                            } else {
+                                print("Export failed: \(result)")
                             }
                         }
-                        
-                        if Settings.isDeleteOrigFile {
-                            viewModel.deleteWithAssets(assets: pendingDeleteAssets)
+                        .onTapGesture {
+                            self.exporting = true
                         }
-                        
-                        var lastIconName = ""
-                        for item in pairsData {
-                            if let data = try? await item.0.loadTransferable(type: Data.self) {
-                                var iconname: String? = nil
-                                if item.1.mediaType == .video {
-                                    iconname = viewModel.addVideoToDir(secretDirObj, asset: item.1, videoData: data)
-                                } else if item.1.mediaType == .image {
-                                    iconname = viewModel.addImageToDir(secretDirObj, asset: item.1, data: data)
+                } else {
+                    PhotosPicker(selection: $selectedImage, matching: .any(of: viewModel.appropritePickerFilter()), photoLibrary: .shared()) {
+                        Image(systemName: "plus")
+                    }.onChange(of: selectedImage) { newValue in
+                        Task {
+                            selectedImage = []
+                            var pairsData: [(PhotosPickerItem, PHAsset)] = []
+                            var pendingDeleteAssets: [PHAsset] = []
+                            
+                            for item in newValue {
+                                if let localIdentifier = item.itemIdentifier {
+                                    let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [localIdentifier], options: nil)
+                                    if let asset = fetchResult.firstObject {
+                                        pendingDeleteAssets.append(asset)
+                                        pairsData.append((item, asset))
+                                    }
                                 }
-                                
-                                lastIconName = (iconname == nil || iconname!.isEmpty) ? lastIconName : iconname!
                             }
-                        }
-                        
-                        if !lastIconName.isEmpty {
-                            core.secretDB.updateDirThumb(dirID: secretDirObj.localID,
-                                                         thumb: lastIconName)
-                        }
-                        
-                        //延时刷新UI
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            viewModel.fetchFiles()
-                            homeCoordinator.refreshDirsIfNeed()
+                            
+                            if Settings.isDeleteOrigFile {
+                                viewModel.deleteWithAssets(assets: pendingDeleteAssets)
+                            }
+                            
+                            var lastIconName = ""
+                            for item in pairsData {
+                                if let data = try? await item.0.loadTransferable(type: Data.self) {
+                                    var iconname: String? = nil
+                                    if item.1.mediaType == .video {
+                                        iconname = viewModel.addVideoToDir(secretDirObj, asset: item.1, videoData: data)
+                                    } else if item.1.mediaType == .image {
+                                        iconname = viewModel.addImageToDir(secretDirObj, asset: item.1, data: data)
+                                    }
+                                    
+                                    lastIconName = (iconname == nil || iconname!.isEmpty) ? lastIconName : iconname!
+                                }
+                            }
+                            
+                            if !lastIconName.isEmpty {
+                                core.secretDB.updateDirThumb(dirID: secretDirObj.localID,
+                                                             thumb: lastIconName)
+                            }
+                            
+                            //延时刷新UI
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                viewModel.fetchFiles()
+                                homeCoordinator.refreshDirsIfNeed()
+                            }
                         }
                     }
                 }

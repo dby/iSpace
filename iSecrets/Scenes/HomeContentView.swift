@@ -44,9 +44,6 @@ struct HomeContentView: View {
                 })
                 .tabViewStyle(.page)
         }
-        .toast(isPresenting: $coordinator.toastPara.showing) {
-            AlertToast(displayMode: .alert, type: .regular, title: coordinator.toastPara.title)
-        }
     }
 }
 

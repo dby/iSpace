@@ -59,7 +59,7 @@ extension AlbumViewModel {
             }
         }
         /// to DB
-        core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
+        core.secretDB.addSecretMedia(dirLocalID: dirObj.localID,
                                     name: iconName,
                                     cipher: "",
                                     asset: asset)
@@ -86,12 +86,37 @@ extension AlbumViewModel {
             }
         }
         /// to DB
-        core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
+        core.secretDB.addSecretMedia(dirLocalID: dirObj.localID,
                                     name: iconName,
                                     cipher: "",
                                     asset: asset)
         
         return iconName
+    }
+    
+    func addFileToDir(_ dirObj: SecretDirObject, fileUrl: URL) {
+        if
+            let dirName = dirObj.name,
+            let folerName = FileUtils.getDirPath(dirName)
+        {
+            let fileName = fileUrl.lastPathComponent
+            let dstFilePath = "\(folerName)/\(fileName)"
+            let dstFilePathUrl = URL(filePath: dstFilePath)
+            // Move Data To DIR
+            do {
+                try FileManager.default.copyItem(at: fileUrl, to: dstFilePathUrl)
+                print("File copied successfully to: \(dstFilePathUrl)")
+            } catch {
+                print("Failed to copy file: \(error)")
+            }
+            
+            // to DB
+            core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
+                                        name: fileName,
+                                        cipher: "")
+            
+            fetchFiles()
+        }
     }
     
     func menuTitles() -> [(String, String)] {        
