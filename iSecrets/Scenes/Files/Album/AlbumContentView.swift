@@ -143,7 +143,7 @@ struct AlbumContentView: View {
             }
             .toolbar(.hidden, for: .tabBar)
             .toolbar {
-                if secretDirObj.fileFormat == "file" {
+                if secretDirObj.fileFormat == DirDataFormat.file.rawValue {
                     Image(systemName: "plus")
                         .fileImporter(isPresented: $exporting, allowedContentTypes: [UTType.item]) { result in
                             if case .success(let url) = result {

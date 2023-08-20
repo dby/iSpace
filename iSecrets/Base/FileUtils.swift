@@ -7,13 +7,22 @@
 
 import Foundation
 
+enum DirDataFormat: String {
+    /// 文件
+    case file = "file"
+    /// 视频
+    case video = "video"
+    /// 照片
+    case photo = "photo"
+    /// 文件/视频/照片
+    case all = "all"
+}
+
 enum FileExtension: String {
     /// 照片
     case pic = "pic"
     /// 视频
     case mp4 = "mp4"
-    /// 文件
-    case file = "file"
     /// 图片缩略图
     case picThumb = "pic_thumb"
     /// 视频缩略图
@@ -28,12 +37,12 @@ class FileUtils: NSObject {
     
     static func contentsOfDirectory(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = []) throws -> [URL] {
         let contentsOfURL = try? FileManager.default.contentsOfDirectory(at: url,
-                                includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-        
+                                                                         includingPropertiesForKeys: nil,
+                                                                         options: .skipsHiddenFiles)
         
         return contentsOfURL ?? []
     }
-        
+    
     static func createFolder(_ folderPath: String) -> Bool {
         let manager = FileManager.default
         if (manager.fileExists(atPath:folderPath)) {
@@ -194,10 +203,17 @@ class FileUtils: NSObject {
         return nil
     }
     
+    /// 获得 pic/video/thumb/... 等路径
     static func getMediaPath(_ folderName: String, iconName: String, ext: FileExtension) -> String? {
         if let rootDir = PathUtils.rootDir() {
             return "\(rootDir)/\(folderName.md5)/\(iconName).\(ext)"
         }
+        
+        return nil
+    }
+    
+    /// 获得 File 的路径
+    static func getFilePath() -> String? {
         
         return nil
     }

@@ -119,7 +119,11 @@ extension AlbumViewModel {
         }
     }
     
-    func menuTitles() -> [(String, String)] {        
+    func menuTitles() -> [(String, String)] {
+        if self.dirObj.fileFormat == DirDataFormat.file.rawValue {
+            return []
+        }
+        
         var titles: [(String, String)] = [(AlbumConstants.menuShare, "square.and.arrow.up")]
         
         titles.append((AlbumConstants.menuSaveToAlbum, "photo"))
