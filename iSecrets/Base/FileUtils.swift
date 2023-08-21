@@ -213,8 +213,10 @@ class FileUtils: NSObject {
     }
     
     /// 获得 File 的路径
-    static func getFilePath() -> String? {
-        
+    static func getFilePath(_ folderName: String, fileName: String) -> String? {
+        if let rootDir = PathUtils.rootDir() {
+            return "\(rootDir)/\(folderName.md5)/\(fileName)"
+        }
         return nil
     }
 }

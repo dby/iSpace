@@ -462,7 +462,7 @@ extension SecretDB {
             let obj = SecretFileObject()
             obj.dirID = dirLocalID
             obj.name = name
-            obj.fileFormat = "File"
+            obj.fileFormat = DirDataFormat.file.rawValue
             obj.cipher = cipher
             obj.createTime = Date.now.timeIntervalSince1970
             obj.updateTime = Date.now.timeIntervalSince1970

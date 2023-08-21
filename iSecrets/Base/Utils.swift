@@ -9,6 +9,12 @@ import SwiftUI
 import Foundation
 import CoreImage
 
+let FILESIZE_1M: Double = 1 * 1024 * 1024
+let FILESIZE_1G: Double = 1 * 1024 * 1024 * 1024
+let FILESIZE_10G: Double = 10 * 1024 * 1024 * 1024
+let FILESIZE_100G: Double = 100 * 1024 * 1024 * 1024
+let FILESIZE_1T: Double = 1 * 1024 * 1024 * 1024 * 1024
+
 /// 生成缩略图
 @inlinable func genThumbnail(for imgData: Data, thumbnailSize: CGSize) -> Data? {
     guard let image = UIImage(data: imgData) else { return nil }
@@ -59,7 +65,6 @@ import CoreImage
     return formatter.string(from: Date(timeIntervalSince1970: sec))
 }
 
-
 class Utils: NSObject {
     /**
      生成随机字符串,
@@ -75,5 +80,20 @@ class Utils: NSObject {
         }
         
         return ranStr
+    }
+    
+    class func goodFormatSizeStr(_ usage: Double) -> String {
+        if usage >= FILESIZE_1G {
+            // 大于1G
+            return String(format: "%.1fGB", usage/FILESIZE_1G)
+        } else if usage >= 1 * 1024 * 1024 {
+            // 大于1M
+            return String(format: "%.1fMB", usage/FILESIZE_1M)
+        } else if usage >= 1 * 1024 {
+            // 大于1KB
+            return String(format: "%.1fKB", usage/1*1024)
+        } else {
+            return String(format: "%dB", Int(usage))
+        }
     }
 }

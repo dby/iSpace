@@ -60,9 +60,9 @@ extension AlbumViewModel {
         }
         /// to DB
         core.secretDB.addSecretMedia(dirLocalID: dirObj.localID,
-                                    name: iconName,
-                                    cipher: "",
-                                    asset: asset)
+                                     name: iconName,
+                                     cipher: "",
+                                     asset: asset)
         
         return iconName
     }
@@ -87,9 +87,9 @@ extension AlbumViewModel {
         }
         /// to DB
         core.secretDB.addSecretMedia(dirLocalID: dirObj.localID,
-                                    name: iconName,
-                                    cipher: "",
-                                    asset: asset)
+                                     name: iconName,
+                                     cipher: "",
+                                     asset: asset)
         
         return iconName
     }
@@ -145,7 +145,7 @@ extension AlbumViewModel {
             }
             
             if let path = FileUtils.getMediaPath(folderName, iconName: iconName, ext: fileExt),
-                let image = UIImage(contentsOfFile: path) {
+               let image = UIImage(contentsOfFile: path) {
                 UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
             }
         } else if title == AlbumConstants.menuCover {
@@ -195,6 +195,24 @@ extension AlbumViewModel {
         return [.images, .videos]
     }
     
+    func appropriteFileImageName(_ fileName: String) -> String {
+        if fileName.hasSuffix(".ppt") || fileName.hasPrefix(".pptx") {
+            return "icon_ppt"
+        } else if fileName.hasSuffix(".doc") {
+            return "icon_doc"
+        } else if fileName.hasSuffix(".txt") {
+            return "icon_txt"
+        } else if fileName.hasSuffix(".rar") {
+            return "icon_zip"
+        } else if fileName.hasSuffix(".xls") || fileName.hasSuffix(".number") {
+            return "icon_doc"
+        } else if fileName.hasSuffix(".pages") {
+            return "icon_pages"
+        }
+        
+        return "icon_file"
+    }
+    
     func getThumbnailImage(for asset: PHAsset, completion: @escaping (UIImage?) -> Void) {
         let options = PHImageRequestOptions()
         options.isSynchronous = false
@@ -213,6 +231,17 @@ extension AlbumViewModel {
                                   options: options) { (image, info) in
             completion(image)
         }
+    }
+    
+    func getFileSize(_ fileName: String) -> String {
+        if
+            let dirName = dirObj.name,
+            let filePath = FileUtils.getFilePath(dirName, fileName: fileName)
+        {
+            return Utils.goodFormatSizeStr(FileUtils.getFileSize(atPath: filePath))
+        }
+        
+        return ""
     }
     
     func fetchFiles() {

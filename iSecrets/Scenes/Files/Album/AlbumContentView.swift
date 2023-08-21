@@ -30,13 +30,11 @@ struct AlbumContentView: View {
     ]
     
     @State private var selectedImage: [PhotosPickerItem] = []
+    @State private var importing = false
     
     @ObservedObject var viewModel: AlbumViewModel
     @EnvironmentObject var homeCoordinator: HomeCoordinator
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
-    @State private var exporting = false
-    @State private var document = TextDocument(text: "")
     
     // MARK: Views
     var body: some View {
@@ -46,7 +44,30 @@ struct AlbumContentView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: (horizontalSizeClass == .compact ? columns : sixColumns), spacing: 2) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
-                                if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
+                                if dataitem.fileFormat == DirDataFormat.file.rawValue {
+                                    //预览文件
+                                    GeometryReader { geo in
+                                        VStack {
+                                            ZStack {
+                                                Image(viewModel.appropriteFileImageName(dataitem.name!))
+                                            }
+                                            .frame(width: geo.size.width, height: geo.size.width)
+                                            .background(Color(uiColor: iColor.last))
+                                            .cornerRadius(2)
+                                            
+                                            Text(dataitem.name!)
+                                                .font(Font.system(size: 12))
+                                                .foregroundColor(Color(uiColor: iColor.secondary))
+                                            
+                                            Text("\(viewModel.getFileSize(dataitem.name!))")
+                                                .font(Font.system(size: 12))
+                                                .foregroundColor(Color(uiColor: iColor.primary))
+                                        }
+                                        .onTapGesture {
+                                            
+                                        }
+                                    }
+                                } else if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
                                     ZStack {
                                         GeometryReader { geo in
                                             KFImage.url(URL(filePath: fullPicThumbPath))
@@ -145,7 +166,8 @@ struct AlbumContentView: View {
             .toolbar {
                 if secretDirObj.fileFormat == DirDataFormat.file.rawValue {
                     Image(systemName: "plus")
-                        .fileImporter(isPresented: $exporting, allowedContentTypes: [UTType.item]) { result in
+                        .foregroundColor(Color(uiColor: UIColor.systemBlue))
+                        .fileImporter(isPresented: $importing, allowedContentTypes: [UTType.item]) { result in
                             if case .success(let url) = result {
                                 print("File exported successfully: \(url)")
                                 viewModel.addFileToDir(secretDirObj, fileUrl: url)
@@ -154,7 +176,7 @@ struct AlbumContentView: View {
                             }
                         }
                         .onTapGesture {
-                            self.exporting = true
+                            self.importing = true
                         }
                 } else {
                     PhotosPicker(selection: $selectedImage, matching: .any(of: viewModel.appropritePickerFilter()), photoLibrary: .shared()) {
