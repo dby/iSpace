@@ -10,6 +10,7 @@ import JFHeroBrowser
 import PhotosUI
 import Kingfisher
 import UniformTypeIdentifiers
+import QuickLook
 
 let keyWindow = UIApplication.shared.connectedScenes
                         .map({ $0 as? UIWindowScene })
@@ -31,6 +32,7 @@ struct AlbumContentView: View {
     
     @State private var selectedImage: [PhotosPickerItem] = []
     @State private var importing = false
+    @State private var previewFilePath: URL? = nil
     
     @ObservedObject var viewModel: AlbumViewModel
     @EnvironmentObject var homeCoordinator: HomeCoordinator
@@ -64,7 +66,12 @@ struct AlbumContentView: View {
                                                 .foregroundColor(Color(uiColor: iColor.primary))
                                         }
                                         .onTapGesture {
-                                            
+                                            if
+                                                let dirName = self.secretDirObj.name,
+                                                let filePath = FileUtils.getFilePath(dirName, fileName: dataitem.name!)
+                                            {
+                                                self.previewFilePath = URL(fileURLWithPath: filePath)
+                                            }
                                         }
                                     }
                                 } else if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
@@ -229,6 +236,7 @@ struct AlbumContentView: View {
                     }
                 }
             }
+            .quickLookPreview($previewFilePath)
         }
     }
 }
