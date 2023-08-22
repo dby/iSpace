@@ -73,6 +73,14 @@ struct AlbumContentView: View {
                                                 self.previewFilePath = URL(fileURLWithPath: filePath)
                                             }
                                         }
+                                        .contextMenu {                                            
+                                            Button {
+                                                viewModel.contextMenuDidClicked(AlbumConstants.menuDelete, fileObj: dataitem)
+                                            } label: {
+                                                Text(AlbumConstants.menuDelete)
+                                                Image(systemName: "minus.circle")
+                                            }
+                                        }
                                     }
                                 } else if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
                                     ZStack {

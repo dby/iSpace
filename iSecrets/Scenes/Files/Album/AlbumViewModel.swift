@@ -154,17 +154,26 @@ extension AlbumViewModel {
             guard let folderName = dirObj.name else { return }
             guard let iconName = fileObj.name else { return }
             
-            var fileExt = FileExtension.pic
-            if fileObj.mediaType == PHAssetMediaType.video.rawValue {
-                fileExt = .mp4
-            }
-            
-            if let dataPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: fileExt) {
-                FileUtils.removeItem(atPath: dataPath)
-            }
-            
-            if let thumbPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .picThumb) {
-                FileUtils.removeItem(atPath: thumbPath)
+            if fileObj.fileFormat == DirDataFormat.file.rawValue {
+                if
+                    let fileName = fileObj.name,
+                    let filePath = FileUtils.getFilePath(folderName, fileName: fileName)
+                {
+                    FileUtils.removeItem(atPath: filePath)
+                }
+            } else {
+                var fileExt = FileExtension.pic
+                if fileObj.mediaType == PHAssetMediaType.video.rawValue {
+                    fileExt = .mp4
+                }
+                
+                if let dataPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: fileExt) {
+                    FileUtils.removeItem(atPath: dataPath)
+                }
+                
+                if let thumbPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .picThumb) {
+                    FileUtils.removeItem(atPath: thumbPath)
+                }
             }
             
             core.secretDB.deleteSecretFileRecord(localID: fileObj.localID)

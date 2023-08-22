@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 import CoreImage
 
+let FILESIZE_1K: Double = 1 * 1024
 let FILESIZE_1M: Double = 1 * 1024 * 1024
 let FILESIZE_1G: Double = 1 * 1024 * 1024 * 1024
 let FILESIZE_10G: Double = 10 * 1024 * 1024 * 1024
@@ -86,12 +87,12 @@ class Utils: NSObject {
         if usage >= FILESIZE_1G {
             // 大于1G
             return String(format: "%.1fGB", usage/FILESIZE_1G)
-        } else if usage >= 1 * 1024 * 1024 {
+        } else if usage >= FILESIZE_1M {
             // 大于1M
             return String(format: "%.1fMB", usage/FILESIZE_1M)
-        } else if usage >= 1 * 1024 {
+        } else if usage >= FILESIZE_1K {
             // 大于1KB
-            return String(format: "%.1fKB", usage/1*1024)
+            return String(format: "%.1fKB", usage/FILESIZE_1K)
         } else {
             return String(format: "%dB", Int(usage))
         }
