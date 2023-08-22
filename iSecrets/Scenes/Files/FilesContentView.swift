@@ -49,8 +49,10 @@ struct FilesContentView: View {
                     LazyVGrid(columns: horizontalSizeClass == .compact ? twoGridLayout : fourGridLayout, spacing: 10) {
                         ForEach(viewModel.dirs, id: \.name.self) { item in
                             VStack(spacing: 0) {
-                                if let fullPicThumbPath = FileUtils.getFolderCover(item),
-                                   FileUtils.fileExists(atPath: fullPicThumbPath)
+                                if
+                                    item.limitCondition != DataCategory.file.rawValue,
+                                    let fullPicThumbPath = FileUtils.getFolderCover(item),
+                                    FileUtils.fileExists(atPath: fullPicThumbPath)
                                 {
                                     ZStack {
                                         GeometryReader { geo in
@@ -84,7 +86,7 @@ struct FilesContentView: View {
                                 } else {
                                     GeometryReader { geo in
                                         ZStack {
-                                            Image("album")
+                                            Image(item.limitCondition == DataCategory.file.rawValue ? "icon_file_dir" : "album")
                                         }
                                         .frame(width: geo.size.width - 10, height: geo.size.width - 10)
                                         .background(Color(uiColor: iColor.last))

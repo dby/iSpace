@@ -46,7 +46,7 @@ struct AlbumContentView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: (horizontalSizeClass == .compact ? columns : sixColumns), spacing: 2) {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
-                                if dataitem.fileFormat == DirDataFormat.file.rawValue {
+                                if dataitem.fileFormat == DataCategory.file.rawValue {
                                     //预览文件
                                     GeometryReader { geo in
                                         VStack {
@@ -73,7 +73,7 @@ struct AlbumContentView: View {
                                                 self.previewFilePath = URL(fileURLWithPath: filePath)
                                             }
                                         }
-                                        .contextMenu {                                            
+                                        .contextMenu {
                                             Button {
                                                 viewModel.contextMenuDidClicked(AlbumConstants.menuDelete, fileObj: dataitem)
                                             } label: {
@@ -179,7 +179,7 @@ struct AlbumContentView: View {
             }
             .toolbar(.hidden, for: .tabBar)
             .toolbar {
-                if secretDirObj.fileFormat == DirDataFormat.file.rawValue {
+                if secretDirObj.limitCondition == DataCategory.file.rawValue {
                     Image(systemName: "plus")
                         .foregroundColor(Color(uiColor: UIColor.systemBlue))
                         .fileImporter(isPresented: $importing, allowedContentTypes: [UTType.item]) { result in

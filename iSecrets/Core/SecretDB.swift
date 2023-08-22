@@ -53,8 +53,6 @@ final class SecretDirObject: TableCodable {
     var name: String? = nil
     /// 工作路径（相对路径）
     var workingDir: String? = nil
-    /// 文件格式，pdf、word、or文件夹
-    var fileFormat: String? = nil
     /// 文件加密密码，文件可单独加密，只能输入正确，才能查看/
     var cipher: String? = nil
     /// 封面
@@ -73,7 +71,6 @@ final class SecretDirObject: TableCodable {
         case limitCondition
         case name
         case workingDir
-        case fileFormat
         case cipher
         case thumb
         case customizeCover
@@ -292,10 +289,9 @@ extension SecretDB {
     ///   - cipher: 可设置文件密码
     /// - Returns: True/False
     func addOrUpdateSecretDirRecord(accountID: Int,
-                                    limitionCondition: LimitCondition,
+                                    limitionCondition: DataCategory,
                                     name: String,
                                     workingDir: String,
-                                    fileFormat: String,
                                     cipher: String) -> Bool {
         var flag = false
         do {
@@ -312,7 +308,6 @@ extension SecretDB {
                     obj.limitCondition = limitionCondition.rawValue
                     obj.name = name
                     obj.workingDir = workingDir
-                    obj.fileFormat = fileFormat
                     obj.cipher = cipher
                     obj.thumb = "" //封面暂时填空
                     obj.customizeCover = "" //自定义封面暂时填空
@@ -462,7 +457,7 @@ extension SecretDB {
             let obj = SecretFileObject()
             obj.dirID = dirLocalID
             obj.name = name
-            obj.fileFormat = DirDataFormat.file.rawValue
+            obj.fileFormat = DataCategory.file.rawValue
             obj.cipher = cipher
             obj.createTime = Date.now.timeIntervalSince1970
             obj.updateTime = Date.now.timeIntervalSince1970

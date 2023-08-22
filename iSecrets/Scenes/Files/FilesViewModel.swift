@@ -109,7 +109,6 @@ class FilesViewModel: ObservableObject {
                                                      limitionCondition: .all,
                                                      name: name,
                                                      workingDir: name.md5,
-                                                     fileFormat: "",
                                                      cipher: "")) {
             if let folderFullPath = FileUtils.getDirPath(name) {
                 _ = FileUtils.createFolder(folderFullPath)

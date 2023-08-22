@@ -144,19 +144,16 @@ class EnterPwdViewModel: ObservableObject {
                                                          limitionCondition: .video,
                                                          name: "Videos",
                                                          workingDir: "Videos".md5,
-                                                         fileFormat: DirDataFormat.video.rawValue,
                                                          cipher: "")
             _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .photo,
                                                          name: "Photos",
                                                          workingDir: "Photos".md5,
-                                                         fileFormat: DirDataFormat.photo.rawValue,
                                                          cipher: "")
             _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .file,
                                                          name: "Files",
                                                          workingDir: "Files".md5,
-                                                         fileFormat: DirDataFormat.file.rawValue,
                                                          cipher: "")
         }
     }

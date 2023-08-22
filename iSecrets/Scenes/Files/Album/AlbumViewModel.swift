@@ -120,7 +120,7 @@ extension AlbumViewModel {
     }
     
     func menuTitles() -> [(String, String)] {
-        if self.dirObj.fileFormat == DirDataFormat.file.rawValue {
+        if self.dirObj.limitCondition == DataCategory.file.rawValue {
             return []
         }
         
@@ -139,7 +139,7 @@ extension AlbumViewModel {
             guard let folderName = dirObj.name else { return }
             guard let iconName = fileObj.name else { return }
             
-            var fileExt = FileExtension.pic
+            var fileExt = MediaSuffix.pic
             if fileObj.mediaType == PHAssetMediaType.video.rawValue {
                 fileExt = .mp4
             }
@@ -154,7 +154,7 @@ extension AlbumViewModel {
             guard let folderName = dirObj.name else { return }
             guard let iconName = fileObj.name else { return }
             
-            if fileObj.fileFormat == DirDataFormat.file.rawValue {
+            if fileObj.fileFormat == DataCategory.file.rawValue {
                 if
                     let fileName = fileObj.name,
                     let filePath = FileUtils.getFilePath(folderName, fileName: fileName)
@@ -162,7 +162,7 @@ extension AlbumViewModel {
                     FileUtils.removeItem(atPath: filePath)
                 }
             } else {
-                var fileExt = FileExtension.pic
+                var fileExt = MediaSuffix.pic
                 if fileObj.mediaType == PHAssetMediaType.video.rawValue {
                     fileExt = .mp4
                 }
