@@ -17,7 +17,7 @@ extension MeViewModel {
     func calcDiskUsage() {
         if let p = PathUtils.rootDir() {
             self.diskUsage = FileUtils.folderSizeAtPath(p)
-            self.diskUsageText = "\(Utils.goodFormatSizeStr(Double(self.diskUsage)))/\(Utils.goodFormatSizeStr(FILESIZE_1G)) 已用"
+            self.diskUsageText = "\(Utils.goodFormatSizeStr(Double(self.diskUsage)))/\(Utils.goodFormatSizeStr(FILESIZE_1G)) \("used".localized())"
         }
     }
     
