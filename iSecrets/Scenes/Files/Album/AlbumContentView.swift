@@ -48,40 +48,43 @@ struct AlbumContentView: View {
                             ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
                                 if dataitem.fileFormat == DataCategory.file.rawValue {
                                     //预览文件
-                                    GeometryReader { geo in
-                                        VStack {
-                                            ZStack {
-                                                Image(viewModel.appropriteFileImageName(dataitem.name!))
+                                    VStack {
+                                        GeometryReader { geo in
+                                            VStack {
+                                                ZStack {
+                                                    Image(viewModel.appropriteFileImageName(dataitem.name!))
+                                                }
+                                                .frame(width: geo.size.width, height: geo.size.width)
+                                                .background(Color(uiColor: iColor.last))
+                                                .cornerRadius(2)
+                                                
+                                                Text(dataitem.name!)
+                                                    .font(Font.system(size: 12))
+                                                    .foregroundColor(Color(uiColor: iColor.secondary))
+                                                
+                                                Text("\(viewModel.getFileSize(dataitem.name!))")
+                                                    .font(Font.system(size: 12))
+                                                    .foregroundColor(Color(uiColor: iColor.primary))
                                             }
-                                            .frame(width: geo.size.width, height: geo.size.width)
-                                            .background(Color(uiColor: iColor.last))
-                                            .cornerRadius(2)
-                                            
-                                            Text(dataitem.name!)
-                                                .font(Font.system(size: 12))
-                                                .foregroundColor(Color(uiColor: iColor.secondary))
-                                            
-                                            Text("\(viewModel.getFileSize(dataitem.name!))")
-                                                .font(Font.system(size: 12))
-                                                .foregroundColor(Color(uiColor: iColor.primary))
-                                        }
-                                        .onTapGesture {
-                                            if
-                                                let dirName = self.secretDirObj.name,
-                                                let filePath = FileUtils.getFilePath(dirName, fileName: dataitem.name!)
-                                            {
-                                                self.previewFilePath = URL(fileURLWithPath: filePath)
+                                            .onTapGesture {
+                                                if
+                                                    let dirName = self.secretDirObj.name,
+                                                    let filePath = FileUtils.getFilePath(dirName, fileName: dataitem.name!)
+                                                {
+                                                    self.previewFilePath = URL(fileURLWithPath: filePath)
+                                                }
                                             }
-                                        }
-                                        .contextMenu {
-                                            Button {
-                                                viewModel.contextMenuDidClicked(AlbumConstants.menuDelete, fileObj: dataitem)
-                                            } label: {
-                                                Text(AlbumConstants.menuDelete)
-                                                Image(systemName: "minus.circle")
+                                            .contextMenu {
+                                                Button {
+                                                    viewModel.contextMenuDidClicked(AlbumConstants.menuDelete, fileObj: dataitem)
+                                                } label: {
+                                                    Text(AlbumConstants.menuDelete)
+                                                    Image(systemName: "minus.circle")
+                                                }
                                             }
                                         }
                                     }
+                                    .aspectRatio(0.70, contentMode: .fit) //设置宽高比例为 1:1
                                 } else if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
                                     ZStack {
                                         GeometryReader { geo in
