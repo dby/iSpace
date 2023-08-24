@@ -186,6 +186,7 @@ struct AlbumContentView: View {
                             if case .success(let url) = result {
                                 print("File exported successfully: \(url)")
                                 viewModel.addFileToDir(secretDirObj, fileUrl: url)
+                                homeCoordinator.refreshDirsIfNeed()
                             } else {
                                 print("Export failed: \(result)")
                             }

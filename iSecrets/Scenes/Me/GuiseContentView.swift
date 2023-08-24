@@ -76,7 +76,7 @@ struct GuiseContentView: View {
                 }
             }
             .onAppear(perform: {
-                isOn = Settings.isOpenFakeSpace
+                //isOn = Settings.isOpenFakeSpace
             })
             .navigationTitle("Fake Space".localized())
             .fullScreenCover(isPresented: $bJumpToEnterPwdView, content: {
