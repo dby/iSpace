@@ -142,18 +142,18 @@ class EnterPwdViewModel: ObservableObject {
             //初次登录时，没有文件夹，此时应该添加兜底的目录
             _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .video,
-                                                         name: "Videos",
-                                                         workingDir: "Videos".md5,
+                                                         name: FilesConstants.fixDirVideos,
+                                                         workingDir: FilesConstants.fixDirVideos.md5,
                                                          cipher: "")
             _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .photo,
-                                                         name: "Photos",
-                                                         workingDir: "Photos".md5,
+                                                         name: FilesConstants.fixDirPhotos,
+                                                         workingDir: FilesConstants.fixDirPhotos.md5,
                                                          cipher: "")
             _ = core.secretDB.addOrUpdateSecretDirRecord(accountID: accountid,
                                                          limitionCondition: .file,
-                                                         name: "Files",
-                                                         workingDir: "Files".md5,
+                                                         name: FilesConstants.fixDirFiles,
+                                                         workingDir: FilesConstants.fixDirFiles.md5,
                                                          cipher: "")
         }
     }
