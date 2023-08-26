@@ -44,8 +44,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     private func initNavigationColor() {
         let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: iColor.primary]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: iColor.primary]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: iColor.secondary]
+        navBarAppearance.titleTextAttributes = [.foregroundColor: iColor.secondary]
     }
     
     private func requestPermissions() {
