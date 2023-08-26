@@ -68,7 +68,7 @@ struct AlbumContentView: View {
                                             }
                                             .onTapGesture {
                                                 if
-                                                    let dirName = self.secretDirObj.name,
+                                                    let dirName = self.secretDirObj.workingDir,
                                                     let filePath = FileUtils.getFilePath(dirName, identifier: dataitem.itemIdentifier, fileName: dataitem.name!)
                                                 {
                                                     self.previewFilePath = URL(fileURLWithPath: filePath)
@@ -85,7 +85,7 @@ struct AlbumContentView: View {
                                         }
                                     }
                                     .aspectRatio(0.70, contentMode: .fit) //设置宽高比例为 1:1
-                                } else if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: dataitem.name!, ext: .picThumb) {
+                                } else if let fullPicThumbPath = FileUtils.getMediaPath(secretDirObj.workingDir!, iconName: dataitem.name!, ext: .picThumb) {
                                     ZStack {
                                         GeometryReader { geo in
                                             KFImage.url(URL(filePath: fullPicThumbPath))
@@ -115,13 +115,13 @@ struct AlbumContentView: View {
                                                     var list: [HeroBrowserViewModuleBaseProtocol] = []
                                                     for item in viewModel.datas {
                                                         if item.mediaType == PHAssetMediaType.video.rawValue {
-                                                            if let fullVideoPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .mp4),
-                                                               let fullThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
+                                                            if let fullVideoPath = FileUtils.getMediaPath(secretDirObj.workingDir!, iconName: item.name!, ext: .mp4),
+                                                               let fullThumbPath = FileUtils.getMediaPath(secretDirObj.workingDir!, iconName: item.name!, ext: .picThumb) {
                                                                 list.append(HeroBrowserVideoViewModule(thumbailImgUrl: fullThumbPath, fileUrlPath: fullVideoPath))
                                                             }
                                                         } else if item.mediaType == PHAssetMediaType.image.rawValue {
-                                                            if let fullPicPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .pic),
-                                                               let fullThumbPath = FileUtils.getMediaPath(secretDirObj.name!, iconName: item.name!, ext: .picThumb) {
+                                                            if let fullPicPath = FileUtils.getMediaPath(secretDirObj.workingDir!, iconName: item.name!, ext: .pic),
+                                                               let fullThumbPath = FileUtils.getMediaPath(secretDirObj.workingDir!, iconName: item.name!, ext: .picThumb) {
                                                                 list.append(HeroBrowserNetworkImageViewModule(thumbailImgUrl: fullThumbPath, originImgUrl: fullPicPath))
                                                             }
                                                         }

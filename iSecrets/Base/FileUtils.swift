@@ -143,7 +143,7 @@ class FileUtils: NSObject {
     }
     
     static func getFolderCover(_ dirObj: SecretDirObject) -> String? {
-        guard let folderName = dirObj.name else { return nil }
+        guard let folderName = dirObj.workingDir else { return nil }
         
         //STEP1，优选选择自定义的Cover
         if
@@ -185,7 +185,7 @@ class FileUtils: NSObject {
     /// 获得 pic/video/thumb/... 等路径
     static func getMediaPath(_ folderName: String, iconName: String, ext: MediaSuffix) -> String? {
         if let rootDir = PathUtils.rootDir() {
-            return "\(rootDir)/\(folderName.md5)/\(iconName).\(ext)"
+            return "\(rootDir)/\(folderName)/\(iconName).\(ext)"
         }
         
         return nil
@@ -194,7 +194,7 @@ class FileUtils: NSObject {
     /// 获得 File 的路径
     static func getFilePath(_ folderName: String, identifier: String, fileName: String) -> String? {
         if let rootDir = PathUtils.rootDir() {
-            return "\(rootDir)/\(folderName.md5)/\(identifier)/\(fileName)"
+            return "\(rootDir)/\(folderName)/\(identifier)/\(fileName)"
         }
         return nil
     }

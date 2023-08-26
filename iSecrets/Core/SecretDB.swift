@@ -49,9 +49,9 @@ final class SecretDirObject: TableCodable {
     var accountID: Int = 0
     /// 是否限制存储文件类型
     var limitCondition: String? = nil
-    /// 文件夹名
+    /// 文件夹名，可修改
     var name: String? = nil
-    /// 工作路径（相对路径）
+    /// 工作路径（相对路径），插入表时创建，不能修改
     var workingDir: String? = nil
     /// 文件加密密码，文件可单独加密，只能输入正确，才能查看/
     var cipher: String? = nil
@@ -89,11 +89,11 @@ final class SecretFileObject: TableCodable {
     var localID: Int = 0
     /// 文件夹ID
     var dirID: Int = 0
-    /// 文件名
+    /// 文件名，可更改的
     var name: String? = nil
     /// 文件格式，pdf、word、or文件夹
     var fileFormat: String? = nil
-    /// 文件加密密码，文件可单独加密，只能输入正确，才能查看/
+    /// 文件加密密码，文件可单独加密，只能输入正确，才能查看，可更改的
     var cipher: String? = nil
     /// 创建时间
     var createTime: TimeInterval = 0

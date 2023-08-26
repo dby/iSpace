@@ -41,7 +41,7 @@ extension AlbumViewModel {
     }
     
     func addImageToDir(_ dirObj: SecretDirObject, asset: PHAsset, data: Data) -> String? {
-        guard let folderName = dirObj.name else { return nil }
+        guard let folderName = dirObj.workingDir else { return nil }
         
         let iconName: String = "\(data.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
         let fullPicPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .pic)
@@ -68,7 +68,7 @@ extension AlbumViewModel {
     }
     
     func addVideoToDir(_ dirObj: SecretDirObject, asset: PHAsset, videoData: Data) -> String? {
-        guard let folderName = dirObj.name else { return nil }
+        guard let folderName = dirObj.workingDir else { return nil }
         
         let iconName: String = "\(videoData.md5)_\(Int(Date.now.timeIntervalSince1970 * 1000))"
         let fullPicPath = FileUtils.getMediaPath(folderName, iconName: iconName, ext: .mp4)
@@ -99,7 +99,7 @@ extension AlbumViewModel {
         let identifier = "file_\(Date.now.timeIntervalSince1970)".md5
         
         if
-            let dirName = dirObj.name,
+            let dirName = dirObj.workingDir,
             let dstFilePath = FileUtils.getFilePath(dirName, identifier: identifier, fileName: fileName)
         {
             FileUtils.EnsureCreateParentDir(dstFilePath);
@@ -154,7 +154,7 @@ extension AlbumViewModel {
         } else if title == AlbumConstants.menuCover {
             core.secretDB.updateDirCustomizeCover(dirID: dirObj.localID, cover: fileObj.name!)
         } else if title == AlbumConstants.menuDelete {
-            guard let folderName = dirObj.name else { return }
+            guard let folderName = dirObj.workingDir else { return }
             guard let iconName = fileObj.name else { return }
             
             if fileObj.fileFormat == DataCategory.file.rawValue {
@@ -247,7 +247,7 @@ extension AlbumViewModel {
     
     func getFileSize(_ fileName: String, identifier: String) -> String {
         if
-            let dirName = dirObj.name,
+            let dirName = dirObj.workingDir,
             let filePath = FileUtils.getFilePath(dirName, identifier: identifier, fileName: fileName)
         {
             return Utils.goodFormatSizeStr(FileUtils.getFileSize(atPath: filePath))
