@@ -26,7 +26,7 @@ extension GADMobileAdHelper {
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ GADSimulatorID ]
         
         let request = GADRequest()
-        GADRewardedAd.load(withAdUnitID:"ca-app-pub-3940256099942544/1712485313",
+        GADRewardedAd.load(withAdUnitID:"ca-app-pub-5501213248608554/9398879924",
                            request: request,
                            completionHandler: { [self] ad, error in
             if let error = error {
