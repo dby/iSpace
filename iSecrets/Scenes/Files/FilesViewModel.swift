@@ -67,7 +67,7 @@ class FilesViewModel: ObservableObject {
     func menuTitles(_ dirObj: SecretDirObject) -> [(String, String)] {
         var titles: [(String, String)] = []
         if (core.secretDB.getSecretFileCnt(dirObj.localID) != 0) {
-            titles.append((FilesConstants.menuAdd, "plus"))
+            //titles.append((FilesConstants.menuAdd, "plus"))
             titles.append(dirObj.cipher == "" ? (FilesConstants.menuLock, "lock") : (FilesConstants.menuUnLock, "lock.open"))
         }
         
