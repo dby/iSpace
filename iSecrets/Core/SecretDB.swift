@@ -107,7 +107,7 @@ final class SecretFileObject: TableCodable {
     var pixelHeight: Int = 0
     /// 同PHAsset.duration
     var duration: TimeInterval = 0
-    /// 同PHAsset.itemIdentifier
+    /// 同PHAsset.itemIdentifier，如果是文件，这是唯一标识
     var itemIdentifier: String = ""
     
     enum CodingKeys: String, CodingTableKey {
@@ -452,7 +452,7 @@ extension SecretDB {
         }
     }
     
-    func addSecretFile(dirLocalID: Int, name: String, cipher: String) {
+    func addSecretFile(dirLocalID: Int, name: String, cipher: String, identifier: String) {
         do {
             let obj = SecretFileObject()
             obj.dirID = dirLocalID
@@ -465,7 +465,7 @@ extension SecretDB {
             obj.pixelWidth = 0
             obj.pixelHeight = 0
             obj.duration = 0
-            obj.itemIdentifier = ""
+            obj.itemIdentifier = identifier
             obj.isAutoIncrement = true
             
             try self.database?.insert([obj], intoTable: SecretFileTableName)

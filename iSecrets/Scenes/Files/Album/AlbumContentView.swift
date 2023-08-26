@@ -45,7 +45,7 @@ struct AlbumContentView: View {
                 if viewModel.datas.count > 0 {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: (horizontalSizeClass == .compact ? columns : sixColumns), spacing: 2) {
-                            ForEach(Array(viewModel.datas.enumerated()), id: \.1.name.self) { index, dataitem in
+                            ForEach(Array(viewModel.datas.enumerated()), id: \.1.localID.self) { index, dataitem in
                                 if dataitem.fileFormat == DataCategory.file.rawValue {
                                     //预览文件
                                     VStack {
@@ -62,14 +62,14 @@ struct AlbumContentView: View {
                                                     .font(Font.system(size: 12))
                                                     .foregroundColor(Color(uiColor: iColor.secondary))
                                                 
-                                                Text("\(viewModel.getFileSize(dataitem.name!))")
+                                                Text("\(viewModel.getFileSize(dataitem.name!, identifier: dataitem.itemIdentifier))")
                                                     .font(Font.system(size: 12))
                                                     .foregroundColor(Color(uiColor: iColor.primary))
                                             }
                                             .onTapGesture {
                                                 if
                                                     let dirName = self.secretDirObj.name,
-                                                    let filePath = FileUtils.getFilePath(dirName, fileName: dataitem.name!)
+                                                    let filePath = FileUtils.getFilePath(dirName, identifier: dataitem.itemIdentifier, fileName: dataitem.name!)
                                                 {
                                                     self.previewFilePath = URL(fileURLWithPath: filePath)
                                                 }

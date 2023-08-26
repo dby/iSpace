@@ -95,12 +95,14 @@ extension AlbumViewModel {
     }
     
     func addFileToDir(_ dirObj: SecretDirObject, fileUrl: URL) {
+        let fileName = fileUrl.lastPathComponent
+        let identifier = "file_\(Date.now.timeIntervalSince1970)".md5
+        
         if
             let dirName = dirObj.name,
-            let folerName = FileUtils.getDirPath(dirName)
+            let dstFilePath = FileUtils.getFilePath(dirName, identifier: identifier, fileName: fileName)
         {
-            let fileName = fileUrl.lastPathComponent
-            let dstFilePath = "\(folerName)/\(fileName)"
+            FileUtils.EnsureCreateParentDir(dstFilePath);
             let dstFilePathUrl = URL(filePath: dstFilePath)
             // Move Data To DIR
             do {
@@ -113,7 +115,8 @@ extension AlbumViewModel {
             // to DB
             core.secretDB.addSecretFile(dirLocalID: dirObj.localID,
                                         name: fileName,
-                                        cipher: "")
+                                        cipher: "",
+                                        identifier: identifier)
             
             fetchFiles()
         }
@@ -157,7 +160,7 @@ extension AlbumViewModel {
             if fileObj.fileFormat == DataCategory.file.rawValue {
                 if
                     let fileName = fileObj.name,
-                    let filePath = FileUtils.getFilePath(folderName, fileName: fileName)
+                    let filePath = FileUtils.getFilePath(folderName, identifier: fileObj.itemIdentifier, fileName: fileName)
                 {
                     FileUtils.removeItem(atPath: filePath)
                 }
@@ -242,10 +245,10 @@ extension AlbumViewModel {
         }
     }
     
-    func getFileSize(_ fileName: String) -> String {
+    func getFileSize(_ fileName: String, identifier: String) -> String {
         if
             let dirName = dirObj.name,
-            let filePath = FileUtils.getFilePath(dirName, fileName: fileName)
+            let filePath = FileUtils.getFilePath(dirName, identifier: identifier, fileName: fileName)
         {
             return Utils.goodFormatSizeStr(FileUtils.getFileSize(atPath: filePath))
         }
