@@ -158,13 +158,15 @@ struct FilesContentView: View {
                         alertParas = AlertParas(showing: true, title: "New Folder".localized(), info: "Please enter a new filename".localized())
                     }.alert(alertParas.title, isPresented: $alertParas.showing) {
                         TextField(alertParas.info, text: $name)
-                            .keyboardType(.numberPad)
+                            .keyboardType(self.alertParas.title == "Please Enter Password".localized() ? .numberPad : .default)
                             .onReceive(Just(name)) { newValue in
-                                let filtered = newValue.filter { $0.isNumber }
-                                if filtered.count > 6 {
-                                    name = String(filtered.prefix(6))
-                                } else {
-                                    name = filtered
+                                if self.alertParas.title == "Please Enter Password".localized() {
+                                    let filtered = newValue.filter { $0.isNumber }
+                                    if filtered.count > 6 {
+                                        name = String(filtered.prefix(6))
+                                    } else {
+                                        name = filtered
+                                    }
                                 }
                             }
                         Button("Cancel".localized()) {
